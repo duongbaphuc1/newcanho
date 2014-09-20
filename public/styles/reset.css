@@ -1,0 +1,91 @@
+﻿html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+ 
+/* remember to define focus styles! */
+:focus {
+    outline: 0;
+}
+ 
+/* remember to highlight inserts somehow! */
+ins {
+    text-decoration: none;
+}
+del {
+    text-decoration: line-through;
+}
+ 
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+/* General */
+.fl { float:left; }
+.fr { float:right }
+
+p{margin:0 0 15px 0}
+
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+  
+.clearfix {
+    display: inline-block;
+}
+  
+html[xmlns] .clearfix {
+    display: block;
+}
+  
+* html .clearfix {
+    height: 1%;
+}
+
+
+.for_row{margin-top:10px;}
+
+.txt_1{  width:200px;}
+.txt_2{ width:300px;}
+.txt_1,.txt_2{font:normal 12px Arial, Helvetica, sans-serif; color:#333333;height:17px; border:1px solid #f4f4f4; border-top:1px solid #c2c2c2;border-left:1px solid #c2c2c2; padding:0 3px;}
+
+.lb{width:100px;  text-align:left; }
+
+.text-are{width:400px; height:150px;border:1px solid #f4f4f4; border-top:1px solid #c2c2c2;border-left:1px solid #c2c2c2; padding:3px; font:normal 12px Arial, Helvetica, sans-serif;}
+.text-are_add{width:300px;  height:110px;}

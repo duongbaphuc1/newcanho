@@ -1,0 +1,64 @@
+/* ######### Drop Down ULs CSS ######### */
+.ddsubmenustyle, .ddsubmenustyle ul{ /*topmost and sub ULs, respectively*/
+	margin: 0;
+	position: absolute;
+	padding:0px;
+	left: 0;
+	top: 0;
+	list-style-type: none;
+	visibility: hidden;
+	z-index: 100;
+	text-align:left;
+	border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  padding:5px;
+  background-color:#db5300;
+   opacity: 0.9;
+}
+
+.ddsubmenustyle li a{
+display: block;
+width: 170px; /*width of menu (not including side paddings)*/
+color: #fff;
+background:#db5300;
+text-decoration: none;
+padding: 4px 5px 4px 15px;
+border-bottom: 1px dotted #ea6819;
+}
+
+.ddsubmenustyle li a.last_sub{border:none !important;}
+
+* html .ddsubmenustyle li{ /*IE6 CSS hack*/
+display: inline-block;
+width: 210px; /*width of menu (include side paddings of LI A*/
+}
+
+.ddsubmenustyle li a:hover{
+background-color: #ff6305;
+color: white;
+}
+
+/* ######### Neutral CSS  ######### */
+
+.downarrowpointer{ /*CSS for "down" arrow image added to top menu items*/
+padding-left: 4px;
+border: 0;
+}
+
+.rightarrowpointer{ /*CSS for "right" arrow image added to drop down menu items*/
+position: absolute;
+padding-top: 3px;
+left: 100px;
+border: 0;
+}
+
+.ddiframeshim{
+position: absolute;
+z-index: 500;
+background: transparent;
+border-width: 0;
+width: 0;
+height: 0;
+display: block;
+}
