@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /apartment_for_lease
+Disallow: /about_us
+Sitemap: http://apartmentforlease.com.vn/sitemap.xml
