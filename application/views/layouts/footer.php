@@ -1,8 +1,8 @@
 <?php
 $CI = & get_instance();
-$CI->load->model("Link_model");
-$lists = $CI->Link_model->getLinks();
-$contact = $this->session->userdata('contact');
+//$CI->load->model("Link_model");
+//$lists = $CI->Link_model->getLinks();
+//$contact = $this->session->userdata('contact');
 ?>
 <p>
     Copyright © 2012 

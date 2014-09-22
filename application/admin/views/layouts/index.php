@@ -43,7 +43,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="/admin"> <span>maritimeland</span></a>
+                    <a class="brand" href="/admin"> <span>canhosaigon</span></a>
                    
                     <!-- theme selector ends -->
 

@@ -38,7 +38,7 @@
 
                 <div class="row-fluid">
                     <div class="span12 center login-header">
-                        <h2>Welcome to maritimeland panel</h2>
+                        <h2>Welcome to canhosaigon panel</h2>
                     </div><!--/span-->
                 </div><!--/row-->
                 <?php $this->load->view($bodycontent)?>

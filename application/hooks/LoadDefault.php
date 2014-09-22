@@ -18,9 +18,9 @@ class LoadDefault {
     
     // check lang
     private function _getContact(){
-        $this->CI->load->model("Contact_model");
-        $contact = $this->CI->Contact_model->getById();
-        $this->CI->session->set_userdata("contact", $contact);
+        //$this->CI->load->model("Contact_model");
+        //$contact = $this->CI->Contact_model->getById();
+        //$this->CI->session->set_userdata("contact", $contact);
     }
 
 }

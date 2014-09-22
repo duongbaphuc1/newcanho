@@ -1,24 +1,24 @@
 <?php
 $CI = & get_instance();
-$CI->load->model("District_model");
-$lists = $CI->District_model->getDistrict();
+//$CI->load->model("District_model");
+//$lists = $CI->District_model->getDistrict();
 
-$CI->load->model('Tag_model');
-$tags = $CI->Tag_model->getAllForSelectBox();
-
-$CI->load->model("Advertising_model");
-$advs = $CI->Advertising_model->getAll(0);
-
-$CI->load->model("Searchbox_model");
-
-$CI->Searchbox_model->setTable('rent_type');
-$rent = $CI->Searchbox_model->getDataSearchBox('rent');
-
-$CI->Searchbox_model->setTable('real_type');
-$real = $CI->Searchbox_model->getDataSearchBox('real');
-
-$CI->Searchbox_model->setTable('range_price');
-$price = $CI->Searchbox_model->getDataSearchBox('price');
+//$CI->load->model('Tag_model');
+//$tags = $CI->Tag_model->getAllForSelectBox();
+//
+//$CI->load->model("Advertising_model");
+//$advs = $CI->Advertising_model->getAll(0);
+//
+//$CI->load->model("Searchbox_model");
+//
+//$CI->Searchbox_model->setTable('rent_type');
+//$rent = $CI->Searchbox_model->getDataSearchBox('rent');
+//
+//$CI->Searchbox_model->setTable('real_type');
+//$real = $CI->Searchbox_model->getDataSearchBox('real');
+//
+//$CI->Searchbox_model->setTable('range_price');
+//$price = $CI->Searchbox_model->getDataSearchBox('price');
 
 
 $cls = $this->router->fetch_class();

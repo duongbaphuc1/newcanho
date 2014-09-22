@@ -13,12 +13,8 @@ class Home extends CI_Controller {
         $this->load->model('News_model');
     }
 
-    public function index() {
-        $data['listLastNews'] = $this->News_model->getAll(0,12, 'created_date');
-        $data['bodycontent'] = "home/real_home";    
-        $data['listCanho']   = $this->ProjectReals_model->getAllByType("canho",0, ITEM_PRODUCT_HOME);
-        $data['listDatnen']  = $this->ProjectReals_model->getAllByType("datnen",0, ITEM_PRODUCT_HOME);   
-        $data['listReals']  = $this->Reals_model->getAll(0, PER_PAGE);   
+    public function index() {        
+        $data['bodycontent'] = "home/real_home";            
         $this->load->view('layouts/index', $data);
     }
 
