@@ -14,31 +14,29 @@
             <table class="table table-striped table-bordered bootstrap-datatable datatable">
                 <thead>
                     <tr>
-                        <th>Tiêu đề</th>
-                        <th>Ngày đăng</th>                        
+                        <th>Tiêu đề</th>                                               
                         <th>Image</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    if (!empty($listNews)):
-                        foreach ($listNews as $news):
+                    if (!empty($listProject)):
+                        foreach ($listProject as $project):
                             ?>
                             <tr>
-                                <td class="left"><?php echo $news->name ?></td>
-                                <td class="left"><?php echo $news->created_date ?></td>
+                                <td class="left"><?php echo $project->project_name ?></td>                                
                                 <td class="center">
                                     <a class="image-in-modal" href="#">
-                                        <img class="img-logo grayscale" src="/public/images/upload/<?php echo $news->image ?>"/>
+                                        <img class="img-logo grayscale" src="/public/images/upload/<?php echo $project->image ?>"/>
                                     </a>
                                 </td>
                                 <td class="center">
-                                    <a class="btn btn-success" href="/admin/index.php/projects/edit/<?php echo $news->id ?>">
+                                    <a class="btn btn-success" href="/admin/index.php/projects/edit/<?php echo $project->id ?>">
                                         <i class="icon-edit icon-white"></i>
                                         edit
                                     </a>
-                                    <a class="btn btn-danger" href="/admin/index.php/projects/delete/<?php echo $news->id ?>">
+                                    <a class="btn btn-danger" href="/admin/index.php/projects/delete/<?php echo $project->id ?>">
                                         <i class="icon-edit icon-white"></i>
                                         delete
                                     </a>

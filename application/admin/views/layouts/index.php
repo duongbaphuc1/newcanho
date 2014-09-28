@@ -9,13 +9,15 @@
 	<script src="/public/scripts/jquery-1.8.3.js" type="text/javascript"></script>
 	<script src="/public/scripts/bootstrap.js" type="text/javascript"></script>
         <script src="/public/scripts/jquery.validate.js" type="text/javascript"></script>        
-        <script src="/public/admin/scripts/admin.js" type="text/javascript"></script> 
+        <script src="/public/admin/scripts/admin.js" type="text/javascript"></script>
+        <script src="/public/admin/scripts/select2.min.js" type="text/javascript"></script>
         
         <script src="/public/admin/ckeditor/ckeditor.js" type="text/javascript"></script>        
         <script src="/public/admin/ckfinder/ckfinder.js" type="text/javascript"></script>        
 
         <!-- load theme-->       
-	<link href="/public/admin/styles/bootstrap-cerulean.css" rel="stylesheet">                       
+	<link href="/public/admin/styles/bootstrap-cerulean.css" rel="stylesheet">
+        <link href="/public/admin/styles/select2.css" rel="stylesheet">
         <link href="/public/bootstrap/css/bootstrap-responsive.css" media="screen" rel="stylesheet" type="text/css">	
 	<link href="/public/admin/styles/jquery-ui-1.8.21.custom.css" rel="stylesheet">
 	<link href='/public/admin/styles/fullcalendar.css' rel='stylesheet'>

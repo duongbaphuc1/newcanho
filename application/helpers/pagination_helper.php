@@ -4,7 +4,7 @@ if ( ! function_exists('pagination'))
     function pagination($url, $total, $perPage, $uriSeg, $numLink){
         $CI = & get_instance();
         $CI->load->library('pagination');
-        $config['base_url'] = $url;
+        $config['base_url'] = $url;       
         $config['total_rows'] = $total;
         $config['per_page'] = $perPage;
         $config['uri_segment'] = $uriSeg;

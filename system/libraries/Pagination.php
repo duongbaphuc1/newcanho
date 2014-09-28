@@ -332,6 +332,7 @@ class CI_Pagination {
 		$output = $this->full_tag_open.$output.$this->full_tag_close;
 
 		return $output;
+                
 	}
 }
 // END Pagination Class

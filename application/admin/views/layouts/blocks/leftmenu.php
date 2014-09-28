@@ -3,7 +3,7 @@
         <ul class="nav nav-tabs nav-stacked main-menu">
             <li><a class="ajax-link" href="/admin"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
             <li><a class="ajax-link" href="/admin/index.php/staticcontents"><i class="icon-edit"></i><span class="hidden-tablet"> Giới thiệu</span></a></li>
-            <li><a class="ajax-link" href="/admin/index.php/news"><i class="icon-eye-open"></i><span class="hidden-tablet"> Tin tức</span></a></li>
+            <li><a class="ajax-link" href="/admin/index.php/realestate"><i class="icon-eye-open"></i><span class="hidden-tablet"> Tin Bất Động Sản</span></a></li>
             <li><a class="ajax-link" href="/admin/index.php/projects"><i class="icon-edit"></i><span class="hidden-tablet"> Dự án</span></a></li>
             <li><a class="ajax-link" href="/admin/index.php/advs"><i class="icon-edit"></i><span class="hidden-tablet"> Quảng cáo</span></a></li>
 <!--            <li><a class="ajax-link" href="/admin/index.php/reals"><i class="icon-list-alt"></i><span class="hidden-tablet"> Ký gửi</span></a></li>

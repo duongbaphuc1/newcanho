@@ -24,12 +24,12 @@ class District_model extends Abstract_model {
     }
     
     function getDistrict(){
-        $districts = array();   
-        $this->db->order_by("name", "asc");
+        $districts = array();
+        $this->db->where("province_id", 1);       
         $query = $this->db->get($this->_table);
         $results = $query->result_array();
         foreach ($results as $item){
-            $districts[$item['id']] = $item['name'];
+            $districts[$item['id']] = $item['district_name'];
         }
         
         return $districts;

@@ -11,7 +11,7 @@ class Tag_model extends Abstract_model {
     function __construct() {
         // Call the Model constructor
         parent::__construct();
-        $this->_table = "tags";
+        $this->_table = "tag";
         $this->_primary_key = "id";
     }
 
@@ -45,7 +45,7 @@ class Tag_model extends Abstract_model {
         
         $tmp = array();
         foreach ($result as $item){            
-            $tmp[$item->id] = $item->tag;
+            $tmp[$item->id] = $item->tag_name;
         }
         return $tmp;
     }

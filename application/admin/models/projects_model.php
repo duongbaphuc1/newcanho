@@ -10,13 +10,13 @@ class Projects_model extends CI_Model {
             function __construct() {
         // Call the Model constructor
         parent::__construct();
-        $this->_table = "project_reals";
+        $this->_table = "project";
         $this->_primary_key = "id";
         $this->load->helper("upload_helper");
     }
 
     function getAll() {        
-        $this->db->order_by("id", "DESC");
+        //$this->db->order_by("id", "DESC");
         $query = $this->db->get($this->_table);
         return $query->result();
     }

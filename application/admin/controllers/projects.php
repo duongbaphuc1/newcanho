@@ -13,7 +13,7 @@ class Projects extends CI_Controller {
     }
 
     public function index() {       
-        $data['listNews'] = $this->Projects_model->getAll();
+        $data['listProject'] = $this->Projects_model->getAll();
         $data['bodycontent'] = 'projects/index';
         $this->load->view("layouts/index", $data);
     }

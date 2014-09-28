@@ -9,6 +9,7 @@ if ( ! function_exists('pagination'))
         $config['per_page'] = $perPage;
         $config['uri_segment'] = $uriSeg;
         $config['num_links'] = $numLink;     
+        $config['use_page_numbers'] = TRUE;
         $config['full_tag_open'] = '<div class="pages mt_10px" align="center"><strong>';
         $config['full_tag_close'] = '</strong></div>';
         $config['num_tag_open'] = "";

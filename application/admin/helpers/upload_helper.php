@@ -9,12 +9,13 @@ if (!defined('BASEPATH'))
  */
 if (!function_exists('uploadFile')) {
 
-    function uploadFile($filename, $path) {
+    function uploadFile($filename, $path, $name) {
         $CI = & get_instance();
         $CI->load->library('upload');
         $config['upload_path'] = $path;
         $config['allowed_types'] = $CI->config->item('allowed_types');
         $config['max_size'] = $CI->config->item('max_size');
+        $config['file_name'] = $name;
         $CI->upload->initialize($config);
 
         if (!$CI->upload->do_upload($filename)) {

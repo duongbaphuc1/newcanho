@@ -19,7 +19,26 @@ class Abstract_model extends CI_Model {
      * @param int $limit
      * @param string $sort
      * @return object 
-     */ 
+     */
+    
+    function fetchAll($table, $offset = null, $limit = null, $sort = null, $random = 0) {
+        if (empty($table)) {
+            return FALSE;
+        }
+        if (!is_null($offset) && !empty($limit)) {
+            $this->db->limit($limit, $offset);
+        }
+        if (!empty($sort)) {
+			if($random == 0){
+            	$query = $this->db->order_by($sort, "DESC");
+			}else{
+				$query = $this->db->order_by($sort, "RANDOM");
+			}
+        }
+        $query = $this->db->get($table);
+        return $query->result_array();
+    }
+    
     function getAll($table, $offset = null, $limit = null, $sort = null) {
         if (empty($table)) {
             return FALSE;
