@@ -14,23 +14,19 @@
                         </div>                        
                     </div>                    
                     <div class="control-group">
-                        <label class="control-label" for="textarea">Loại dịch vụ</label>
+                        <label class="control-label" for="textarea">Loại dự án</label>
                         <div class="controls">
-                            <?php                                     
-                                if (!empty($categories)){                                    
-                                    echo form_dropdown('category_id',$categories,'');    
-                                }
+                            <?php
+                            if (!empty($categories)) {
+                                echo form_dropdown('category_id', $categories, '');
+                            }
                             ?>
                         </div>                        
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="textarea">Dự án</label>
-                        <div class="controls">
-                            <?php 
-                                if (!empty($cat_project)){                                    
-                                    echo form_dropdown('project_id',$cat_project,'');    
-                                }
-                            ?>
+                        <div class="controls">                            
+                            <?php echo form_input('project_id', '', "id='project_id'"); ?>
                         </div>                        
                     </div>                    
                     <div class="control-group">
@@ -42,30 +38,30 @@
                     <div class="control-group">
                         <label class="control-label" for="textarea">Quận</label>
                         <div class="controls">
-                            <?php 
-                                    if (!empty($district)){                                    
-                                    echo form_dropdown('district_id',$district,'');    
-                                }                                
+                            <?php
+                            if (!empty($district)) {
+                                echo form_dropdown('district_id', $district, '');
+                            }
                             ?>
                         </div>                        
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="textarea">Khoảng giá</label>
                         <div class="controls">
-                            <?php 
-                                    if (!empty($price)){                                    
-                                        echo form_dropdown('price_id',$price,'');
-                                    }
+                            <?php
+                            if (!empty($price)) {
+                                echo form_dropdown('price_id', $price, '');
+                            }
                             ?>
                         </div>                        
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="textarea">Diện tích</label>
                         <div class="controls">
-                            <?php 
-                                    if (!empty($area)){                                    
-                                        echo form_dropdown('area_id',$area,'');
-                                    } 
+                            <?php
+                            if (!empty($area)) {
+                                echo form_dropdown('area_id', $area, '');
+                            }
                             ?>
                         </div>                        
                     </div>
@@ -96,10 +92,13 @@
                     <div class="control-group">
                         <label class="control-label" for="textarea">Tag</label>
                         <div class="controls">
-                             <?php echo form_dropdown('tags[]', $tags, null, "id = 'tags' multiple='multiple' style='width:400px;'"); ?>                        
+                            <?php
+                            echo form_dropdown(
+                                    'tags[]', $tags, null, "id = 'tags' multiple='multiple' style='width:400px;'");
+                            ?>                        
                         </div>
                     </div>
-                    
+
                     <div class="control-group">
                         <label class="control-label" for="textarea">Tiêu đề SEO</label>
                         <div class="controls">
@@ -136,12 +135,12 @@
 </div><!--/row-->
 
 <script>
-    $(document).ready(function() {        
+    $(document).ready(function () {
         var ck = CKEDITOR.replace('description', {toolbar: 'Full', width: "100%"});
         CKFinder.setupCKEditor(ck, {
             basePath: '/public/admin/ckfinder/'
-        });        
-        $(".btn.cancel").click(function() {
+        });
+        $(".btn.cancel").click(function () {
             if (history.length == 0) {
                 window.location = "/admin/index.php/products";
             } else {
@@ -149,21 +148,21 @@
             }
         });
 
-        $(".form-horizontal").bind('submit', function() {
+        $(".form-horizontal").bind('submit', function () {
             for (instance in CKEDITOR.instances)
-            CKEDITOR.instances[instance].updateElement();
-        }); 
+                CKEDITOR.instances[instance].updateElement();
+        });
         $(".form-horizontal").validate({
             ignore: "",
             errorElement: "span",
             errorClass: "help-inline",
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.appendTo(element.parent());
             },
-            highlight: function(element) {
+            highlight: function (element) {
                 $(element).parent().parent().addClass('error');
             },
-            unhighlight: function(element) {
+            unhighlight: function (element) {
                 $(element).parent().parent().removeClass('error');
             },
             rules: {
@@ -183,14 +182,14 @@
                     required: true
                 },
                 price_id: {
-                    required: true 
+                    required: true
                 },
                 area_id: {
                     required: true
                 },
                 price: {
-                    required: true                 
-                },                               
+                    required: true
+                },
                 seo_title: {
                     required: true
                 },
@@ -203,10 +202,10 @@
                 description: {
                     required: true
                 }
-                
-                
+
+
             },
-            messages: {               
+            messages: {
             }
         });
     });
@@ -234,13 +233,42 @@
     }
 
 </script>
-
-
-
-
-
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("#tags").select2();
+
+        $('#project_id').select2({
+            width: '220px',
+            placeholder: "Search project",
+            minimumInputLength: 2,
+            ajax: {
+                url: "/admin/index.php/realestate/getPro",
+                dataType: 'json',                
+                data: function (term, page) {
+                    return {
+                        term: term
+                    };
+                },
+                results: function (data) {
+                    var myResults = [];
+                    $.each(data, function (index, item) {
+                        myResults.push({
+                            'id': item.id,
+                            'text': item.value
+                        });
+                    });
+                    return {
+                        results: myResults
+                    };
+                }
+                
+            },
+            initSelection: function (element, callback) {
+                var id = $(element).val();
+                var data = {id: $id, text: $text};
+                callback(data);
+            },
+        });
+
     });
 </script>
