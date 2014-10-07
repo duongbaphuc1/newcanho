@@ -7,7 +7,7 @@ class Realestate extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model(array("Realestate_model","Tag_model","Tagreal_model"));       
+        $this->load->model(array("Realestate_model","Tag_model","Tagreal_model","Projects_model"));       
         $this->load->helper("pagination");
         $this->load->library("pagination");
     }
@@ -68,7 +68,7 @@ class Realestate extends CI_Controller {
                 redirect(base_url() . "admin/index.php/realestate", "location");
             }
         }
-        $data['categories'] = $this->Realestate_model->getCatForSelectBox('categories', 'category_name');
+        $data['categories'] = $this->Realestate_model->getCatForSelectBox('categories', 'category_name');        
         $data['price'] = $this->Realestate_model->getCatForSelectBox('price', 'price_range');
         $data['area'] = $this->Realestate_model->getCatForSelectBox('area', 'area_range');
         $data['tags'] = $this->Tag_model->getAllForSelectBox();
@@ -85,9 +85,14 @@ class Realestate extends CI_Controller {
                  array_push($tagsEdit, $list['tag_id']);
             }
         }
-        //var_dump( $tagsEdit);die;
         $data['tagsEdit'] = $tagsEdit;
-        $data['realestate'] = $this->Realestate_model->getById($id);
+        
+        $realestate = $this->Realestate_model->getById($id);        
+        $data['realestate'] = $realestate;
+        $project_name = $this->Projects_model->getById($realestate['project_id']);
+        if(count($project_name)>0){
+            $data['project_name'] = $project_name['project_name'];        
+        }
         $data['bodycontent'] = 'realestate/edit';
         $this->load->view("layouts/index", $data);
     }

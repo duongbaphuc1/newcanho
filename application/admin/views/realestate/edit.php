@@ -21,14 +21,18 @@
                                     echo form_dropdown('category_id',$categories,$realestate['category_id']);    
                                 }
                             ?>
-                        </div>                        
+                        </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="textarea">Dự án</label>
                         <div class="controls">
-                            <?php echo form_input('project_id','1', "id='project_id' data-init-text='test'" ); ?>
-                            <input type="hidden" value="Ten du an de o day"  id="project_name" />
-                        </div>                        
+                            <?php echo form_input('project_id',$realestate['project_id'], "id='project_id'" ); ?><br>
+                            <input type="hidden" value="
+                                <?php 
+                                 if (!empty($project_name)){   
+                                    echo $project_name;} 
+                                ?>" name="project_name"  id="project_name" />
+                        </div>        
                     </div>                    
                     <div class="control-group">
                         <label class="control-label" for="textarea">Địa chỉ</label>

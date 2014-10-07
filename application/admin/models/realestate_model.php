@@ -86,23 +86,41 @@ class Realestate_model extends Abstract_model {
         unset($data['tags']);
         unset($data['old_image']);       
         unset($data['del_image']);
+        unset($data['project_name']);
         
+        //$test = $this->input->post("project_id");
+        //if($test==1){
+        //    echo $this->input->post("project_id");
+        //}
+        //die;
         $old_image_ = "";
+        $old_image = "";
         $del_image = "";
         $imgEdit="";
         $imgNew="";
         
-        $del_image = $this->input->post('del_image');        
-        if($del_image!=""){
-            $old_image = explode("&fieldbreak;", $this->input->post("old_image"));            
+        // upload new image logo
+        for ($i = 0; $i < 10; $i++) {
+            $name = md5(date('d/m/Y H:i:s'));
+            $image = uploadFile("image" . $i, BASEPATH . "../public/images/upload/", $name . "_" . $i);
+            if (!empty($image['file_name'])) {
+                $imgNew.=$image['file_name']."&fieldbreak;";
+            }
+        }
+        
+        $old_image_ = $this->input->post("old_image");        
+        $del_image = $this->input->post('del_image');
+        
+        if($del_image!=""){            
+            $old_image = explode("&fieldbreak;",$old_image_);            
             foreach ($del_image as $del){
                 foreach ($old_image as $key=>$old){
-                    if($del == $old){                        
+                     if($del == $old){                        
                         unset($old_image[$key]);
                         $old_image = array_values($old_image);
                         removeFile(BASEPATH . "../public/images/upload/" . $del);
                     }
-                }                
+                }           
             }
             foreach ($old_image as $img){
                 if($img!=""){
@@ -110,15 +128,12 @@ class Realestate_model extends Abstract_model {
                 }
             }            
         }
-        // upload image logo
-        for ($i = 0; $i < 10; $i++) {
-            $name = md5(date('d/m/Y H:i:s'));
-            $image = uploadFile("image" . $i, BASEPATH . "../public/images/upload/", $name . "_" . $i);
-            if (!empty($image['file_name'])) {
-                $imgNew.=$image['file_name']."&fieldbreak;";
-            }
-        }        
-        $data['image'] = $imgEdit."".$imgNew;
+        if($imgEdit=="" && $imgNew==""){        
+           $data['image'] = $old_image_ ;
+        }
+        else{
+           $data['image'] = $imgEdit."".$imgNew; 
+        }
         if($this->db->delete('tags_estate', array('real_id' => $id))){
             $tags = $_POST['tags'];
             foreach ($tags as $tag) {
