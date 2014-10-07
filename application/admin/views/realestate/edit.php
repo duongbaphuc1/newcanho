@@ -26,11 +26,7 @@
                     <div class="control-group">
                         <label class="control-label" for="textarea">Dự án</label>
                         <div class="controls">
-                            <?php 
-                                if (!empty($cat_project)){                                    
-                                    echo form_dropdown('project_id',$cat_project,'');    
-                                }
-                            ?>
+                            <?php echo form_input('project_id','', "id='project_id'" ); ?>
                         </div>                        
                     </div>                    
                     <div class="control-group">
@@ -92,14 +88,32 @@
                                 Extentions : png, gif, jpg and < <?php echo $this->config->item("max_size"); ?> kb
                             </div>
                         </div>                        
-                    </div>            
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Hình</label>
+                        <div class="controls">
+                            <?php
+                                $images = explode("&fieldbreak;", $realestate['image']);                               
+                                foreach ($images as $image){
+                                    if($image!=""){
+                                        echo "<div style='float:left;width:110px'>";
+                                        echo "<div><input id='del_image' name='del_image[]' type='checkbox' value='".$image."'/>Xóa </div>";
+                                        echo "<div><img class='img-logo' src='/public/images/upload/".$image."' /></div>";                                        
+                                        echo "</div>";
+                                    }
+                                }
+                                echo "<input name='old_image' id='old_image' type='hidden' value='".$realestate['image']."'>";
+                            ?>
+                            
+                        </div>
+                    </div>
                     <div class="control-group">
                         <label class="control-label" for="textarea">Tag</label>
                         <div class="controls">
-                             <?php echo form_dropdown('tags[]', $tags, null, "id = 'tags' multiple='multiple' style='width:400px;'"); ?>                        
+                             <?php $list = array('1','5');
+                                     echo form_dropdown('tags[]', $tags, $tagsEdit, "id = 'tags' multiple='multiple' style='width:400px;'"); ?>                        
                         </div>
-                    </div>
-                    
+                    </div>                    
                     <div class="control-group">
                         <label class="control-label" for="textarea">Tiêu đề SEO</label>
                         <div class="controls">
@@ -125,8 +139,7 @@
                         </div>
                     </div>                    
                 </fieldset>                    
-                <div class="form-actions">
-                    <input type="hidden" name="section" value="text"/>             
+                <div class="form-actions">                             
                     <button class="btn btn-primary" type="submit">Save Changes</button>                    
                     <button class="btn cancel" type="button">Cancel</button>
                 </div>
@@ -241,6 +254,38 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#tags").select2();
+        $("#tags").select2();        
+         
+        $('#project_id').select2({
+            width: '220px',
+            placeholder: "Search project",
+            minimumInputLength: 2,
+            ajax: {
+                url: "/admin/index.php/realestate/getPro",
+                dataType: 'json',                
+                data: function (term, page) {
+                    return {
+                        term: term
+                    };
+                },
+                results: function (data) {
+                    var myResults = [];
+                    $.each(data, function (index, item) {
+                        myResults.push({
+                            'id': item.id,
+                            'text': item.value
+                        });
+                    });
+                    return {
+                        results: myResults
+                    };
+                }
+                
+            },
+            initSelection: function (element, callback) {
+                var elementText = $(element).attr('data-initvalue');
+    callback(elementText);
+            },
+        });
     });
 </script>

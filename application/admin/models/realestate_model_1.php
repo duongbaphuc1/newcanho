@@ -80,53 +80,13 @@ class Realestate_model extends Abstract_model {
         }
         return $return_arr ;
     }
+
 //end autocomplete for Project
 
-    function edit($data, $id) {        
+    function edit($data, $id) {       
         unset($data['tags']);
-        unset($data['old_image']);       
-        unset($data['del_image']);
+        unset($data['old_image']);
         
-        $old_image_ = "";
-        $del_image = "";
-        $imgEdit="";
-        $imgNew="";
-        
-        $del_image = $this->input->post('del_image');        
-        if($del_image!=""){
-            $old_image = explode("&fieldbreak;", $this->input->post("old_image"));            
-            foreach ($del_image as $del){
-                foreach ($old_image as $key=>$old){
-                    if($del == $old){                        
-                        unset($old_image[$key]);
-                        $old_image = array_values($old_image);
-                        removeFile(BASEPATH . "../public/images/upload/" . $del);
-                    }
-                }                
-            }
-            foreach ($old_image as $img){
-                if($img!=""){
-                    $imgEdit.=$img."&fieldbreak;";
-                }
-            }            
-        }
-        // upload image logo
-        for ($i = 0; $i < 10; $i++) {
-            $name = md5(date('d/m/Y H:i:s'));
-            $image = uploadFile("image" . $i, BASEPATH . "../public/images/upload/", $name . "_" . $i);
-            if (!empty($image['file_name'])) {
-                $imgNew.=$image['file_name']."&fieldbreak;";
-            }
-        }        
-        $data['image'] = $imgEdit."".$imgNew;
-        if($this->db->delete('tags_estate', array('real_id' => $id))){
-            $tags = $_POST['tags'];
-            foreach ($tags as $tag) {
-                $record['tag_id'] = $tag;
-                $record['real_id'] = $id;
-                $this->db->insert('tags_estate', $record);
-            }
-        }
         return $this->db->update($this->_table, $data, array('id' => $id));
     }
 

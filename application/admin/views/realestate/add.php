@@ -95,7 +95,7 @@
                             <?php
                             echo form_dropdown(
                                     'tags[]', $tags, null, "id = 'tags' multiple='multiple' style='width:400px;'");
-                            ?>                        
+                            ?>
                         </div>
                     </div>
 
@@ -124,8 +124,7 @@
                         </div>
                     </div>                    
                 </fieldset>                    
-                <div class="form-actions">
-                    <input type="hidden" name="section" value="text"/>             
+                <div class="form-actions">                                 
                     <button class="btn btn-primary" type="submit">Save Changes</button>                    
                     <button class="btn cancel" type="button">Cancel</button>
                 </div>
@@ -180,7 +179,7 @@
                 },
                 district_id: {
                     required: true
-                },
+                },                
                 price_id: {
                     required: true
                 },
@@ -233,7 +232,7 @@
     }
 
 </script>
-<script type="text/javascript">
+<script type="text/javascript">    
     $(document).ready(function () {
         $("#tags").select2();
 
@@ -267,8 +266,8 @@
                 var id = $(element).val();
                 var data = {id: $id, text: $text};
                 callback(data);
+               // callback({ id: 1, text: 'Text' });
             },
         });
-
     });
 </script>

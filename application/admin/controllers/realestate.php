@@ -7,9 +7,8 @@ class Realestate extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model("Realestate_model");
-        $this->load->model("Tag_model");
-        //$this->load->helper("pagination");
+        $this->load->model(array("Realestate_model","Tag_model","Tagreal_model"));       
+        $this->load->helper("pagination");
         $this->load->library("pagination");
     }
 
@@ -19,7 +18,7 @@ class Realestate extends CI_Controller {
           $pagination = pagination($url, $total, PER_PAGE, 4, 4);
           $data['pagination'] = $pagination->create_links();
           $offset = $this->uri->segment(4, 0);
-          $data['listRealestate'] = $this->Realestate_model->getAll($offset, PER_PAGE, 'id'); */
+          $data['listRealestate'] = $this->Realestate_model->getAll($offset, PER_PAGE, 'id'); 
         $config['base_url'] = '/admin/index.php/realestate/index/';
         $config['total_rows'] = count($this->Realestate_model->getAll());
         $config['per_page'] = 10;
@@ -29,7 +28,9 @@ class Realestate extends CI_Controller {
 
         $page = $this->uri->segment(5);
         $temp = $this->Realestate_model->getAll();
-        $result = array_slice($temp, $page, $config['per_page']);
+        $result = array_slice($temp, $page, $config['per_page']);*/
+        
+        $result = $this->Realestate_model->getLimitByOrder();
         $data['listRealestate'] = $result;
         $data['bodycontent'] = 'realestate/index';
         $this->load->view("layouts/index", $data);
@@ -61,7 +62,7 @@ class Realestate extends CI_Controller {
         $this->load->view("layouts/index", $data);
     }
 
-    public function edit($id) {
+    public function edit($id) {        
         if (ispost()) {
             if ($this->Realestate_model->edit($_POST, $id)) {
                 redirect(base_url() . "admin/index.php/realestate", "location");
@@ -72,11 +73,20 @@ class Realestate extends CI_Controller {
         $data['area'] = $this->Realestate_model->getCatForSelectBox('area', 'area_range');
         $data['tags'] = $this->Tag_model->getAllForSelectBox();
         $lists = array("" => "--Select--");
-        $list = $this->Realestate_model->getAllById('district', 'province_id', 1);
+        $list = $this->Realestate_model->getAllById('district', 'province_id', 1);        
         foreach ($list as $ls) {
             $lists[$ls['id']] = $ls['district_name'];
         }
         $data['district'] = $lists;
+        $tagsListEdit = $this->Tagreal_model->getAllById('real_id',$id);
+        $tagsEdit = array();
+        if(count($tagsListEdit)>0){
+            foreach ($tagsListEdit as $list){
+                 array_push($tagsEdit, $list['tag_id']);
+            }
+        }
+        //var_dump( $tagsEdit);die;
+        $data['tagsEdit'] = $tagsEdit;
         $data['realestate'] = $this->Realestate_model->getById($id);
         $data['bodycontent'] = 'realestate/edit';
         $this->load->view("layouts/index", $data);
@@ -84,7 +94,9 @@ class Realestate extends CI_Controller {
 
     public function delete($id) {
         if ($this->Realestate_model->delete($id)) {
-            redirect(base_url() . "admin/index.php/realestate", "location");
+            if ($this->Tagreal_model->delete('real_id',$id)) {            
+                redirect(base_url() . "admin/index.php/realestate", "location");
+            }
         }
     }
 
