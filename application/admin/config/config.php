@@ -359,7 +359,7 @@ $config['proxy_ips'] = '';
 
 // config upload file
 $config['allowed_types'] = 'gif|jpg|png';
-$config['max_size']	= '500';
+$config['max_size']	= '1000';
 
 
 // config smtp

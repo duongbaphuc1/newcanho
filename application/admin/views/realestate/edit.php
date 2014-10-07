@@ -26,7 +26,8 @@
                     <div class="control-group">
                         <label class="control-label" for="textarea">Dự án</label>
                         <div class="controls">
-                            <?php echo form_input('project_id','', "id='project_id'" ); ?>
+                            <?php echo form_input('project_id','1', "id='project_id' data-init-text='test'" ); ?>
+                            <input type="hidden" value="Ten du an de o day"  id="project_name" />
                         </div>                        
                     </div>                    
                     <div class="control-group">
@@ -253,9 +254,10 @@
 
 
 <script type="text/javascript">
+    
     $(document).ready(function() {
         $("#tags").select2();        
-         
+    
         $('#project_id').select2({
             width: '220px',
             placeholder: "Search project",
@@ -279,12 +281,17 @@
                     return {
                         results: myResults
                     };
-                }
-                
-            },
+                }                
+            },            
             initSelection: function (element, callback) {
-                var elementText = $(element).attr('data-initvalue');
-    callback(elementText);
+                //var elementText = $(element).attr('data-init-text');
+                
+                var $id = $(element).val();
+
+                if ($id != '') {
+                    var $data = {id: $id, text: $("#project_name").val()};
+                    callback($data);
+                }                                
             },
         });
     });
