@@ -11,13 +11,13 @@ class Reals_model extends Abstract_model {
     function __construct() {
         // Call the Model constructor
         parent::__construct();
-        $this->_table = "real_estates";
+        $this->_table = "real_estate";
         $this->_primary_key = "id";
     }
 
     function getAll($offset = null, $limit = null) {
-        $this->db->select('real_estates.*, district.name as district_name');
-        $this->db->join('district', 'district.id = real_estates.district');
+        $this->db->select('real_estate.*, district.district_name as district_name');
+        $this->db->join('district', 'district.id = real_estate.district_id');
 
         if (!empty($limit)) {
             $this->db->limit($limit, $offset);
