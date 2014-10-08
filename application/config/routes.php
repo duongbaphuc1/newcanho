@@ -37,8 +37,13 @@
 | in the URL cannot be matched to a valid route.
 |
 */
-$route['default_controller']   = "home";
+$route['default_controller']  = "home";
+$route['scaffolding_trigger'] = "scaffolding";
 
+// new
+$route['^([^/]*-[0-9]+i)$']   = "reals/detail/$1";
+
+// end new
 $route['gioi-thieu']           = "staticcontent/index/ABOUT_US";
 $route['tuyen-dung']           = "staticcontent/index/CAREERS";
 
