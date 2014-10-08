@@ -14,7 +14,8 @@ class Home extends CI_Controller {
     }
 
     public function index() {        
-        $data['bodycontent'] = "home/real_home";            
+        $data['bodycontent'] = "home/real_home";
+        $data['listRealHome'] = $this->Reals_model->getAll(0, 20);
         $this->load->view('layouts/index', $data);
     }
 
