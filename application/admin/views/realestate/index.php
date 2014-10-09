@@ -36,11 +36,11 @@
                                     </a>
                                 </td>
                                 <td class="center">
-                                    <a class="btn btn-success" href="/admin/index.php/news/edit/<?php echo $reals['id'] ?>">
+                                    <a class="btn btn-success" href="/admin/index.php/realestate/edit/<?php echo $reals['id'] ?>">
                                         <i class="icon-edit icon-white"></i>
                                         edit
                                     </a>
-                                    <a class="btn btn-danger" href="/admin/index.php/news/delete/<?php echo $reals['id'] ?>">
+                                    <a class="btn btn-danger" href="/admin/index.php/realestate/delete/<?php echo $reals['id'] ?>">
                                         <i class="icon-edit icon-white"></i>
                                         delete
                                     </a>
