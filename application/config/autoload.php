@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database', 'session', 'breadcrumb');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('langurl', 'url', 'ispost', 'form', 'upload','getid', 'currenturl');
+$autoload['helper'] = array('langurl', 'url', 'ispost', 'form', 'upload','getid', 'currenturl', 'proccessimg');
 
 
 /*
@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('abstract_model');
+$autoload['model'] = array('abstract_model' ,'Categories_model');
 
 
 /* End of file autoload.php */

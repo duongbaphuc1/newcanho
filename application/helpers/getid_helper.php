@@ -22,7 +22,9 @@ if (!function_exists('getIdFromStr')) {
 
     function getIdFromStr($strUrl) {
         $id = explode('-', $strUrl);
-        return $id[count($id) - 1];
+        $id = rtrim($id[count($id) - 1], "i");
+
+        return $id;
     }
 
 }
@@ -47,8 +49,9 @@ if (!function_exists('convertViToEn')) {
         $str = preg_replace('/(%)/', '-', $str);
         $str = preg_replace('/( )/', '-', $str);
         $str = preg_replace('/(!)/', '-', $str);
+        $str = str_replace(',', '-', $str);
         $str .= "-".$id;
-        return $str;
+        return strtolower($str);
     }
 
 }

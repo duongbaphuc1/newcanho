@@ -1,23 +1,30 @@
-<div class="title_ge red f_utm"><span>KÝ GỞI - CHO THUÊ</span></div>
-<?php
-foreach ($listReals as $key => $news):
-    if ($key % 2 == 0):
+<?php $this->load->view('layouts/breadcrumb');?>
+    <h1 style="text-transform:uppercase;"><?php echo (!empty($listReals[0]['category_name'])) ? $listReals[0]['category_name'] : ""?></h1>
+
+<div class="list">
+    <?php foreach ($listReals as $key => $item):
+        $image = proccessimg($item['image']);
+        $majorImage = (!empty($image)) ? $image[0] : "";
         ?>
-        <div class="pro_all clearfix">    
-        <?php endif; ?>
-        <div class="n2  <?php echo ($key % 2 == 0) ? "fl" : "fr" ?>"> 
-            <a href="/ky-gui/chitiet/<?php echo convertViToEn($news['title'], $news['id']); ?>" title="<?php echo $news['title'] ?>">
-                <img src="/public/images/upload/<?php echo $news['image'] ?>" width="100" height="80">
-            </a>
-            <div class="content_n2">
-                <h2><a href="/ky-gui/chitiet/<?php echo convertViToEn($news['title'], $news['id']); ?>"><?php echo $news['title'] ?></a></h2>
-                Vị trí:<a href="#" class="vitri"> <?php echo $news['district_name']?> - TP.HCM</a><br>
-                <DIV class="date">Ngày đăng: <?php $date = new DateTime($news['created_date']);
-                        echo $date->format('d/m/Y')?></DIV>
+    <div class="item">
+        <a href="/<?php echo convertViToEn($item['title'], $item['id']); ?>i.html" title="<?php echo $item['title'] ?>">
+            <img src="/public/images/upload/<?php echo $majorImage?>" alt="<?php echo $item['id'] ?> - <?php echo $item['title'] ?>" /></a>
+        <h3><a href="/<?php echo convertViToEn($item['title'], $item['id']); ?>i.html" title="<?php echo $item['title'] ?>">
+                <?php echo $item['title'] ?></a></h3>
+        <p>
+            <?php echo preg_replace('/\s+?(\S+)?$/', '', substr(strip_tags($item['description']), 0, 150));?>...
+        </p>
+        <div class="bottom">
+            <div><span><a href="/<?php echo $item['pro_slug']?>/<?php echo $item['dis_slug']?>"> <?php echo $item['district_name']?></a></span></div><div>Mã tin: <?php echo $item['id']?></div>
+        </div>
+        <div class="pricebox">
+            <div style="font-size:20px; text-align:center; margin:20px 0 0 0;">Giá</div>
+            <div style="color:#f00; text-align:center; font-size:17px; margin:0px 0 0;">
+                <?php echo $item['price'] ?>
             </div>
         </div>
-        <?php if ($key % 2 != 0 || count($listReals) - 1 == $key): ?>
-        </div>
-    <?php endif; ?>
-<?php endforeach; ?>
+        <div class="bottom_line">&nbsp;</div>
+    </div>
+    <?php endforeach?>
+</div>
 <?php echo $pagination; ?>

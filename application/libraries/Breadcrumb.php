@@ -8,7 +8,7 @@ class Breadcrumb{
     var $home_text;
     var $home_link;
     
-    function Breadcrumb($seperator=" ",$href_param=NULL,$home_link='/',$home_text = "Home"){
+    function Breadcrumb($seperator=" ",$href_param=NULL,$home_link='/',$home_text = "Trang chủ"){
         $this->href_param = $href_param;
         $this->seperator = $seperator;    
         $this->home_text = $home_text;
@@ -36,7 +36,7 @@ class Breadcrumb{
         $slices = array();
         foreach($sandwich as $slice){
             if (isset($slice['link']) && $slice['link'] != '') {
-                if($slice['crumb'] == "Home"){
+                if($slice['crumb'] == "Trang chủ"){
                     $slices[] = '<li class="homepage"><a href="' . $slice['link'] . '" '.$this->href_param.'>' . $slice['crumb'] . '</a></li>';
                 }else{
                     $slices[] = '<li><a href="' . $slice['link'] . '" '.$this->href_param.'>' . $slice['crumb'] . '</a></li>';

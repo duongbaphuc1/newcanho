@@ -75,7 +75,8 @@ WHERE Lang = "en"
 ORDER BY NgayDang DESC
 
 --Real estate:
-INSERT INTO real_estate( id, title, address, address_map, area_id, category_id, description, district_id, image, is_active, price, price_id,project_id, seo_desc, seo_keyword, seo_title, user_id, view_count, tags ) SELECT idSanPham, Ten, code, code, idAreaRange, idLoaiSanPham, SeoDescription, idLoaiSanPhamCon, HinhAnh, AnHien, ProductType,idSearchPrice, ThuTu, SeoDescription, SeoKeyword, SeoTitle, idUser, SoLanXem, Tags
+INSERT INTO real_estate( id, title, address, address_map, area_id, category_id, description, district_id, image, is_active, price, price_id,project_id, seo_desc, seo_keyword, seo_title, user_id, view_count, tags )
+SELECT idSanPham, Ten, code, code, idAreaRange, idLoaiSanPham, Mota, idLoaiSanPhamCon, HinhAnh, AnHien, ProductType,idSearchPrice, ThuTu, SeoDescription, SeoKeyword, SeoTitle, idUser, SoLanXem, Tags
 FROM canhosaigon_new.idv_product
 WHERE Lang = "en"
 ORDER BY NgayDang DESC

@@ -43,31 +43,26 @@ $route['scaffolding_trigger'] = "scaffolding";
 // new
 $route['^([^/]*-[0-9]+i)$']   = "reals/detail/$1";
 
-// end new
-$route['gioi-thieu']           = "staticcontent/index/ABOUT_US";
-$route['tuyen-dung']           = "staticcontent/index/CAREERS";
+// list reals
+$route['cho-thue-nha']           = "reals/filter/cho-thue-nha";
+$route['cho-thue-nha/([0-9]+)$'] = "reals/filter/cho-thue-nha";
+$route['cho-thue-nha/(:any)']    = "reals/filter/cho-thue-nha/$1";
 
-$route['du-an-can-ho']         = "projects/listduan/canho";
-$route['du-an-can-ho/(:any)']  = "projects/listduan/canho/$1";
-$route['du-an-dat-nen']        = "projects/listduan/datnen";
-$route['du-an-dat-nen/(:any)'] = "projects/listduan/datnen/$1";
-$route['duan/chitiet/(:any)']  = "projects/detail/$1";
-$route['du-an/(:any)']         = "projects/bytags/$1";
-$route['ky-gui']               = "reals/index";
-//$route['ky-gui/(:any)']        = "reals/index/$1";
-$route['ky-gui/chitiet/(:any)']= "reals/detail/$1";
-$route['dang-ky-gui']          = "reals/formkygui";
-$route['lien-he']              = "contacts";
-$route['tim-kiem']             = "timkiem/index";
+$route['van-phong-cho-thue']           = "reals/filter/van-phong-cho-thue";
+$route['van-phong-cho-thue/([0-9]+)$'] = "reals/filter/van-phong-cho-thue";
+$route['van-phong-cho-thue/(:any)']    = "reals/filter/van-phong-cho-thue/$1";
 
-// tin tuc
-$route['tin-tuc'] = "news";
-$route['tin-tuc/chitiet/(:any)'] = "news/detail/$1";
-$route['tin-tuc/(:any)'] = "news/$1";
-//real
-$route['tin-bat-dong-san/chi-tiet/(:any)'] = "reals/detail/$1";
-$route['tin-bat-dong-san'] = "reals/index";
-$route['tin-bat-dong-san/(:any)'] = "reals/index/$1";
+$route['can-ho-cho-thue']           = "reals/filter/can-ho-cho-thue";
+$route['can-ho-cho-thue/([0-9]+)$'] = "reals/filter/can-ho-cho-thue";
+$route['can-ho-cho-thue/(:any)']    = "reals/filter/can-ho-cho-thue/$1";
+
+$route['villa-cho-thue']           = "reals/filter/villa-cho-thue";
+$route['villa-cho-thue/([0-9]+)$'] = "reals/filter/villa-cho-thue";
+$route['villa-cho-thue/(:any)']    = "reals/filter/villa-cho-thue/$1";
+
+$route['can-ho-dich-vu']           = "reals/filter/can-ho-dich-vu";
+$route['can-ho-dich-vu/([0-9]+)$'] = "reals/filter/can-ho-dich-vu";
+$route['can-ho-dich-vu/(:any)']    = "reals/filter/can-ho-dich-vu/$1";
 
 $route['404_override'] = '';
 
