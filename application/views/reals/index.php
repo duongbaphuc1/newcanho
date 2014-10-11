@@ -15,7 +15,7 @@
             <?php echo preg_replace('/\s+?(\S+)?$/', '', substr(strip_tags($item['description']), 0, 150));?>...
         </p>
         <div class="bottom">
-            <div><span><a href="/<?php echo $item['pro_slug']?>/<?php echo $item['dis_slug']?>"> <?php echo $item['district_name']?></a></span></div><div>Mã tin: <?php echo $item['id']?></div>
+            <div><span><a href="/<?php echo $item['cat_slug']?>/<?php echo $item['dis_slug']?>"> <?php echo $item['district_name']?></a></span></div><div>Mã tin: <?php echo $item['id']?></div>
         </div>
         <div class="pricebox">
             <div style="font-size:20px; text-align:center; margin:20px 0 0 0;">Giá</div>

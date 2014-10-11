@@ -36,7 +36,7 @@ class Reals_model extends Abstract_model {
     }
 
     function getFilter($cat_slug, $district = null, $offset = null, $limit = null, $sort = null){
-        $select = 'real_estate.*, district.district_name as district_name, district.slug as dis_slug, categories.slug as pro_slug,';
+        $select = 'real_estate.*, district.district_name as district_name, district.slug as dis_slug, categories.slug as cat_slug,';
         $select .= "categories.category_name";
         $this->db->select($select);
         $this->db->join('district', 'district.id = real_estate.district_id');
@@ -75,9 +75,10 @@ class Reals_model extends Abstract_model {
         if (empty($id)) {
             return null;
         }
-        $this->db->select('real_estate.*, district.district_name, district.slug as slug_dis, project.slug as slug_pro, project.project_name');
+        $this->db->select('real_estate.*, district.district_name, district.slug as slug_dis, project.slug as slug_pro, project.project_name, categories.category_name, categories.slug as cat_slug');
         $this->db->join('district', 'district.id = real_estate.district_id');
         $this->db->join('project', 'project.id = real_estate.project_id');
+        $this->db->join('categories', 'categories.id = real_estate.category_id');
         $this->db->where('real_estate.id', $id);
         $result = $this->db->get($this->_table);
 

@@ -23,18 +23,22 @@ class District_model extends Abstract_model {
         return $query->result_array();
     }
             
-    function getAll($type = null, $offset = null, $limit = null){
+    function getAll($province = null, $type = null, $offset = null, $limit = null){
+
         if(!empty($limit) && !empty($offset)){
             $this->db->limit($limit, $offset);
         }
-        if(!is_null($type)){
-            $this->db->where("type", $type);
+
+        if(!is_null($province)){
+            $this->db->where("province_id", $province);
         }
-        $result = $this->fetchAll($this->_table);
-        if($result){
-            return $result;
-        }
-        return NULL;
+
+        $this->db->where('is_active', 1);
+
+        $query = $this->db->get($this->_table);
+
+        return $query->result_array();
+
     } 
     
     function getDistrict(){

@@ -12,18 +12,6 @@ class Reals extends CI_Controller {
         $this->load->model("District_model");
     }
 
-    public function index() {
-        $url = '/ky-gui/';
-        $total = count($this->Reals_model->getAll());
-        $pagination = pagination($url, $total, PER_PAGE, 4, 4);
-        $data['pagination'] = $pagination->create_links();
-
-        $offset = $this->uri->segment(4, 0);
-        $data['bodycontent'] = "reals/index";
-        $data['listReals'] = $this->Reals_model->getAll($offset, PER_PAGE);
-        $this->load->view('layouts/index', $data);
-    }
-
     function filter($cat_slug, $district = null){
 
         $total = count($this->Reals_model->getFilter($cat_slug, $district));
