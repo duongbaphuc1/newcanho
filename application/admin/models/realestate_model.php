@@ -14,6 +14,13 @@ class Realestate_model extends Abstract_model {
         $this->_primary_key = "id";
         $this->load->helper("upload_helper");
     }
+    
+    //for paging
+    function getAll() {        
+        //$this->db->order_by("id", "DESC");        
+        $query = $this->db->get($this->_table);
+        return $query->result();
+    }
 
     function getData($tbl) {
         $query = $this->db->get($tbl);
@@ -40,20 +47,7 @@ class Realestate_model extends Abstract_model {
         $this->db->where('id', $id);
         $query = $this->db->get($this->_table, 1);
         return $query->row_array();
-    }
-
-    //for paging
-    function getAll($offset = null, $limit = null, $sort = null) {
-        if (!empty($offset) && !empty($limit)) {
-            $result = $this->fetchAll($this->_table, $offset, $limit, $sort);
-        } else {
-            $result = $this->fetchAll($this->_table, $offset, $limit, $sort);
-        }
-        if ($result) {
-            return $result;
-        }
-        return NULL;
-    }
+    }    
 
     function getAllById($tbl, $col, $id) {
         $this->db->where($col, $id);

@@ -15,6 +15,7 @@
                 <thead>
                     <tr>
                         <th>Tiêu đề</th>
+                        <!--<th>Ngày đăng</th>-->                        
                         <th>Image</th>
                         <th>Actions</th>
                     </tr>
@@ -25,8 +26,7 @@
                         foreach ($listRealestate as $reals):
                             ?>
                             <tr>
-                                <td class="left"><?php echo $reals->title ?></td>                                
-                               
+                                <td class="left"><?php echo $reals->title ?></td>
                                 <!--<td class="left"><?php //echo $realestates->created_date ?></td>-->
                                 <td class="center">
                                     <a class="image-in-modal" href="#">
@@ -64,7 +64,10 @@
     <div class="modal-body">        
         <p>Do you want to delete this record?</p>
     </div>
-    
+    <div class="modal-footer">
+        <a href="" class="btn danger confirm">Yes</a>
+        <a href="javascript:$('#modal-from-dom').modal('hide')" class="btn secondary">No</a>
+    </div>
 </div>
 
 <script>

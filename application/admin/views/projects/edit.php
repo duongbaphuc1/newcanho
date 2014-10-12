@@ -1,94 +1,51 @@
 <div class="row-fluid sortable">
     <div class="box span12">
         <div class="box-header well" data-original-title>
-            <h2><i class="icon-font"></i> Edit Product</h2>
+            <h2><i class="icon-edit"></i> Chỉnh sửa dự án</h2>
         </div>        
         <div class="box-content">
             <form class="form-horizontal" method="post" enctype="multipart/form-data">
                 <fieldset>
                     <legend></legend>
                     <div class="control-group">
+                        <label class="control-label" for="textarea">Tên dự án</label>
+                        <div class="controls">
+                            <?php echo form_input('project_name', $list_project['project_name']); ?>    
+                        </div>
+                    </div>
+                    <div class="control-group">
                         <label class="control-label" for="textarea">Loại dự án</label>
                         <div class="controls">
-                            Căn hộ: <input type="radio" <?php echo ($news['type'] == "canho")?"checked='true'":"";?> id="type" name="type" value="canho"/>
-                            Đất nền: <input type="radio" <?php echo ($news['type'] == "datnen")?"checked='true'":"";?> name="type" value="datnen"/>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="textarea">Tiêu đề</label>
-                        <div class="controls">
-                            <?php echo form_input('name', $news['name']); ?>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="image">Hình</label>
-                        <div class="controls">
-                            <input type="file" id="image" name="image" />
-                            <div class="note-upload">
-                                Extentions : png, gif, jpg and < <?php echo $this->config->item("max_size"); ?> kb
-                            </div>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="textarea">Hình</label>
-                        <div class="controls">
-                            <img class="img-logo" src="/public/images/upload/<?php echo $news['image'] ?>" />
-                            <input type="hidden" value="<?php echo $news['image'] ?>" name="old_image"/>
-                        </div>
-                    </div> 
-<!--                    <div class="control-group">
-                        <label class="control-label" for="textarea">Chu dau tu</label>
-                        <div class="controls">
-                            <?php echo form_input('manage', $news['manage']); ?>                            
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="textarea">Qui mo</label>
-                        <div class="controls">
-                            <?php echo form_input('scale', $news['scale']); ?>                            
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="textarea">Gia</label>
-                        <div class="controls">
-                            <?php echo form_input('price', $news['price']); ?>                            
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="textarea">Dien tich</label>
-                        <div class="controls">
-                            <?php echo form_input('area', $news['area']); ?>                            
-                        </div>
-                    </div>-->
-                    <div class="control-group">
-                        <label class="control-label" for="textarea">Tóm tắt</label>
-                        <div class="controls">
-                            <?php echo form_input('summary', $news['summary']); ?>                            
+                            <?php echo form_dropdown('catproject_id', $cat_project, $list_project['catproject_id']); ?>                         
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="textarea">Quận</label>
                         <div class="controls">
-                            <?php echo form_dropdown('district_id', $district, $news['district_id']); ?>                            
+                            <?php echo form_dropdown('district_id', $district,$list_project['district_id']); ?>                         
                         </div>
                     </div>
-                    
                     <div class="control-group">
-                        <label class="control-label" for="textarea">Tag</label>
+                        <label class="control-label" for="textarea">Tiêu đề dự án</label>
                         <div class="controls">
-                            <?php echo form_dropdown('tag_id', $tags, $news['tag_id']); ?>                         
+                            <?php echo form_input('project_title', $list_project['project_title']); ?>    
                         </div>
                     </div>
-                     
                     <div class="control-group">
-                        <label class="control-label" for="description">Nội dung</label>
+                        <label class="control-label" for="textarea">Mô tả dự án</label>
                         <div class="controls">
-                            <textarea name="description"><?php echo $news['description'] ?></textarea>
+                            <textarea name="project_desc"><?php echo $list_project['project_desc'] ?></textarea>                        
                         </div>
-                    </div>                   
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Keyword dự án</label>
+                        <div class="controls">
+                            <textarea name="project_keyword"><?php echo $list_project['project_keyword'] ?></textarea>                        
+                        </div>
+                    </div>
+                                        
                 </fieldset>                    
-                <div class="form-actions">
-                    <input type="hidden" name="section" value="text"/>             
+                <div class="form-actions">                                
                     <button class="btn btn-primary" type="submit">Save Changes</button>                    
                     <button class="btn cancel" type="button">Cancel</button>
                 </div>
@@ -99,48 +56,43 @@
 
 <script>
     $(document).ready(function() {
-        var ck = CKEDITOR.replace('description', {toolbar: 'Full', width: "100%"});
-        CKFinder.setupCKEditor(ck, {
-            basePath: '/public/admin/ckfinder/'
-        });
-        $(".btn.cancel").click(function() {
-            if (history.length == 0) {
-                window.location = "/admin/index.php/news";
-            } else {
-                history.go(-1);
-            }
-        });
-    });
-    $(".form-horizontal").bind('submit', function() {
-        for (instance in CKEDITOR.instances)
-            CKEDITOR.instances[instance].updateElement();
-    });   
+        
 
-    $(".form-horizontal").validate({
-        ignore: "",
-        errorElement: "span",
-        errorClass: "help-inline",
-        errorPlacement: function(error, element) {
-            error.appendTo(element.parent());
-        },
-        highlight: function(element) {
-            $(element).parent().parent().addClass('error');
-        },
-        unhighlight: function(element) {
-            $(element).parent().parent().removeClass('error');
-        },
-        rules: {
-            title: {
-                required: true
+        $(".form-horizontal").validate({
+            ignore: "",
+            errorElement: "span",
+            errorClass: "help-inline",
+            errorPlacement: function(error, element) {
+                error.appendTo(element.parent());
             },
-            summary: {
-                required: true
+            highlight: function(element) {
+                $(element).parent().parent().addClass('error');
             },
-            description: {
-                required: true
+            unhighlight: function(element) {
+                $(element).parent().parent().removeClass('error');
+            },
+            rules: {
+                project_name: {
+                    required: true
+                },
+                catproject_id: {
+                    required: true
+                },
+                project_title: {
+                    required: true
+                },
+                project_desc: {
+                    required: true
+                },
+                project_keyword: {
+                    required: true
+                },                
+                description: {
+                    required: true
+                }
+            },
+            messages: {               
             }
-        },
-        messages: {            
-        }
+        });
     });
 </script> 

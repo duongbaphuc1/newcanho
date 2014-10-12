@@ -9,7 +9,7 @@ class Projects extends CI_Controller {
         parent::__construct();
         $this->load->model("Projects_model");        
         $this->load->model("District_model"); 
-        $this->load->model("Tag_model"); 
+        $this->load->model("Realestate_model"); 
     }
 
     public function index() {       
@@ -24,8 +24,8 @@ class Projects extends CI_Controller {
                 redirect(base_url() . "admin/index.php/projects", "location");
             }
         }
-        $data['district'] = $this->District_model->getDistrict();        
-        $data['tags'] = $this->Tag_model->getAllForSelectBox();
+        $data['cat_project'] = $this->Realestate_model->getCatForSelectBox('cat_project', 'cat_name');
+        $data['district'] = $this->District_model->getDistrict();
         $data['bodycontent'] = 'projects/add';
         $this->load->view("layouts/index", $data);
     }
@@ -35,10 +35,10 @@ class Projects extends CI_Controller {
             if ($this->Projects_model->edit($_POST, $id)) {
                 redirect(base_url() . "admin/index.php/projects", "location");
             }
-        }        
-        $data['tags'] = $this->Tag_model->getAllForSelectBox();
-        $data['district'] = $this->District_model->getDistrict();
-        $data['news'] = $this->Projects_model->getById($id);
+        }   
+        $data['list_project'] = $this->Projects_model->getById($id);
+        $data['cat_project'] = $this->Realestate_model->getCatForSelectBox('cat_project', 'cat_name');
+        $data['district'] = $this->District_model->getDistrict();       
         $data['bodycontent'] = 'projects/edit';
         $this->load->view("layouts/index", $data);
     }
