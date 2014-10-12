@@ -1,7 +1,7 @@
 <div class="banner">
     <h1>Cho thuê căn hộ sài gon</h1>
     ﻿
-    <a href="index.html" title="Cho thuê: Văn Phòng, Cao ốc, Căn Hộ, Biệt Thự, Villa, Nhà, giá rẻ">
+    <a href="/" title="Cho thuê: Văn Phòng, Cao ốc, Căn Hộ, Biệt Thự, Villa, Nhà, giá rẻ">
         <img src="/public/images/canho/banner.jpg" alt="Cho thuê: Văn Phòng, Cao ốc, Căn Hộ, Biệt Thự, Nhà, giá rẻ " title="Cho thuê: Văn Phòng, Cao ốc, Căn Hộ, Biệt Thự, Nhà, giá rẻ"></a>
     <a title="English" style="position: absolute; left: 875px; top: 43px;" href="http://apartmentforlease.com.vn/" target="_blank">
         <img src="/public/images/canho/en.png" alt="Văn phòng cho thuê, Villa cho thuê" width="50">

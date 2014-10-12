@@ -11,16 +11,16 @@ class Categories_model extends Abstract_model {
     function __construct() {
         // Call the Model constructor
         parent::__construct();
-        $this->_table = "product_categories";
+        $this->_table = "categories";
         $this->_primary_key = "id";
     }
     
-    function getAll($offset, $limit){
-        $resutl = $this->fetchAll($this->_table, $offset, $limit);
-        if($resutl){
-            return $resutl;
-        }
-        return NULL;
+    function getAll($type){
+
+        $this->db->where('type', $type);
+        $result = $this->db->get($this->_table);
+
+        return $result->result_array();
     }
     
     function getCatById($id){

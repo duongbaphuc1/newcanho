@@ -14,7 +14,11 @@ class Home extends CI_Controller {
     }
 
     public function index() {        
-        $data['bodycontent'] = "home/real_home";            
+        $data['bodycontent'] = "home/real_home";
+        $list = $this->Reals_model->getAll(0, 24, 'id');
+        $data['listRealHome'] = array_slice($list, 3, -1);
+        $data['listNewHome'] = array_slice($list, 19, -1, true);
+
         $this->load->view('layouts/index', $data);
     }
 
