@@ -18,6 +18,7 @@ class Realestate_model extends Abstract_model {
     //for paging
     function getAll() {        
         //$this->db->order_by("id", "DESC");        
+        $this->db->limit(10);
         $query = $this->db->get($this->_table);
         return $query->result();
     }

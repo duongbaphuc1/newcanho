@@ -55,7 +55,10 @@
     <div class="modal-body">        
         <p>Do you want to delete this record?</p>
     </div>
-    
+    <div class="modal-footer">
+        <a href="" class="btn danger confirm">Yes</a>
+        <a href="javascript:$('#modal-from-dom').modal('hide')" class="btn secondary">No</a>
+    </div>
 </div>
 
 <script>
