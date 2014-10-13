@@ -23,7 +23,7 @@ class Quans_model extends Abstract_model {
         return $this->db->update($this->_table, $data, array('id' => $id));
     }
 
-    function saveSort($data){
+    function saveSort($data){        
         foreach ($data['sort'] as $key=>$val){
             $dataSort['sort'] = $val[0];
             $this->db->update($this->_table, $dataSort, array('id' => $key));
