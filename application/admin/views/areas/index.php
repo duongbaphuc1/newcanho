@@ -9,7 +9,7 @@
 <div class="row-fluid sortable">
     <div class="box span12">
         <div class="box-header well" data-original-title>
-            <h2><i class="icon-edit"></i> Dự án</h2>            
+            <h2><i class="icon-edit"></i> Diện tích</h2>            
         </div>        
         <div class="box-content">
             <form method="post" id="frm_sort">

@@ -16,7 +16,7 @@ class Areas_model extends CI_Model {
     }
 
     function getAll() {        
-        //$this->db->order_by("id", "DESC");        
+        $this->db->order_by("id", "DESC");        
         $query = $this->db->get($this->_table);
         return $query->result();
     }

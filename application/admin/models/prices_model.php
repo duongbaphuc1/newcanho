@@ -3,14 +3,14 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Projects_model extends CI_Model {
+class Prices_model extends CI_Model {
 
     protected $_table;
     protected $_primary_key ;
             function __construct() {
         // Call the Model constructor
         parent::__construct();
-        $this->_table = "project";
+        $this->_table = "price";
         $this->_primary_key = "id";
         $this->load->helper("upload_helper");
     }
@@ -27,24 +27,32 @@ class Projects_model extends CI_Model {
         return $query->row_array();
     }
 
-    function edit($data, $id) {
-        $project_name = $_POST['project_name'];        
-        $data['slug'] = str_replace (' ','-',strtolower($this->vn_str_filter($project_name))); 
+    function edit($data, $id) {       
+        $price_range = $_POST['price_range'];        
+        $data['slug'] = str_replace (' ','-',strtolower($this->vn_str_filter($price_range)));
         return $this->db->update($this->_table, $data, array('id' => $id));
     }
 
     function delete($id) {
-        $project = $this->getById($id);
-        if (!empty($project)) {
+        $price = $this->getById($id);
+        if (!empty($price)) {
             return $this->db->delete($this->_table, array('id' => $id));
         }
         return FALSE;
     }
 
     function add($data){        
-        $project_name = $_POST['project_name'];        
-        $data['slug'] = str_replace (' ','-',strtolower($this->vn_str_filter($project_name)));      
+        $data['is_active'] = 1;
+        $price_range = $_POST['price_range'];        
+        $data['slug'] = str_replace (' ','-',strtolower($this->vn_str_filter($price_range)));      
         return $this->db->insert($this->_table, $data);
+    }
+    
+    function saveSort($data){        
+        foreach ($data['sort'] as $key=>$val){
+            $dataSort['sort'] = $val[0];
+            $this->db->update($this->_table, $dataSort, array('id' => $key));
+        }
     }
     
     function vn_str_filter ($str){
