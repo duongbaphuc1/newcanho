@@ -28,6 +28,7 @@ class Areas_model extends CI_Model {
     }
 
     function edit($data, $id) {       
+        $data['is_active'] = 1;
         $area_range = $_POST['area_range'];        
         $data['slug'] = str_replace (' ','-',strtolower($this->vn_str_filter($area_range)));
         return $this->db->update($this->_table, $data, array('id' => $id));

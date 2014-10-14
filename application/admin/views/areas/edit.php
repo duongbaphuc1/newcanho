@@ -33,7 +33,13 @@
 <script>
     $(document).ready(function() {
         
-
+        $(".btn.cancel").click(function() {
+            if (history.length == 0) {
+                window.location = "/admin/index.php/areas";
+            } else {
+                history.go(-1);
+            }
+        });
         $(".form-horizontal").validate({
             ignore: "",
             errorElement: "span",

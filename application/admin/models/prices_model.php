@@ -28,6 +28,7 @@ class Prices_model extends CI_Model {
     }
 
     function edit($data, $id) {       
+        $data['is_active'] = 1;
         $price_range = $_POST['price_range'];        
         $data['slug'] = str_replace (' ','-',strtolower($this->vn_str_filter($price_range)));
         return $this->db->update($this->_table, $data, array('id' => $id));

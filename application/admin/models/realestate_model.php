@@ -137,6 +137,7 @@ class Realestate_model extends Abstract_model {
                 $this->db->insert('tags_estate', $record);
             }
         }
+        $data['is_active'] = 1;
         return $this->db->update($this->_table, $data, array('id' => $id));
     }
 

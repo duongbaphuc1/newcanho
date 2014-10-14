@@ -22,6 +22,7 @@ class Categories extends CI_Controller {
                 redirect(base_url() . "admin/index.php/categories", "location");
             }
         }
+        $data['listCatsType'] = $this->Categories_model->getCatForSelectBox('category_type','type_name');
         $data['bodycontent'] = 'categories/add';
         $this->load->view("layouts/index", $data);
     }
@@ -32,6 +33,7 @@ class Categories extends CI_Controller {
                 redirect(base_url() . "admin/index.php/categories", "location");
             }
         }
+        $data['listCatsType'] = $this->Categories_model->getCatForSelectBox('category_type','type_name');
         $data['cat'] = $this->Categories_model->getById($id);
         $data['bodycontent'] = 'categories/edit';
         $this->load->view("layouts/index", $data);
