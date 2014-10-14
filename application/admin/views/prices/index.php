@@ -1,36 +1,40 @@
 <div class="row-fluid">
     <div class="span12">
         <p><a href="/admin" class="btn btn-medium btn-primary"><i class="icon-chevron-left icon-white"></i> Home</a>
-                <a href="/admin/index.php/rangeprice/add" class="btn btn-medium btn-primary"><i class="icon-plus-sign icon-white"></i> Add</a>
+            <a href="/admin/index.php/prices/add" class="btn btn-medium btn-primary"><i class="icon-plus-sign icon-white"></i> Add</a>
+            <a href="javascript:void()" id="savesort" class="btn btn-medium btn-primary"><i class="icon-plus-sign icon-white"></i> Save sort</a>
         </p>
     </div>
 </div>
 <div class="row-fluid sortable">
     <div class="box span12">
         <div class="box-header well" data-original-title>
-            <h2><i class="icon-list-alt"></i> Khoãng giá</h2>            
+            <h2><i class="icon-edit"></i> Khoảng giá</h2>            
         </div>        
         <div class="box-content">
+            <form method="post" id="frm_sort">
             <table class="table table-striped table-bordered bootstrap-datatable datatable">
                 <thead>
                     <tr>
-                        <th>Khoãng giá</th>                        
+                        <th>Tiêu đề</th>
+                        <th>Sort</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    if (!empty($listCats)):
-                        foreach ($listCats as $cat):
+                    if (!empty($listPrice)):
+                        foreach ($listPrice as $price):
                             ?>
                             <tr>
-                                <td class="left"><?php echo $cat->range ?></td>                                
+                                <td class="left"><?php echo $price->price_range ?></td>                                
+                                <td><input maxlength="3" type="text" name="sort[<?php echo $price->id ?>][]" value="<?php echo $price->sort ?>" /></td>
                                 <td class="center">
-                                    <a class="btn btn-success" href="/admin/index.php/rangeprice/edit/<?php echo $cat->id ?>">
+                                    <a class="btn btn-success" href="/admin/index.php/prices/edit/<?php echo $price->id ?>">
                                         <i class="icon-edit icon-white"></i>
                                         edit
                                     </a>
-                                    <a class="btn btn-danger" href="/admin/index.php/rangeprice/delete/<?php echo $cat->id ?>">
+                                    <a class="btn btn-danger" href="/admin/index.php/prices/delete/<?php echo $price->id ?>">
                                         <i class="icon-edit icon-white"></i>
                                         delete
                                     </a>
@@ -42,6 +46,7 @@
                     ?>
                 </tbody>
             </table>
+            </form>
         </div>
     </div><!--/span-->
 </div><!--/row-->
@@ -64,9 +69,12 @@
     $(document).ready(function() {
         $(".btn.btn-danger").click(function(e) {
             e.preventDefault();
-            $(".confirm").attr("href", $(this).attr("href"));            
+            $(".confirm").attr("href", $(this).attr("href"));
             $('#modal-from-dom').modal('show');
         });
-    });    
+        $("#savesort").click(function(){
+            $("#frm_sort").submit();
+        });
+    });
 
 </script>

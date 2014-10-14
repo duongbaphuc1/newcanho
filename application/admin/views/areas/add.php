@@ -1,22 +1,29 @@
 <div class="row-fluid sortable">
     <div class="box span12">
         <div class="box-header well" data-original-title>
-            <h2><i class="icon-list-alt"></i> Thêm</h2>
+            <h2><i class="icon-edit"></i> Thêm diện tích</h2>
         </div>        
         <div class="box-content">
             <form class="form-horizontal" method="post" enctype="multipart/form-data">
                 <fieldset>
                     <legend></legend>
                     <div class="control-group">
-                        <label class="control-label" for="textarea">Tên</label>
+                        <label class="control-label" for="textarea">Diện tích</label>
                         <div class="controls">
-                            <input type="text" id="label" name="name_type" />
+                            <?php echo form_input('area_range',''); ?>    
                         </div>
-                    </div>                   
+                    </div> 
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Sort</label>
+                        <div class="controls">
+                            <?php echo form_input('sort',''); ?>    
+                        </div>
+                    </div>
+                                        
                 </fieldset>                    
-                <div class="form-actions">                    
-                    <button class="btn btn-primary" type="submit">Lưu</button>                    
-                    <button class="btn cancel" type="button">Hủy</button>
+                <div class="form-actions">                                
+                    <button class="btn btn-primary" type="submit">Save Changes</button>                    
+                    <button class="btn cancel" type="button">Cancel</button>
                 </div>
             </form>
         </div>
@@ -25,9 +32,10 @@
 
 <script>
     $(document).ready(function() {
+        
         $(".btn.cancel").click(function() {
             if (history.length == 0) {
-                window.location = "/admin/index.php/quans";
+                window.location = "/admin/index.php/areas";
             } else {
                 history.go(-1);
             }
@@ -44,12 +52,18 @@
             },
             unhighlight: function(element) {
                 $(element).parent().parent().removeClass('error');
-
             },
             rules: {
-                name_type: {
+                area_range: {
                     required: true
-                }
+                },
+                sort: {
+                    required: true,
+                    number: true,
+                },
+                
+            },
+            messages: {               
             }
         });
     });

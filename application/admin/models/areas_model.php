@@ -3,30 +3,16 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Categories_model extends CI_Model {
+class Areas_model extends CI_Model {
 
     protected $_table;
     protected $_primary_key ;
             function __construct() {
         // Call the Model constructor
         parent::__construct();
-        $this->_table = "categories";
+        $this->_table = "area";
         $this->_primary_key = "id";
         $this->load->helper("upload_helper");
-    }
-    
-    function getData($tbl) {
-        $query = $this->db->get($tbl);
-        return $query->result_array();
-    }
-    
-    function getCatForSelectBox($tbl, $col) {
-        $lists = array("" => "--Select--");
-        $list = $this->getData($tbl);
-        foreach ($list as $ls) {
-            $lists[$ls['id']] = $ls[$col];
-        }
-        return $lists;
     }
 
     function getAll() {        
@@ -43,13 +29,13 @@ class Categories_model extends CI_Model {
 
     function edit($data, $id) {       
         $data['is_active'] = 1;
-        $category_name = $_POST['category_name'];        
-        $data['slug'] = str_replace (' ','-',strtolower($this->vn_str_filter($category_name)));
+        $area_range = $_POST['area_range'];        
+        $data['slug'] = str_replace (' ','-',strtolower($this->vn_str_filter($area_range)));
         return $this->db->update($this->_table, $data, array('id' => $id));
     }
 
     function delete($id) {
-        $area = $this->getById($id);        
+        $area = $this->getById($id);
         if (!empty($area)) {
             return $this->db->delete($this->_table, array('id' => $id));
         }
@@ -58,8 +44,8 @@ class Categories_model extends CI_Model {
 
     function add($data){        
         $data['is_active'] = 1;
-        $category_name = $_POST['category_name'];        
-        $data['slug'] = str_replace (' ','-',strtolower($this->vn_str_filter($category_name)));      
+        $area_range = $_POST['area_range'];        
+        $data['slug'] = str_replace (' ','-',strtolower($this->vn_str_filter($area_range)));      
         return $this->db->insert($this->_table, $data);
     }
     

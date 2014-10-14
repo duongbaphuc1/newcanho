@@ -1,37 +1,47 @@
 <div class="row-fluid sortable">
     <div class="box span12">
         <div class="box-header well" data-original-title>
-            <h2><i class="icon-list-alt"></i> Add Category</h2>
+            <h2><i class="icon-list-alt"></i> Thêm Advs</h2>
         </div>        
         <div class="box-content">
             <form class="form-horizontal" method="post" enctype="multipart/form-data">
                 <fieldset>
-                    <legend></legend>
+                    <legend></legend>                    
                     <div class="control-group">
-                        <label class="control-label" for="textarea">Loại</label>
+                        <label class="control-label" for="textarea">Loại Advs</label>
                         <div class="controls">
-                            Slide: <input type="radio" id="type" name="type" value="1"/>
-                            Quảng cáo: <input type="radio" name="type" value="0"/>
+                            <?php echo form_dropdown('cat_id', $cat_id, null); ?>                         
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="link">Tên</label>
+                        <div class="controls">
+                            <?php echo form_input('name',''); ?>
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="link">Link</label>
                         <div class="controls">
-                            <input type="text" id="link" name="link" />
+                            <?php echo form_input('link',''); ?>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="link">Sort</label>
+                        <div class="controls">
+                            <?php echo form_input('sort',''); ?>
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="image">Hình</label>
                         <div class="controls">
-                            <input type="file" id="product_image" name="image" />                            
+                            <input type="file" id="image" name="image" />                            
                             <div class="note-upload">
                                 Extentions : png, gif, jpg and < <?php echo $this->config->item("max_size"); ?> kb
                             </div>
                         </div>                        
                     </div>                                                             
                 </fieldset>                    
-                <div class="form-actions">
-                    <input type="hidden" name="section" value="text"/>             
+                <div class="form-actions">                                
                     <button class="btn btn-primary" type="submit">Save Changes</button>                    
                     <button class="btn cancel" type="button">Cancel</button>
                 </div>
@@ -44,7 +54,7 @@
     $(document).ready(function() {
         $(".btn.cancel").click(function() {
             if (history.length == 0) {
-                window.location = "/admin/index.php/customers";
+                window.location = "/admin/index.php/advs";
             } else {
                 history.go(-1);
             }
@@ -64,16 +74,23 @@
 
             },
             rules: {
-                category_name_en: {
+                name: {
                     required: true
                 },
-                category_name_vi: {
-                    required: true
-                }
+                link: {
+                    required: true,
+                    url:true
+                },
+                sort: {
+                    required: true,
+                    number: true
+                },
+                cat_id: {
+                    required: true                    
+                },
             },
             messages: {
-                category_name_en: "Please enter text",
-                category_name_vi: "Please enter text"
+                
             }
         });
     });

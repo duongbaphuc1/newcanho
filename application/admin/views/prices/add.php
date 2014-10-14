@@ -1,26 +1,32 @@
 <div class="row-fluid sortable">
     <div class="box span12">
         <div class="box-header well" data-original-title>
-            <h2><i class="icon-edit"></i> Thêm địa ốc</h2>
+            <h2><i class="icon-edit"></i> Thêm khoảng giá</h2>
         </div>        
         <div class="box-content">
             <form class="form-horizontal" method="post" enctype="multipart/form-data">
                 <fieldset>
                     <legend></legend>
                     <div class="control-group">
-                        <label class="control-label" for="textarea">Tên địa ốc</label>
+                        <label class="control-label" for="textarea">Khoảng giá</label>
                         <div class="controls">
-                            <?php echo form_input('category_name',''); ?>    
+                            <?php echo form_input('price_range',''); ?>    
                         </div>
                     </div> 
-                    <div class="control-group">
-                        <label class="control-label" for="textarea">Loại địa ốc</label>
+                    <div class="control-group">                       
                         <div class="controls">
-                            <?php
-                            if (!empty($listCatsType)) {
-                                echo form_dropdown('type', $listCatsType, '');
-                            }
-                            ?>    
+                            <?php                              
+                                echo form_radio('type', '1',TRUE);
+                                echo "Văn phòng";
+                                echo form_radio('type', '0', FALSE);
+                                echo "Khác";                            
+                            ?>                                                  
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Sort</label>
+                        <div class="controls">
+                            <?php echo form_input('sort',''); ?>    
                         </div>
                     </div>
                                         
@@ -36,14 +42,14 @@
 
 <script>
     $(document).ready(function() {
+        
         $(".btn.cancel").click(function() {
             if (history.length == 0) {
-                window.location = "/admin/index.php/categories";
+                window.location = "/admin/index.php/prices";
             } else {
                 history.go(-1);
             }
         });
-
         $(".form-horizontal").validate({
             ignore: "",
             errorElement: "span",
@@ -58,11 +64,12 @@
                 $(element).parent().parent().removeClass('error');
             },
             rules: {
-                category_name: {
+                price_range: {
                     required: true
                 },
-                type: {
-                    required: true
+                sort: {
+                    required: true,
+                    number: true,
                 },
                 
             },

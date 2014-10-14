@@ -11,6 +11,9 @@ class Quans extends CI_Controller {
     }
 
     public function index() {
+        if(ispost()){
+            $this->Quans_model->saveSort($_POST);
+        }
         $data['listCats'] = $this->Quans_model->getAll();
         $data['bodycontent'] = 'quans/index';
         $this->load->view("layouts/index", $data);

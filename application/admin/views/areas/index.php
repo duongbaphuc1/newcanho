@@ -1,44 +1,40 @@
 <div class="row-fluid">
     <div class="span12">
         <p><a href="/admin" class="btn btn-medium btn-primary"><i class="icon-chevron-left icon-white"></i> Home</a>
-            <a href="/admin/index.php/reals/add" class="btn btn-medium btn-primary"><i class="icon-plus-sign icon-white"></i> Add</a>
+            <a href="/admin/index.php/areas/add" class="btn btn-medium btn-primary"><i class="icon-plus-sign icon-white"></i> Add</a>
+            <a href="javascript:void()" id="savesort" class="btn btn-medium btn-primary"><i class="icon-plus-sign icon-white"></i> Save sort</a>
         </p>
     </div>
 </div>
 <div class="row-fluid sortable">
     <div class="box span12">
         <div class="box-header well" data-original-title>
-            <h2><i class="icon-edit"></i> Tin bds</h2>            
+            <h2><i class="icon-edit"></i> Diện tích</h2>            
         </div>        
         <div class="box-content">
+            <form method="post" id="frm_sort">
             <table class="table table-striped table-bordered bootstrap-datatable datatable">
                 <thead>
                     <tr>
                         <th>Tiêu đề</th>
-                        <th>Ngày đăng</th>                        
-                        <th>Image</th>
+                        <th>Sort</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    if (!empty($listNews)):
-                        foreach ($listNews as $news):
+                    if (!empty($listArea)):
+                        foreach ($listArea as $area):
                             ?>
                             <tr>
-                                <td class="left"><?php echo $news->title ?></td>
-                                <td class="left"><?php echo $news->created_date ?></td>
+                                <td class="left"><?php echo $area->area_range ?></td>                                
+                                <td><input maxlength="3" type="text" name="sort[<?php echo $area->id ?>][]" value="<?php echo $area->sort ?>" /></td>
                                 <td class="center">
-                                    <a class="image-in-modal" href="#">
-                                        <img class="img-logo grayscale" src="/public/images/upload/<?php echo $news->image ?>"/>
-                                    </a>
-                                </td>
-                                <td class="center">
-                                    <a class="btn btn-success" href="/admin/index.php/reals/edit/<?php echo $news->id ?>">
+                                    <a class="btn btn-success" href="/admin/index.php/areas/edit/<?php echo $area->id ?>">
                                         <i class="icon-edit icon-white"></i>
                                         edit
                                     </a>
-                                    <a class="btn btn-danger" href="/admin/index.php/reals/delete/<?php echo $news->id ?>">
+                                    <a class="btn btn-danger" href="/admin/index.php/areas/delete/<?php echo $area->id ?>">
                                         <i class="icon-edit icon-white"></i>
                                         delete
                                     </a>
@@ -50,6 +46,7 @@
                     ?>
                 </tbody>
             </table>
+            </form>
         </div>
     </div><!--/span-->
 </div><!--/row-->
@@ -75,11 +72,8 @@
             $(".confirm").attr("href", $(this).attr("href"));
             $('#modal-from-dom').modal('show');
         });
-        
-        $('.image-in-modal').live("click", function() {
-            var imageUrl  = $(this).find('img').attr('src'),
-                imageHtml = '<img src="' + imageUrl + '" />';
-            loadModal(imageHtml);
+        $("#savesort").click(function(){
+            $("#frm_sort").submit();
         });
     });
 

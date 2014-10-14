@@ -1,36 +1,46 @@
 <div class="row-fluid">
     <div class="span12">
         <p><a href="/admin" class="btn btn-medium btn-primary"><i class="icon-chevron-left icon-white"></i> Home</a>
-            <a href="/admin/index.php/renttype/add" class="btn btn-medium btn-primary"><i class="icon-plus-sign icon-white"></i> Add</a>
+            <a href="/admin/index.php/realestate/add" class="btn btn-medium btn-primary"><i class="icon-plus-sign icon-white"></i> Add</a>
         </p>
     </div>
 </div>
 <div class="row-fluid sortable">
     <div class="box span12">
         <div class="box-header well" data-original-title>
-            <h2><i class="icon-list-alt"></i> Loại tin đăng</h2>            
+            <h2><i class="icon-edit"></i> Tin tức Bất Động Sản</h2>            
         </div>        
         <div class="box-content">
             <table class="table table-striped table-bordered bootstrap-datatable datatable">
                 <thead>
                     <tr>
-                        <th>Tên</th>                        
+                        <th>Tiêu đề</th>
+                        <!--<th>Ngày đăng</th>-->                        
+                        <th>Image</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    if (!empty($listCats)):
-                        foreach ($listCats as $cat):
+                    if (!empty($listRealestate)):
+                        foreach ($listRealestate as $reals):
                             ?>
                             <tr>
-                                <td class="left"><?php echo $cat->rent_type ?></td>                                
+                                <td class="left"><?php echo $reals->title ?></td>
+                                <!--<td class="left"><?php //echo $realestates->created_date ?></td>-->
                                 <td class="center">
-                                    <a class="btn btn-success" href="/admin/index.php/renttype/edit/<?php echo $cat->id ?>">
+                                    <a class="image-in-modal" href="#">
+                                        <img class="img-logo grayscale" src="/public/images/upload/<?php 
+                                        $temp=  explode("&fieldbreak;", $reals->image);
+                                        echo $temp[0]; ?>"/>
+                                    </a>
+                                </td>
+                                <td class="center">
+                                    <a class="btn btn-success" href="/admin/index.php/realestate/edit/<?php echo $reals->id ?>">
                                         <i class="icon-edit icon-white"></i>
                                         edit
                                     </a>
-                                    <a class="btn btn-danger" href="/admin/index.php/renttype/delete/<?php echo $cat->id ?>">
+                                    <a class="btn btn-danger" href="/admin/index.php/realestate/delete/<?php echo $reals->id ?>">
                                         <i class="icon-edit icon-white"></i>
                                         delete
                                     </a>
@@ -64,9 +74,15 @@
     $(document).ready(function() {
         $(".btn.btn-danger").click(function(e) {
             e.preventDefault();
-            $(".confirm").attr("href", $(this).attr("href"));            
+            $(".confirm").attr("href", $(this).attr("href"));
             $('#modal-from-dom').modal('show');
         });
-    });    
+        
+        $('.image-in-modal').live("click", function() {
+            var imageUrl  = $(this).find('img').attr('src'),
+                imageHtml = '<img src="' + imageUrl + '" />';
+            loadModal(imageHtml);
+        });
+    });
 
 </script>

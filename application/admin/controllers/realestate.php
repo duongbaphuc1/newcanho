@@ -12,26 +12,8 @@ class Realestate extends CI_Controller {
         $this->load->library("pagination");
     }
 
-    public function index() {
-        /* $url = '/admin/index.php/realestate/index/';
-          $total = count($this->Realestate_model->getAll());
-          $pagination = pagination($url, $total, PER_PAGE, 4, 4);
-          $data['pagination'] = $pagination->create_links();
-          $offset = $this->uri->segment(4, 0);
-          $data['listRealestate'] = $this->Realestate_model->getAll($offset, PER_PAGE, 'id'); 
-        $config['base_url'] = '/admin/index.php/realestate/index/';
-        $config['total_rows'] = count($this->Realestate_model->getAll());
-        $config['per_page'] = 10;
-        $config['uri_segment'] = 5;
-        $config['page_query_string'] = FALSE;
-        $this->pagination->initialize($config);
-
-        $page = $this->uri->segment(5);
-        $temp = $this->Realestate_model->getAll();
-        $result = array_slice($temp, $page, $config['per_page']);*/
-        
-        $result = $this->Realestate_model->getLimitByOrder();
-        $data['listRealestate'] = $result;
+    public function index() {        
+        $data['listRealestate'] = $this->Realestate_model->getAll();
         $data['bodycontent'] = 'realestate/index';
         $this->load->view("layouts/index", $data);
     }

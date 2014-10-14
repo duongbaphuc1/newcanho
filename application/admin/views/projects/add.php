@@ -8,55 +8,15 @@
                 <fieldset>
                     <legend></legend>
                     <div class="control-group">
+                        <label class="control-label" for="textarea">Tên dự án</label>
+                        <div class="controls">
+                            <?php echo form_input('project_name', ''); ?>    
+                        </div>
+                    </div>
+                    <div class="control-group">
                         <label class="control-label" for="textarea">Loại dự án</label>
                         <div class="controls">
-                            Căn hộ: <input type="radio" id="type" name="type" value="canho"/>
-                            Đất nền: <input type="radio" name="type" value="datnen"/>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="textarea">Tiêu đề</label>
-                        <div class="controls">
-                            <?php echo form_input('name', ''); ?>    
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="image">Hình</label>
-                        <div class="controls">
-                            <input type="file" id="product_image" name="image" />                            
-                            <div class="note-upload">
-                                Extentions : png, gif, jpg and < <?php echo $this->config->item("max_size"); ?> kb
-                            </div>
-                        </div>                        
-                    </div> 
-<!--                    <div class="control-group">
-                        <label class="control-label" for="textarea">Chu dau tu</label>
-                        <div class="controls">
-                            <?php echo form_input('manage', ""); ?>                            
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="textarea">Qui mo</label>
-                        <div class="controls">
-                            <?php echo form_input('scale', ""); ?>                            
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="textarea">Gia</label>
-                        <div class="controls">
-                            <?php echo form_input('price', ""); ?>                            
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="textarea">Dien tich</label>
-                        <div class="controls">
-                            <?php echo form_input('area', ""); ?>                            
-                        </div>
-                    </div>-->
-                    <div class="control-group">
-                        <label class="control-label" for="textarea">Tóm tắt</label>
-                        <div class="controls">
-                            <textarea name="summary"></textarea>                        
+                            <?php echo form_dropdown('catproject_id', $cat_project, null); ?>                         
                         </div>
                     </div>
                     <div class="control-group">
@@ -66,21 +26,26 @@
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="textarea">Tag</label>
+                        <label class="control-label" for="textarea">Tiêu đề dự án</label>
                         <div class="controls">
-                            <?php echo form_dropdown('tag_id', $tags, null); ?>                         
+                            <?php echo form_input('project_title', ''); ?>    
                         </div>
                     </div>
-                    
                     <div class="control-group">
-                        <label class="control-label" for="textarea">Nội dung</label>
+                        <label class="control-label" for="textarea">Mô tả dự án</label>
                         <div class="controls">
-                            <textarea name="description"></textarea>
+                            <textarea name="project_desc"></textarea>                        
                         </div>
-                    </div>                    
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Keyword dự án</label>
+                        <div class="controls">
+                            <textarea name="project_keyword"></textarea>                        
+                        </div>
+                    </div>
+                                        
                 </fieldset>                    
-                <div class="form-actions">
-                    <input type="hidden" name="section" value="text"/>             
+                <div class="form-actions">                                
                     <button class="btn btn-primary" type="submit">Save Changes</button>                    
                     <button class="btn cancel" type="button">Cancel</button>
                 </div>
@@ -91,23 +56,14 @@
 
 <script>
     $(document).ready(function() {
-        var ck = CKEDITOR.replace('description', {toolbar: 'Full', width: "100%"});
-        CKFinder.setupCKEditor(ck, {
-            basePath: '/public/admin/ckfinder/'
-        });        
+        
         $(".btn.cancel").click(function() {
             if (history.length == 0) {
-                window.location = "/admin/index.php/products";
+                window.location = "/admin/index.php/projects";
             } else {
                 history.go(-1);
             }
         });
-
-        $(".form-horizontal").bind('submit', function() {
-            for (instance in CKEDITOR.instances)
-            CKEDITOR.instances[instance].updateElement();
-        });     
-
         $(".form-horizontal").validate({
             ignore: "",
             errorElement: "span",
@@ -122,12 +78,21 @@
                 $(element).parent().parent().removeClass('error');
             },
             rules: {
-                name: {
+                project_name: {
                     required: true
                 },
-                summary: {
+                catproject_id: {
                     required: true
                 },
+                project_title: {
+                    required: true
+                },
+                project_desc: {
+                    required: true
+                },
+                project_keyword: {
+                    required: true
+                },                
                 description: {
                     required: true
                 }

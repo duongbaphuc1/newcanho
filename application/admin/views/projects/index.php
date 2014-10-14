@@ -14,8 +14,7 @@
             <table class="table table-striped table-bordered bootstrap-datatable datatable">
                 <thead>
                     <tr>
-                        <th>Tiêu đề</th>                                               
-                        <th>Image</th>
+                        <th>Tiêu đề</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -26,11 +25,7 @@
                             ?>
                             <tr>
                                 <td class="left"><?php echo $project->project_name ?></td>                                
-                                <td class="center">
-                                    <a class="image-in-modal" href="#">
-                                        <img class="img-logo grayscale" src="/public/images/upload/<?php echo $project->image ?>"/>
-                                    </a>
-                                </td>
+                                
                                 <td class="center">
                                     <a class="btn btn-success" href="/admin/index.php/projects/edit/<?php echo $project->id ?>">
                                         <i class="icon-edit icon-white"></i>
@@ -72,12 +67,6 @@
             e.preventDefault();
             $(".confirm").attr("href", $(this).attr("href"));
             $('#modal-from-dom').modal('show');
-        });
-        
-        $('.image-in-modal').live("click", function() {
-            var imageUrl  = $(this).find('img').attr('src'),
-                imageHtml = '<img src="' + imageUrl + '" />';
-            loadModal(imageHtml);
         });
     });
 

@@ -7,39 +7,39 @@ class Realtype extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model("Renttype_model");
-        $this->Renttype_model->setTable('real_type');
+        $this->load->model("Realtype_model");        
     }
 
     public function index() {
-        $data['listCats'] = $this->Renttype_model->getAll();
+        $data['listCats'] = $this->Realtype_model->getAll();              
         $data['bodycontent'] = 'realtype/index';
         $this->load->view("layouts/index", $data);
     }
 
     public function add() {
         if (ispost()) {
-            if ($this->Renttype_model->add($_POST)) {
+            if ($this->Realtype_model->add($_POST)) {
                 redirect(base_url() . "admin/index.php/realtype", "location");
             }
         }
+        $data['listCatsType'] = $this->Realtype_model->getCatForSelectBox('category_type','type_name');
         $data['bodycontent'] = 'realtype/add';
         $this->load->view("layouts/index", $data);
     }
 
     public function edit($id) {
         if (ispost()) {
-            if ($this->Renttype_model->edit($_POST, $id)) {
+            if ($this->Realtype_model->edit($_POST, $id)) {
                 redirect(base_url() . "admin/index.php/realtype", "location");
             }
         }
-        $data['cat'] = $this->Renttype_model->getById($id);
+        $data['cat'] = $this->Realtype_model->getById($id);
         $data['bodycontent'] = 'realtype/edit';
         $this->load->view("layouts/index", $data);
     }
 
     public function delete($id) {
-        if ($this->Renttype_model->delete($id)) {
+        if ($this->Realtype_model->delete($id)) {
             redirect(base_url() . "admin/index.php/realtype", "location");
         }
     }
