@@ -11,7 +11,10 @@ class Advs extends CI_Controller {
     }
 
     public function index() {
-        $data['listCats'] = $this->Advs_model->getAll();
+        if(ispost()){
+            $this->Advs_model->saveSort($_POST);
+        }
+        $data['listCats'] = $this->Advs_model->getAll();        
         $data['bodycontent'] = 'adv/index';
         $this->load->view("layouts/index", $data);
     }
@@ -22,6 +25,7 @@ class Advs extends CI_Controller {
                 redirect(base_url() . "admin/index.php/advs", "location");
             }
         }
+        $data['cat_id'] = $this->Advs_model->getCatForSelectBox('cat_advs','catadv_name');
         $data['bodycontent'] = 'adv/add';
         $this->load->view("layouts/index", $data);
     }
@@ -32,6 +36,7 @@ class Advs extends CI_Controller {
                 redirect(base_url() . "admin/index.php/advs", "location");
             }
         }
+        $data['cat_id'] = $this->Advs_model->getCatForSelectBox('cat_advs','catadv_name');
         $data['adv'] = $this->Advs_model->getById($id);
         $data['bodycontent'] = 'adv/edit';
         $this->load->view("layouts/index", $data);

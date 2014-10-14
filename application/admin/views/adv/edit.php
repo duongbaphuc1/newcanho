@@ -1,29 +1,40 @@
 <div class="row-fluid sortable">
     <div class="box span12">
         <div class="box-header well" data-original-title>
-            <h2><i class="icon-list-alt"></i> Edit Categories</h2>
+            <h2><i class="icon-list-alt"></i> Chỉnh sửa Advs</h2>
         </div>        
         <div class="box-content">
             <form class="form-horizontal" method="post" enctype="multipart/form-data">
                 <fieldset>
-                    <legend></legend>
+                    <legend></legend>                   
                     <div class="control-group">
-                        <label class="control-label" for="textarea">Loại dự án</label>
+                        <label class="control-label" for="textarea">Loại Advs</label>
                         <div class="controls">
-                            Slide: <input type="radio" <?php echo ($adv['type'] == 1)?"checked='true'":"";?> id="type" name="type" value="1"/>
-                            Quảng cáo: <input type="radio" <?php echo ($adv['type'] == 0)?"checked='true'":"";?> name="type" value="0"/>
+                            <?php echo form_dropdown('cat_id', $cat_id, $adv['cat_id']); ?>                         
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="link">Tên</label>
+                        <div class="controls">
+                            <?php echo form_input('name',$adv['name']); ?>
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="link">Link</label>
                         <div class="controls">
-                            <input type="text" id="link" value="<?php echo $adv['link'] ?>" name="link" />
+                            <?php echo form_input('link',$adv['link']); ?>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="link">Sort</label>
+                        <div class="controls">
+                            <?php echo form_input('sort',$adv['sort']); ?>
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="image">Hình</label>
                         <div class="controls">
-                            <input type="file" id="product_image" name="image" />                            
+                            <input type="file" id="image" name="image" />                            
                             <div class="note-upload">
                                 Extentions : png, gif, jpg and < <?php echo $this->config->item("max_size"); ?> kb
                             </div>
@@ -37,8 +48,7 @@
                         </div>
                     </div> 
                 </fieldset>                    
-                <div class="form-actions">
-                    <input type="hidden" name="section" value="text"/>             
+                <div class="form-actions">                             
                     <button class="btn btn-primary" type="submit">Save Changes</button>                    
                     <button class="btn cancel" type="button">Cancel</button>
                 </div>
@@ -72,12 +82,20 @@
 
         },
         rules: {
-            category_name_vi: {
-                required: true
-            },
-            category_name_en: {
-                required: true
-            }            
+            name: {
+                    required: true
+                },
+                link: {
+                    required: true,
+                    url:true
+                },
+                sort: {
+                    required: true,
+                    number: true
+                },
+                cat_id: {
+                    required: true                    
+                },           
         },
         messages: {
             category_name_vi: "Please enter text",

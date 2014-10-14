@@ -2,6 +2,7 @@
     <div class="span12">
         <p><a href="/admin" class="btn btn-medium btn-primary"><i class="icon-chevron-left icon-white"></i> Home</a>
             <a href="/admin/index.php/advs/add" class="btn btn-medium btn-primary"><i class="icon-plus-sign icon-white"></i> Add</a>
+            <a href="javascript:void()" id="savesort" class="btn btn-medium btn-primary"><i class="icon-plus-sign icon-white"></i> Save sort</a>
         </p>
     </div>
 </div>
@@ -11,10 +12,12 @@
             <h2><i class="icon-list-alt"></i> Advs</h2>            
         </div>        
         <div class="box-content">
+            <form method="post" id="frm_sort">
             <table class="table table-striped table-bordered bootstrap-datatable datatable">
                 <thead>
                     <tr>
                         <th>Link</th>
+                        <th>Sort</th>
                         <th>Hình</th>
                         <th>Actions</th>
                     </tr>
@@ -26,6 +29,7 @@
                             ?>
                             <tr>
                                 <td class="left"><?php echo $cat->link ?></td>
+                                <td><input maxlength="3" type="text" name="sort[<?php echo $cat->id ?>][]" value="<?php echo $cat->sort ?>" /></td>
                                 <td class="left">
                                     <a class="image-in-modal" href="#">
                                         <img class="img-logo grayscale" src="/public/images/upload/<?php echo $cat->image ?>"/>
@@ -48,6 +52,7 @@
                     ?>
                 </tbody>
             </table>
+            </form>
         </div>
     </div><!--/span-->
 </div><!--/row-->
@@ -77,6 +82,9 @@
             var imageUrl = $(this).find('img').attr('src'),
                     imageHtml = '<img src="' + imageUrl + '" />';
             loadModal(imageHtml);
+        });
+        $("#savesort").click(function(){
+            $("#frm_sort").submit();
         });
     });
 
