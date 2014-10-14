@@ -3,11 +3,13 @@ $cls = $this->router->fetch_class();
 $atc = $this->router->fetch_method();
 $atcLink = $this->uri->segment(1);
 $type = '100';
-$cat = $this->Categories_model->getAll($type);
+if(!isset($cats)) {
+    $cats = $this->Categories_model->getAll($type);
+}
 ?>
 <div class="menu">
     <ul id="nav">
-        <?php foreach($cat as $item): ?>
+        <?php foreach($cats as $item): ?>
         <li>
             <a href="/<?php echo $item['slug']?>" title="<?php echo $item['category_name']?>"><?php echo $item['category_name']?><span>&nbsp;</span></a>
         </li>

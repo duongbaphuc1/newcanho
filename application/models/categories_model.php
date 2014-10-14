@@ -18,11 +18,34 @@ class Categories_model extends Abstract_model {
     function getAll($type){
 
         $this->db->where('type', $type);
+        $this->db->order_by('sort');
         $result = $this->db->get($this->_table);
 
         return $result->result_array();
     }
-    
+
+    /**
+     * @author Phuc Duong
+     * @return array
+     **/
+    function getCatSearch($type = null){
+
+        $cats = array(0=>'- Chọn loại bất động sản -');
+
+        if(!is_null($type)){
+            $this->db->where('type', $type);
+        }
+
+        $this->db->order_by("sort", "asc");
+        $query = $this->db->get($this->_table);
+        $results = $query->result_array();
+        foreach ($results as $item){
+            $cats[$item['id']] = $item['category_name'];
+        }
+
+        return $cats;
+    }
+
     function getCatById($id){
         if(empty($id)){
             return null;

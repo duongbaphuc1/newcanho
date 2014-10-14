@@ -1,13 +1,17 @@
+<?php
+$CI = & get_instance();
+$CI->load->model("Advertising_model");
+$advs = $CI->Advertising_model->getAll(1);
+?>
 <div class="partner">
     <div class="t"></div>
 
     <div class="m">
-        <a href="http://apartmentforlease.com.vn/" target="_blank" title="Apartment for rent">
-            <img src="/public/images/logo.jpg" alt="Apartment for rent">
+        <?php foreach ($advs as $key=>$adv): ?>
+        <a href="<?php echo $adv['link'] ?>" target="_blank" title="<?php echo $adv['name'] ?>">
+            <img src="/public/images/<?php echo $adv['image'] ?>" alt="<?php echo $adv['name'] ?>">
         </a>
-        <a href="http://muabanthue.vn/" target="_blank" title="Mua bán cho thuê nhà đất">
-            <img src="/public/images/logo.png" alt="Mua bán cho thuê nhà đất">
-        </a>
+        <?php endforeach?>
     </div>
 </div>
 <div class="partner">

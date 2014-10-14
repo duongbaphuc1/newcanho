@@ -11,17 +11,12 @@ class Advertising_model extends Abstract_model {
     function __construct() {
         // Call the Model constructor
         parent::__construct();
-        $this->_table = "advertising";
+        $this->_table = "advs";
         $this->_primary_key = "id";
     }
     
-    function getAll($type = null, $offset = null, $limit = null){
-        if(!empty($limit) && !empty($offset)){
-            $this->db->limit($limit, $offset);
-        }
-        if(!is_null($type)){
-            $this->db->where("type", $type);
-        }
+    function getAll(){
+
         $result = $this->fetchAll($this->_table);
         if($result){
             return $result;

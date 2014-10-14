@@ -9,11 +9,13 @@ class Home extends CI_Controller {
         parent::__construct(); 
         $this->load->helper("pagination");
         $this->load->model("Reals_model");
-        $this->load->model("ProjectReals_model");
-        $this->load->model('News_model');
+        $this->load->model("Common_model");
     }
 
-    public function index() {        
+    public function index() {
+
+        $data = $this->Common_model->getDefault();
+
         $data['bodycontent'] = "home/real_home";
         $list = $this->Reals_model->getAll(0, 24, 'id');
         $data['listRealHome'] = array_slice($list, 3, -1);

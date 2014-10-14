@@ -10,9 +10,12 @@ class Reals extends CI_Controller {
         $this->load->helper("pagination");
         $this->load->model("Reals_model");
         $this->load->model("District_model");
+        $this->load->model("Common_model");
     }
 
     function filter($cat_slug, $district = null){
+
+        $data = $this->Common_model->getDefault();
 
         $total = count($this->Reals_model->getFilter($cat_slug, $district));
         if(!empty($district)){
@@ -42,6 +45,8 @@ class Reals extends CI_Controller {
 
 
     public function detail($idStr) {
+
+        $data = $this->Common_model->getDefault();
 
         $id = getIdFromStr($idStr);
         $data['real'] = $this->Reals_model->getRealById($id);

@@ -77,7 +77,7 @@ class Reals_model extends Abstract_model {
         }
         $this->db->select('real_estate.*, district.district_name, district.slug as slug_dis, project.slug as slug_pro, project.project_name, categories.category_name, categories.slug as cat_slug');
         $this->db->join('district', 'district.id = real_estate.district_id');
-        $this->db->join('project', 'project.id = real_estate.project_id');
+        $this->db->join('project', 'project.id = real_estate.project_id', 'left');
         $this->db->join('categories', 'categories.id = real_estate.category_id');
         $this->db->where('real_estate.id', $id);
         $result = $this->db->get($this->_table);
