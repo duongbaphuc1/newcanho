@@ -2,7 +2,7 @@
     <div class="span12">
         <p><a href="/admin" class="btn btn-medium btn-primary"><i class="icon-chevron-left icon-white"></i> Home</a>
             <a href="/admin/index.php/categories/add" class="btn btn-medium btn-primary"><i class="icon-plus-sign icon-white"></i> Add</a>
-            
+            <a href="javascript:void()" id="savesort" class="btn btn-medium btn-primary"><i class="icon-plus-sign icon-white"></i> Save sort</a>
         </p>
     </div>
 </div>
@@ -16,7 +16,8 @@
             <table class="table table-striped table-bordered bootstrap-datatable datatable">
                 <thead>
                     <tr>
-                        <th>Tiêu đề</th>                      
+                        <th>Tiêu đề</th>
+                        <th>Sort</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -26,7 +27,8 @@
                         foreach ($listCats as $cats):
                             ?>
                             <tr>
-                                <td class="left"><?php echo $cats->category_name ?></td> 
+                                <td class="left"><?php echo $cats->category_name ?></td>
+                                <td><input maxlength="3" type="text" name="sort[<?php echo $cats->id ?>][]" value="<?php echo $cats->sort ?>" /></td>
                                 <td class="center">
                                     <a class="btn btn-success" href="/admin/index.php/categories/edit/<?php echo $cats->id ?>">
                                         <i class="icon-edit icon-white"></i>
@@ -69,7 +71,10 @@
             e.preventDefault();
             $(".confirm").attr("href", $(this).attr("href"));
             $('#modal-from-dom').modal('show');
-        });        
+        });
+        $("#savesort").click(function(){
+            $("#frm_sort").submit();
+        });
     });
 
 </script>

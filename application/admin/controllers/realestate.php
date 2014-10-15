@@ -8,21 +8,18 @@ class Realestate extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model(array("Realestate_model","Tag_model","Tagreal_model","Projects_model"));       
-        $this->load->helper("pagination");
-        $this->load->library("pagination");
+        $this->load->helper(array("pagination"));
+        $this->load->library("pagination","url");        
     }
 
     public function index() {        
+        
         $data['listRealestate'] = $this->Realestate_model->getAll();
         $data['bodycontent'] = 'realestate/index';
         $this->load->view("layouts/index", $data);
     }
 
     public function add() {
-        
-        //$results = $this->Realestate_model->getAllForJson('van');
-        //echo json_encode($results);        
-        //die;
         if (ispost()) {
             if ($this->Realestate_model->add($_POST)) {
                 redirect(base_url() . "admin/index.php/realestate", "location");

@@ -25,6 +25,7 @@ class Quans extends CI_Controller {
                 redirect(base_url() . "admin/index.php/quans", "location");
             }
         }
+        $data['province'] = $this->Quans_model->getCatForSelectBox('province','province_name');
         $data['bodycontent'] = 'quans/add';
         $this->load->view("layouts/index", $data);
     }
@@ -35,7 +36,8 @@ class Quans extends CI_Controller {
                 redirect(base_url() . "admin/index.php/quans", "location");
             }
         }
-        $data['cat'] = $this->Quans_model->getById($id);
+        $data['province'] = $this->Quans_model->getCatForSelectBox('province','province_name');
+        $data['quans'] = $this->Quans_model->getById($id);
         $data['bodycontent'] = 'quans/edit';
         $this->load->view("layouts/index", $data);
     }

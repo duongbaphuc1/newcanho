@@ -20,14 +20,14 @@ class Users_model extends Abstract_model {
         return parent::getAll($this->_table);
     }
 
-    function add($data) {
-        unset($data['section']);
+    function add($data) {       
         if ($this->isEmailExist($data['email'])) {
             return array("error" => "Email is exist");
         }
         if ($this->isUserNameExist($data['username'])) {
             return array("error" => "Username is exist");
         }
+        $data['password'] = md5($_POST['password']);
         $data['createdby'] = USER_ID;
         return $this->db->insert($this->_table, $data);
     }

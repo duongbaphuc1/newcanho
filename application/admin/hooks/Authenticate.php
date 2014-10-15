@@ -16,9 +16,12 @@ class Authenticate {
         if (!$this->CI->session->userdata("users") && $this->CI->uri->uri_string != "users/login" && $this->CI->uri->uri_string != "users/forgotpassword") {
             redirect(base_url() . 'admin/index.php/users/login', 'location');
         }
-        $info = $this->CI->session->userdata("users");
+        $info = $this->CI->session->userdata("users");       
         if( !defined ( "USER_ID" ) ){
             define("USER_ID", $info['id']);
+        }
+        if( !defined ( "USER_ROLE" ) ){
+            define("USER_ROLE", $info['role']);
         }
     }
 

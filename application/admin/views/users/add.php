@@ -39,9 +39,18 @@
                             <input type="text" value="<?php echo (!empty($info['password']))?$info['password']:""?>" id="password" name="password" />
                         </div>
                     </div>
+                    <div class="control-group">                       
+                        <div class="controls">
+                            <?php                              
+                                echo form_radio('role', 'admin',TRUE);
+                                echo "Admin ";
+                                echo form_radio('role', 'user', FALSE);
+                                echo "User";                            
+                            ?>                                                  
+                        </div>
+                    </div>
                 </fieldset>                    
-                <div class="form-actions">
-                    <input type="hidden" name="section" value="text"/>             
+                <div class="form-actions">                               
                     <button class="btn btn-primary" type="submit">Save Changes</button>                    
                     <button class="btn cancel" type="button">Cancel</button>
                 </div>

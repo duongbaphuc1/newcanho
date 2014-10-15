@@ -39,6 +39,24 @@
                             <input type="text" id="password" name="password" />
                         </div>
                     </div>
+                    <div class="control-group">                       
+                        <div class="controls">
+                            <?php 
+                            if($user['role']=="admin"){    
+                                echo form_radio('role', 'admin',TRUE);
+                                echo "Admin ";
+                                echo form_radio('role', 'user', FALSE);
+                                echo "User";
+                            }
+                            else{
+                                echo form_radio('role', 'admin',FALSE);
+                                echo "Admin ";
+                                echo form_radio('role', 'user', TRUE);
+                                echo "User";
+                            }
+                            ?>                                                  
+                        </div>
+                    </div>
                 </fieldset>                    
                 <div class="form-actions">
                     <input type="hidden" name="section" value="text"/>             
@@ -79,7 +97,7 @@
                 },
                 username: {
                     required: true
-                },
+                },                
                 email: {
                     required: true,
                     email: true

@@ -11,7 +11,7 @@
             <h2><i class="icon-edit"></i> Tin tức Bất Động Sản</h2>            
         </div>        
         <div class="box-content">
-            <table class="table table-striped table-bordered bootstrap-datatable datatable">
+            <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th>Tiêu đề</th>

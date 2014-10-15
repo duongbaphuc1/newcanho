@@ -11,6 +11,9 @@ class Categories extends CI_Controller {
     }
 
     public function index() {
+        if(ispost()){
+            $this->Categories_model->saveSort($_POST);
+        }
         $data['listCats'] = $this->Categories_model->getAll();
         $data['bodycontent'] = 'categories/index';
         $this->load->view("layouts/index", $data);

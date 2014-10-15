@@ -8,15 +8,27 @@
                 <fieldset>
                     <legend></legend>
                     <div class="control-group">
+                        <label class="control-label" for="textarea">Tỉnh/TP</label>
+                        <div class="controls">
+                            <?php echo form_dropdown('province_id', $province, null); ?>                         
+                        </div>
+                    </div>
+                    <div class="control-group">
                         <label class="control-label" for="textarea">Quận</label>
                         <div class="controls">
-                            <input type="text" id="label" name="name" />
+                            <?php echo form_input('district_name', ''); ?>
                         </div>
-                    </div>                   
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Sort</label>
+                        <div class="controls">
+                            <?php echo form_input('sort', ''); ?>
+                        </div>
+                    </div>
                 </fieldset>                    
                 <div class="form-actions">                    
-                    <button class="btn btn-primary" type="submit">Lưu</button>                    
-                    <button class="btn cancel" type="button">Hủy</button>
+                    <button class="btn btn-primary" type="submit">Save Changes</button>                    
+                    <button class="btn cancel" type="button">Cancel</button>
                 </div>
             </form>
         </div>
@@ -25,9 +37,10 @@
 
 <script>
     $(document).ready(function() {
+        
         $(".btn.cancel").click(function() {
             if (history.length == 0) {
-                window.location = "/admin/index.php/quans";
+                window.location = "/admin/index.php/projects";
             } else {
                 history.go(-1);
             }
@@ -44,20 +57,22 @@
             },
             unhighlight: function(element) {
                 $(element).parent().parent().removeClass('error');
-
             },
             rules: {
-                category_name_en: {
+                province_id: {
                     required: true
                 },
-                category_name_vi: {
+                district_name: {
                     required: true
-                }
+                },
+                sort: {
+                    required: true,
+                    number: true
+                },
+                
             },
-            messages: {
-                category_name_en: "Please enter text",
-                category_name_vi: "Please enter text"
+            messages: {               
             }
         });
     });
-</script> 
+</script>  
