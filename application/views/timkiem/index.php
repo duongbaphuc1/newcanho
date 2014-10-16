@@ -1,42 +1,58 @@
-<div class="title_ge red f_utm"><span>Kết quả tìm kiếm <?php echo (!empty($keyword))?'"'.$keyword.'"':""; ?> </span></div>
-<?php foreach ($listNew as $news): ?>
-    <div class="n1 clearfix"> 
-        <a href="/tin-tuc/chitiet/<?php echo convertViToEn($news['title'], $news['id']); ?>" title="$news['title']">
-            <img alt="<?php echo $news['title'] ?>" src="/public/images/upload/<?php echo $news['image'] ?>" width="100" height="86"></a>
-        <h3><a title="<?php echo $news['title']; ?>" href="/tin-tuc/chitiet/<?php echo convertViToEn($news['title'], $news['id']); ?>">
-                <strong><?php echo $news['title']; ?></strong></a></h3>
-        <div class="date">Ngày đăng:  <?php
-            $date = new DateTime($news['created_date']);
-            echo $date->format('d/m/Y')
-            ?></div>
-        <p><?php echo $news['summary'] ?></p>
+<?php $this->load->view('layouts/breadcrumb');?>
+<h1>Kết quả tìm kiếm</h1>
+<div class="list">
+    <?php
+    if(!empty($results)):
+    foreach ($results as $key => $item):
+    $image = proccessimg($item['image']);
+    $majorImage = (!empty($image)) ? $image[0] : "";
+    ?>
+    <div class="item">
+        <a href="/<?php echo convertViToEn($item['title'], $item['id']); ?>i.html"
+           title="<?php echo $item['title'] ?>">
+            <img src="/public/images/upload/<?php echo $majorImage?>"
+                 alt="<?php echo $item['title'] ?>"
+                 original="/public/images/upload/<?php echo $majorImage?>"></a>
+
+        <h2>
+            <a href="/<?php echo convertViToEn($item['title'], $item['id']); ?>i.html"
+               title="<?php echo $item['title'] ?>">
+                <?php echo preg_replace('/\s+?(\S+)?$/', '', substr(strip_tags($item['description']), 0, 150));?>...
+        <div class="bottom">
+            <div>Mã tin: <?php echo $item['id']?></div>
+            <div><span><a href="/<?php echo $item['cat_slug']?>/<?php echo $item['slug_dis']?>"> <?php echo $item['district_name']?></a></span></div>
+        </div>
+
+        <div class="pricebox">
+            <div style="font-size:20px; text-align:center; margin:20px; 0 0 0;">Giá</div>
+            <div style="color:#f00; text-align:center; font-size:17px; margin:0px 0 0;">
+                <?php echo $item['price'] ?>
+            </div>
+        </div>
+
+        <div class="bottom_line">&nbsp;</div>
     </div>
-    <!-- bloc item -->
-<?php endforeach; ?>
-<?php foreach ($project as $news): ?>
-    <div class="n1 clearfix"> 
-        <a href="/duan/chitiet/<?php echo convertViToEn($news['name'], $news['id']); ?>" title="<?php echo $news['name'] ?>">
-            <img alt="<?php echo $news['name'] ?>" src="/public/images/upload/<?php echo $news['image'] ?>" width="100" height="86"></a>
-        <h3><a title="<?php echo $news['name']; ?>" href="/tin-tuc/chitiet/<?php echo convertViToEn($news['name'], $news['id']); ?>">
-                <strong><?php echo $news['name']; ?></strong></a></h3>
-        <div class="date">Ngày đăng:  <?php
-            $date = new DateTime($news['created_date']);
-            echo $date->format('d/m/Y')
-            ?></div>
-        <p><?php echo $news['summary'] ?></p>
-    </div>
-    <!-- bloc item -->
-<?php endforeach; ?>
-<?php foreach ($kygui as $news): ?>
-    <div class="n1 clearfix"> 
-        <a href="/ky-gui/chitiet/<?php echo convertViToEn($news['title'], $news['id']); ?>" title="<?php echo $news['title'] ?>">
-            <img alt="<?php echo $news['title'] ?>" src="/public/images/upload/<?php echo $news['image'] ?>" width="100" height="86"></a>
-        <h3><a title="<?php echo $news['title']; ?>" href="/ky-gui/chitiet/<?php echo convertViToEn($news['title'], $news['id']); ?>">
-                <strong><?php echo $news['title']; ?></strong></a></h3>
-        <div class="date">Ngày đăng:  <?php
-        $date = new DateTime($news['created_date']);
-        echo $date->format('d/m/Y')
-    ?></div>        
-    </div>
-    <!-- bloc item -->
-<?php endforeach; ?>
+    <?php endforeach; endif?>
+    <div class="cls"></div>
+    <?php echo $pagination;?>
+</div>
+<script>
+    var search = {
+        init: function(){
+            search.changeAttr();
+        },
+        changeAttr: function(){
+            $(".manu a").each(function(){
+                if($(this).attr('href') != "#"){
+                    $(this).attr('url', $(this).attr('href'));
+                    $(this).attr('href', "javascript:void()");
+                    $(this).click(function(){
+                        document.search.action = $(this).attr("url");
+                        document.search.submit();
+                    });
+                }
+            });
+        }
+    };
+    $(document).ready(search.init);
+</script>

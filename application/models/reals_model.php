@@ -117,14 +117,87 @@ class Reals_model extends Abstract_model {
         return $this->db->insert($this->_table, $data);
     }
     
-    function timKiem($keyword) {
-        $this->db->like('title', $keyword);
+    function timKiem($params, $limit, $offset) {
+
+        $this->db->select('real_estate.*, district.district_name, district.slug as slug_dis, project.slug as slug_pro, project.project_name, categories.category_name, categories.slug as cat_slug');
+        $this->db->join('district', 'district.id = real_estate.district_id');
+        $this->db->join('project', 'project.id = real_estate.project_id', 'left');
+        $this->db->join('categories', 'categories.id = real_estate.category_id');
+        $this->db->join('price', 'price.id = real_estate.price_id');
+        $this->db->join('area', 'area.id = real_estate.area_id');
+
+        if($params['code']) {
+            $this->db->like('real_estate.id', $params['code']);
+        }
+
+        if($params['key']) {
+            $this->db->like('title', $params['key']);
+        }
+
+        if(!empty($params['loai-bds'])){
+            $this->db->like('categories.id', $params['loai-bds']);
+        }
+
+        if(!empty($params['district_id'])){
+            $this->db->like('district.id', $params['district_id']);
+        }
+
+        if(!empty($params['id_pricerange'])){
+            $this->db->like('price.id', $params['id_pricerange']);
+        }
+
+        if(!empty($params['areas'])){
+            $this->db->like('area.id', $params['areas']);
+        }
+
+        $this->db->limit($limit, $offset);
+
         $result = $this->db->get($this->_table);
         
         if ($result) {
             return $result->result_array();
         }
         return NULL;
+    }
+
+    function getTotalResult($params){
+        $this->db->select('real_estate.*, district.district_name, district.slug as slug_dis, project.slug as slug_pro, project.project_name, categories.category_name, categories.slug as cat_slug');
+        $this->db->join('district', 'district.id = real_estate.district_id');
+        $this->db->join('project', 'project.id = real_estate.project_id', 'left');
+        $this->db->join('categories', 'categories.id = real_estate.category_id');
+        $this->db->join('price', 'price.id = real_estate.price_id');
+        $this->db->join('area', 'area.id = real_estate.area_id');
+
+        if($params['code']) {
+            $this->db->like('real_estate.id', $params['code']);
+        }
+
+        if($params['key']) {
+            $this->db->like('title', $params['key']);
+        }
+
+        if(!empty($params['loai-bds'])){
+            $this->db->like('categories.id', $params['loai-bds']);
+        }
+
+        if(!empty($params['district_id'])){
+            $this->db->like('district.id', $params['district_id']);
+        }
+
+        if(!empty($params['id_pricerange'])){
+            $this->db->like('price.id', $params['id_pricerange']);
+        }
+
+        if(!empty($params['areas'])){
+            $this->db->like('area.id', $params['areas']);
+        }
+
+        $result = $this->db->get($this->_table);
+
+        if ($result) {
+            return $result->num_rows();
+        }
+        return 0;
     }
 
 }

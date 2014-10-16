@@ -63,6 +63,9 @@ $route['villa-cho-thue/(:any)']    = "reals/filter/villa-cho-thue/$1";
 $route['can-ho-dich-vu']           = "reals/filter/can-ho-dich-vu";
 $route['can-ho-dich-vu/([0-9]+)$'] = "reals/filter/can-ho-dich-vu";
 $route['can-ho-dich-vu/(:any)']    = "reals/filter/can-ho-dich-vu/$1";
+$route['tim-kiem'] = 'timkiem';
+$route['tim-kiem/(:any)'] = 'timkiem/index/$1';
+$route['lien-he'] = 'contacts';
 
 $route['404_override'] = '';
 

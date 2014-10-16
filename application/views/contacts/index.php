@@ -1,48 +1,84 @@
 <?php $contact = $this->session->userdata('contact'); ?>
-
-<div class="left_main">
-    <div class="title_ge font_my">LIÊN HỆ</div>
-    <div class="content_ge">
-        <div>
-        <?php echo $contact['contact_vi'] ?>    
-        </div>
-
-        <p class="mt_15px"> Bạn muốn liên hệ với chúng tôi? Vui lòng gởi mail sử dụng mẫu chúng tôi cung cấp. Chúng tôi có thể không hồi âm hết những thông tin của các bạn. Nhưng chúng tôi sẽ đọc hết các thông tin liên hệ của các bạn. </p>
-        <div class="clearfix mt_15px">
-            <div class="for_row clearfix">
-                <div class="lb fl">Họ tên:</div>
-                <input type="text" class="txt_2" />
-
-            </div>
-            <div class="for_row clearfix">
-                <div class="lb fl">Địa chỉ:</div>
-                <input type="text" class="txt_2" />
-
-            </div>
-
-            <div class="for_row clearfix">
-                <div class="lb fl">Điện thoại:</div>
-                <input type="text" class="txt_1" />
-
-            </div><div class="for_row clearfix">
-                <div class="lb fl">Email:</div>
-                <input type="text" class="txt_1" />
-
-            </div>
-            <div class="for_row clearfix">
-                <div class="lb fl">Tiêu đề:</div>
-                <input type="text" class="txt_2" />
-
-            </div>
-
-            <div class="for_row clearfix">
-                <div class="lb fl">Nội dung:</div>
-                <textarea class="text-are"></textarea>
-
-            </div>
-            <div class="for_row" style="margin-left:100px;">
-                <input type="button" class="btn_lh fl" value="Gửi đi" /> <input type="button" class="btn_lh fl" value="Nhập lại" style="margin-left:10px;" />
+<?php $this->load->view('layouts/breadcrumb');?>
+<div class="wrappcontact">
+    <form method="post" action="" onsubmit="return validForm(this)">
+        <div class="row">
+            <div class="l">Thông tin liên hệ</div>
+            <div class="r">
+                <div><b>Công ty TNHH MTV địa ốc Mỹ Hưng</b></div>
+                <div><b>Địa chỉ</b>: 189 Hai Bà Trưng - Phường 6 - Quận 3 - TP Hồ Chí Minh</div>
+                <div><b>Email</b>: <a href="mailto:diaocmyhung@gmail.com">diaocmyhung@gmail.com</a></div>
+                <div><b>Điện thoại</b>: 0908.550.813</div>
             </div>
         </div>
-    </div>  
+        <div class="row">
+            <div class="l">Tên liên hệ</div>
+            <div class="r"><input type="text" name="name" class="textbox"></div>
+        </div>
+        <div class="row">
+            <div class="l">Điện thoại</div>
+            <div class="r"><span>(*)</span><input type="text" name="phone" class="textbox"></div>
+        </div>
+        <div class="row">
+            <div class="l">Email</div>
+            <div class="r"><span>(*)</span><input type="text" name="mail" class="textbox"></div>
+        </div>
+        <div class="row">
+            <div class="l">Tiêu đề liên hệ</div>
+            <div class="r"><input value="" type="text" name="subject" class="textbox"></div>
+        </div>
+        <div class="row">
+            <div class="l">Nội dung</div>
+            <div class="r"><textarea name="message" class="textarea"></textarea></div>
+        </div>
+        <div class="row">
+            <div class="l">&nbsp;</div>
+            <div class="r"><input value=" Gửi liên hệ " type="submit" name="submit" class="btn"> <input type="reset" value=" Làm lại " class="btn"></div>
+        </div>
+    </form>
+
 </div>
+<script type="text/javascript">
+    function validForm(thisform)
+    {
+        with (thisform)
+        {
+            if (validRequired(phone,"Vui lòng nhập điện thoại!") == false)
+            {	phone.focus();	return false;	}
+            if (emailValid(mail,"Nhập đúng địa chỉ Email!") == false)
+            {	mail.focus();	return false;	}
+        }
+    }
+
+    function validRequired(field,alerttxt)
+    {
+        with (field)
+        {
+            if (value==null||value=="")
+            {	alert(alerttxt);
+                return false;
+            }
+            else
+            {	return true;	}
+        }
+    }
+
+    function emailValid(mailField,txtalert){
+        if (document.layers||document.getElementById||document.all)
+        {
+            var filter=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
+            with (mailField)
+            {
+                if (filter.test(value)){
+                    return true;
+                }else{
+                    alert(txtalert);
+                    return false;
+                }
+            }
+        }
+        else
+            return true;
+    }
+</script>

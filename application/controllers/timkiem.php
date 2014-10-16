@@ -9,17 +9,23 @@ class Timkiem extends CI_Controller {
         parent::__construct(); 
         $this->load->helper("pagination");
         $this->load->model("Reals_model");
-        $this->load->model("ProjectReals_model");
-        $this->load->model("News_model");
+        $this->load->model("Common_model");
     }
 
     public function index() {
-        $keyword = $_GET['tukhoa'];
-        $data['bodycontent'] = "timkiem/index";    
-        $data['project']   = $this->ProjectReals_model->timKiem($keyword);
-        $data['kygui']     = $this->Reals_model->timKiem($keyword); 
-        $data['listNew']      = $this->News_model->timKiem($keyword); 
-        $data['keyword'] = $keyword;
+
+        $data = $this->Common_model->getDefault();
+        if(ispost()){
+            $url = "/tim-kiem/";
+            $data['results'] = $this->Reals_model->timKiem($_POST, PER_PAGE, 0);
+            $total           = $this->Reals_model->getTotalResult($_POST);
+            $data['params']  = $_POST;
+            $pagination = pagination($url, $total, PER_PAGE, 2, 4);
+            $data['pagination'] = $pagination->create_links();
+        }
+
+        $data['bodycontent'] = "timkiem/index";
+
         $this->load->view('layouts/index', $data);
     }
 

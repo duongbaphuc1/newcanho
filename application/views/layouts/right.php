@@ -9,7 +9,7 @@ $atc = $this->router->fetch_method();
 <?php
 if($cls == 'home') {
     $this->load->view('layouts/advs_fb');
-}else{
+}elseif($cls != "timkiem" && $cls != "contacts"){
     $this->load->view('layouts/cat_district');
 }
 ?>

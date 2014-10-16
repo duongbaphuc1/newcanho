@@ -8,9 +8,13 @@ class Contacts extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model("Contact_model");
+        $this->load->model("Common_model");
     }
 
     public function index() {
+
+        $data = $this->Common_model->getDefault();
+
         $data['bodycontent'] = "contacts/index";
         if (ispost()) {
             if($this->Contact_model->sendEmail()){
