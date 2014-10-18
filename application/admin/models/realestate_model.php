@@ -17,8 +17,8 @@ class Realestate_model extends Abstract_model {
     
     //for paging
     function getAll() {        
-        //$this->db->order_by("id", "DESC");        
-        $this->db->limit(10);
+        $this->db->order_by("id", "DESC");        
+        //$this->db->limit(10);
         $query = $this->db->get($this->_table);
         return $query->result();
     }
@@ -42,6 +42,12 @@ class Realestate_model extends Abstract_model {
             $lists[$ls['id']] = $ls[$col];
         }
         return $lists;
+    }    
+    
+    function getTotal($keyword){                
+        $this->db->where('id = "'.$keyword.'" or title like "%'.$keyword.'%"');
+        $query = $this->db->get($this->_table);
+        return $query->num_rows();
     }
 
     function getById($id) {
@@ -56,11 +62,14 @@ class Realestate_model extends Abstract_model {
         return $query->result_array();
     }
 
-    function getAllByLike($tbl, $col, $term) {
+    function getAllByLike($tbl, $col, $term, $limit = 0, $offset = 0) {
+        if(!empty($limit)){
+            $this->db->limit($limit, $offset);
+        }
         $this->db->like($col, $term);
         $query = $this->db->get($tbl);
-        return $query->result_array();
-    }    
+        return $query->result();
+    }
     
     //autocomplete for Project
     function getAllForJson($term) {
@@ -83,11 +92,6 @@ class Realestate_model extends Abstract_model {
         unset($data['del_image']);
         unset($data['project_name']);
         
-        //$test = $this->input->post("project_id");
-        //if($test==1){
-        //    echo $this->input->post("project_id");
-        //}
-        //die;
         $old_image_ = "";
         $old_image = "";
         $del_image = "";
