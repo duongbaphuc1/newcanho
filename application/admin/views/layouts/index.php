@@ -110,8 +110,8 @@
             </div>
 
             <footer>
-                <p class="pull-left">&copy; <a href="http://vnis.vn" target="_blank">VNIS</a> 2014</p>
-                <p class="pull-right">Powered by: <a href="http://vnis.vn">VNIS</a></p>
+                <p class="pull-left">&copy; <a href="#" target="_blank">MrPhuc</a> <?php echo date('Y')?></p>
+                <p class="pull-right">Powered by: <a href="#">MrPhuc</a></p>
             </footer>
 
         </div>
