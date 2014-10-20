@@ -1,6 +1,6 @@
 <?php $info = $this->session->userdata("users")?>
 <h2>Welcome <?php echo (!empty($info['full_name']))?$info['full_name']:""; ?> !</h2>
-<div class="row-fluid sortable ui-sortable">
+<!--<div class="row-fluid sortable ui-sortable">
     <a data-rel="tooltip" class="well span4 top-block" href="/admin/index.php/news" data-original-title="">
         <img src="/public/images/icon/product.png">
         <div>Tin tức</div>
@@ -32,4 +32,4 @@
         <img src="/public/images/icon/logout.png">
         <div>Logout</div>
     </a>
-</div>
+</div>-->
