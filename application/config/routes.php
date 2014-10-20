@@ -63,6 +63,14 @@ $route['villa-cho-thue/(:any)']    = "reals/filter/villa-cho-thue/$1";
 $route['can-ho-dich-vu']           = "reals/filter/can-ho-dich-vu";
 $route['can-ho-dich-vu/([0-9]+)$'] = "reals/filter/can-ho-dich-vu";
 $route['can-ho-dich-vu/(:any)']    = "reals/filter/can-ho-dich-vu/$1";
+
+$route['cho-thue-can-ho-(:any)']   = "reals/filterPro/$1";
+$route['cho-thue-can-ho-(:any)/([0-9]+)$'] = "reals/filterPro/$";
+
+$route['cho-thue-van-phong-(:any)']   = "reals/filterPro/$1";
+$route['cho-thue-van-phong-(:any)/([0-9]+)$'] = "reals/filterPro/$";
+
+
 $route['tim-kiem'] = 'timkiem';
 $route['tim-kiem/(:any)'] = 'timkiem/index/$1';
 $route['lien-he'] = 'contacts';

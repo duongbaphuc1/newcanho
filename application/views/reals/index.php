@@ -1,5 +1,14 @@
 <?php $this->load->view('layouts/breadcrumb');?>
-    <h1 style="text-transform:uppercase;"><?php echo (!empty($listReals[0]['category_name'])) ? $listReals[0]['category_name'] : ""?></h1>
+    <h1 style="text-transform:uppercase;">
+        <?php
+            if(isset($isPro)){
+                $titleBar = (!empty($listReals[0]['pro_name'])) ? $listReals[0]['pro_name'] : "";
+            }else{
+                $titleBar = (!empty($listReals[0]['category_name'])) ? $listReals[0]['category_name'] : "";
+            }
+        echo $titleBar;
+        ?>
+    </h1>
 
 <div class="list">
     <?php foreach ($listReals as $key => $item):

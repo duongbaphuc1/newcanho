@@ -40,5 +40,6 @@ define("ITEM_PRODUCT_HOME", 6);
 define("PER_PAGE", 20);
 define('ITEM_MAX_VIEW_DETAIL', 5);
 define('TITLE_DEFAULT', 'Cho thuê: Văn Phòng, Cao ốc, Căn Hộ, Biệt Thự, Villa, Nhà, giá rẻ bất ngờ.');
+define('LIMIT_LOAD_PROJECT_RIGHT', 40);
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

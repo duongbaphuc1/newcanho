@@ -21,15 +21,15 @@
         </div>
         <div class="row">
             <div class="l">Email</div>
-            <div class="r"><span>(*)</span><input type="text" name="mail" class="textbox"></div>
+            <div class="r"><span>(*)</span><input type="text" name="email" class="textbox"></div>
         </div>
         <div class="row">
             <div class="l">Tiêu đề liên hệ</div>
-            <div class="r"><input value="" type="text" name="subject" class="textbox"></div>
+            <div class="r"><input value="" type="text" name="title" class="textbox"></div>
         </div>
         <div class="row">
             <div class="l">Nội dung</div>
-            <div class="r"><textarea name="message" class="textarea"></textarea></div>
+            <div class="r"><textarea name="content" class="textarea"></textarea></div>
         </div>
         <div class="row">
             <div class="l">&nbsp;</div>

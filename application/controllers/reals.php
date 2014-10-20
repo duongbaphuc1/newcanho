@@ -10,6 +10,7 @@ class Reals extends CI_Controller {
         $this->load->helper("pagination");
         $this->load->model("Reals_model");
         $this->load->model("District_model");
+        $this->load->model("Project_model");
         $this->load->model("Common_model");
     }
 
@@ -36,6 +37,26 @@ class Reals extends CI_Controller {
 
     }
 
+    function filterPro($proSlug){
+
+        $data = $this->Common_model->getDefault();
+
+        $total = $this->Project_model->getTotalProByType($proSlug);
+        if(!empty($proSlug)){
+            $url = "/";
+            $url .= $this->uri->segment(1, 0);
+            $pagination = pagination($url, $total, PER_PAGE, 2, 4);
+            $offset = $this->uri->segment(2, 0);
+        }
+
+        $data['pagination'] = $pagination->create_links();
+        $data['isPro'] = true;
+        $data['bodycontent'] = "reals/index";
+        $data['listReals'] = $this->Project_model->getAllProByType($proSlug, $offset, PER_PAGE);;
+
+        $this->load->view('layouts/index', $data);
+    }
+
     function _getFilterCat($cat_slug){
 
         switch($cat_slug){
@@ -45,6 +66,11 @@ class Reals extends CI_Controller {
 
 
     public function detail($idStr) {
+
+        if(ispost()){
+            $this->load->model("Contact_model");
+            $this->Contact_model->sendEmail();
+        }
 
         $data = $this->Common_model->getDefault();
 

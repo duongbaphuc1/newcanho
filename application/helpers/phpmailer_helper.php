@@ -20,6 +20,7 @@ if (!function_exists('send_emailMailer')) {
         $CI = & get_instance();
 
         $mail = new PHPMailer();
+        $mail->charSet = "UTF-8";
         $mail->IsSMTP(); // telling the class to use SMTP
         
         $mail->SMTPAuth = true;                  // enable SMTP authentication

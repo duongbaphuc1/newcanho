@@ -117,7 +117,7 @@
                         }
                     }
                 </script>
-                <form method="post" action="" onsubmit="return validForm(this)">
+                <form method="post" onsubmit="return validForm(this)">
                     <div class="row">
                         <div class="l">Tên liên hệ</div>
                         <div class="r"><input type="text" class="textbox" name="name"/></div>

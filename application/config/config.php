@@ -15,6 +15,10 @@
 |
 */
 $config['base_url']	= 'http://local.newcanho/';
+// config smtp
+$config['smtp_host']     = "mail.apartmentforlease.com.vn";
+$config['smtp_username'] = "sendmail@apartmentforlease.com.vn";
+$config['smtp_password'] = "sendmail";
 
 /*
 |--------------------------------------------------------------------------

@@ -13,6 +13,7 @@ class Contact_model extends Abstract_model {
         parent::__construct();
         $this->_table = "contacts";
         $this->_primary_key = "id";
+        $this->load->helper('phpmailer');
     }        
     
     // get data contact
@@ -27,15 +28,16 @@ class Contact_model extends Abstract_model {
     
     function sendEmail(){        
         $contact  = $this->getById();
-        $sender   = $this->input->post("email");
         $name     = $this->input->post("name");
-        $subject  = $this->input->post("name")." from contact MTech";
-        $message  = "<b>Name:</b> ".$this->input->post("name")." <br/>";
-        $message .= "<b>Company:</b> ".$this->input->post("Company")." <br/>";
-        $message .= "<b>Phone:</b> ".$this->input->post("phone")." <br/>";
+        $subject  = $this->input->post("name")." from canhosaigon";
+
+        $message  = "<b>Tiêu đề:</b> ".$this->input->post("title")." <br/>";
+        $message .= "<b>Tên:</b> ".$name." <br/>";
+        $message .= "<b>Điện thoại:</b> ".$this->input->post("phone")." <br/>";
         $message .= "<b>Email:</b> ".$this->input->post("email")." <br/>";
-        $message .= "<b>Content:</b> ".$this->input->post("contents")." <br/>";
-        return send_emailMailer($contact['email'], $sender, $name, $subject, $message);
+        $message .= "<b>Content:</b> ".$this->input->post("content")." <br/>";
+
+        return send_emailMailer($contact['email'], $contact['email'], $name, $subject, $message);
     }
     
     function queryByAdmin($sql, $password){
