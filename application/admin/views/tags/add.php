@@ -2,21 +2,62 @@
     <div class="box span12">
         <div class="box-header well" data-original-title>
             <h2><i class="icon-list-alt"></i> Thêm</h2>
-        </div>        
+        </div>
         <div class="box-content">
             <form class="form-horizontal" method="post" enctype="multipart/form-data">
                 <fieldset>
                     <legend></legend>
                     <div class="control-group">
-                        <label class="control-label" for="textarea">Tag</label>
+                        <label class="control-label" for="textarea">Tên Tag</label>
                         <div class="controls">
-                            <input type="text" id="label" name="tag" />
+                            <?php echo form_input('tag_name', ''); ?>
                         </div>
-                    </div>                                                                                
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Loại Tag</label>
+                        <div class="controls">
+                            <?php
+                            if (!empty($cattag_id)) {
+                                echo form_dropdown('cattag_id', $cattag_id, '');
+                            }
+                            ?>
+                        </div>                        
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Sort Tag</label>
+                        <div class="controls">
+                            <?php echo form_input('sort', ''); ?>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Tiêu đề Tag</label>
+                        <div class="controls">
+                            <?php echo form_input('tag_title', ''); ?>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Mô tả Tag</label>
+                        <div class="controls">
+                            <textarea name="tag_desc"></textarea>
+                        </div>                        
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Keyword Tag</label>
+                        <div class="controls">
+                            <textarea name="tag_keyword"></textarea>
+                        </div>                        
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Active</label>
+                        <div class="controls">
+                            
+                            <input id="is_active" type="checkbox" name="is_active" checked="true">
+                        </div>
+                    </div>
                 </fieldset>                    
                 <div class="form-actions">                    
-                    <button class="btn btn-primary" type="submit">Lưu</button>                    
-                    <button class="btn cancel" type="button">Hủy</button>
+                    <button class="btn btn-primary" type="submit">Save Changes</button>                    
+                    <button class="btn cancel" type="button">Cancel</button>
                 </div>
             </form>
         </div>
@@ -47,16 +88,28 @@
 
             },
             rules: {
-                category_name_en: {
+                tag_name: {
                     required: true
                 },
-                category_name_vi: {
+                cattag_id: {
                     required: true
-                }
+                },
+                tag_title: {
+                    required: true
+                },
+                tag_desc: {
+                    required: true
+                },
+                tag_keyword: {
+                    required: true
+                },
+                sort: {
+                    required: true,
+                    number: true,
+                },
             },
             messages: {
-                category_name_en: "Please enter text",
-                category_name_vi: "Please enter text"
+                
             }
         });
     });
