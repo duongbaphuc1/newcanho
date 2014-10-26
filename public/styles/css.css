@@ -235,6 +235,7 @@ ul#nav li.last:hover span {
 	left:-10px;
 }
 .right .searchbox .m {
+    margin-top: 10px;
 }
 .right .searchbox .m input.searchinput {
 	width:203px;

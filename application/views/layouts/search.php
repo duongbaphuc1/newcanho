@@ -5,7 +5,7 @@ $type = (!empty($type)) ? get_cookie('method') : 100;
 <!-- tab content -->
 <link rel="stylesheet" type="text/css" href="/public/styles/tab.css"/>
 <script type="text/javascript" src="/public/scripts/organictabs.jquery.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="/public/scripts/jquery.cookie.min.js"></script>
 <script type='text/javascript'>
     $(function () {
         $("#search_tab").organicTabs({
