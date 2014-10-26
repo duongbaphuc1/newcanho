@@ -62,11 +62,17 @@ class Project_model extends Abstract_model
         return 0;
     }
 
-    function getProjectByCat($catSlug)
+    function getProjectByCat($catSlug, $districtSlug = null)
     {
         $this->db->select('project.*');
         $this->db->join('cat_project', 'cat_project.id = project.catproject_id');
         $this->db->join('real_estate', 'real_estate.project_id = project.id');
+
+        if(!empty($districtSlug)){
+            $this->db->join('district', 'district.id = project.district_id');
+            $this->db->where('district.slug', $districtSlug);
+        }
+
         $this->db->where('cat_project.slug', $catSlug);
         $this->db->where('project.is_active', 1);
         $this->db->where('real_estate.is_active', 1);

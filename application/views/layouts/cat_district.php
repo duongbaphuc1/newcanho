@@ -36,7 +36,13 @@ if(!empty($cat_slug)){
         $catProSlug = 'van-phong-cao-oc';
     }
 
-    $listPros = $CI->Project_model->getProjectByCat($catProSlug);
+    // get list project
+    if(!empty($district)){
+        $listPros = $CI->Project_model->getProjectByCat($catProSlug, $district);
+    }else{
+        $listPros = $CI->Project_model->getProjectByCat($catProSlug);
+    }
+
 }
 
 ?>

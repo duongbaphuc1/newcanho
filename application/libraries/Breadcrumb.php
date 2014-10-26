@@ -37,9 +37,9 @@ class Breadcrumb{
         foreach($sandwich as $slice){
             if (isset($slice['link']) && $slice['link'] != '') {
                 if($slice['crumb'] == "Trang chủ"){
-                    $slices[] = '<li class="homepage"><a href="' . $slice['link'] . '" '.$this->href_param.'>' . $slice['crumb'] . '</a></li>';
+                    $slices[] = '<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="homepage"><a itemprop="url" href="' . $slice['link'] . '" '.$this->href_param.'>' . $slice['crumb'] . '</a></li>';
                 }else{
-                    $slices[] = '<li><a href="' . $slice['link'] . '" '.$this->href_param.'>' . $slice['crumb'] . '</a></li>';
+                    $slices[] = '<li itemprop="child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb" ><a itemprop="url" href="' . $slice['link'] . '" '.$this->href_param.'>' . $slice['crumb'] . '</a></li>';
                 }
             } else {
                 $slices[] = $slice['crumb'];

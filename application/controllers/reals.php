@@ -29,6 +29,7 @@ class Reals extends CI_Controller {
             $offset = $this->uri->segment(2, 0);
         }
 
+        $data['district'] = $district;
         $data['pagination'] = $pagination->create_links();
 
         $data['bodycontent'] = "reals/index";
@@ -57,14 +58,10 @@ class Reals extends CI_Controller {
         $this->load->view('layouts/index', $data);
     }
 
-    function _getFilterCat($cat_slug){
-
-        switch($cat_slug){
-            case "": ; break;
-        }
-    }
-
-
+    /**
+     * @author Phuc Duong
+     * @desc get detail real estate
+    **/
     public function detail($idStr) {
 
         if(ispost()){
