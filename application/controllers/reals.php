@@ -53,7 +53,13 @@ class Reals extends CI_Controller {
         $data['pagination'] = $pagination->create_links();
         $data['isPro'] = true;
         $data['bodycontent'] = "reals/index";
-        $data['listReals'] = $this->Project_model->getAllProByType($proSlug, $offset, PER_PAGE);;
+        $data['listReals'] = $this->Project_model->getAllProByType($proSlug, $offset, PER_PAGE);
+
+        $titleTmp = $data['listReals'][0]['category_name']." ".$data['listReals'][0]['pro_name'];
+
+        $data['title'] = (!empty($data['listReals'][0]['pro_seo_title'])) ? $data['listReals'][0]['pro_seo_title'] : $titleTmp;
+        $data['keyword'] = (!empty($data['listReals'][0]['pro_seo_keyword'])) ? $data['listReals'][0]['pro_seo_keyword'] : $titleTmp;
+        $data['desc'] = (!empty($data['listReals'][0]['pro_seo_desc'])) ? $data['listReals'][0]['pro_seo_desc'] : $titleTmp;
 
         $this->load->view('layouts/index', $data);
     }

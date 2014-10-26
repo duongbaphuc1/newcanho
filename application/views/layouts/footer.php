@@ -5,9 +5,9 @@ $CI = & get_instance();
 //$contact = $this->session->userdata('contact');
 ?>
 <p>
-    Copyright © 2012 
+    Copyright © 2012 - <?php echo date('Y', time())?>
     <strong>
-        <a href="http://canhosaigon.com.vn/van-phong-cho-thue/quan-1/" title="Văn Phòng Cho Thuê Quận 1 - Văn phòng cho thuê quận 3 - Văn phòng cho thuê quận tân bình">Địa Ốc Mỹ Hưng</a>
+        <a href="/" rel="nofollow" title="Địa Ốc Mỹ Hưng" >Địa Ốc Mỹ Hưng</a>
     </strong>
 
     <a href="https://plus.google.com/108462358367487568101/posts" rel="author" title="Trang G+ của BĐS Mỹ Hưng"> 

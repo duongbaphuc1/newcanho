@@ -49,7 +49,7 @@
             <img original="/public/images/upload/<?php echo $majorImage?>" src="/public/images/upload/<?php echo $majorImage?>" alt="<?php echo $item['id'] ?> - <?php echo $item['district_name'] ?> - <?php echo $item['title'] ?>"></a>
         <a href="<?php echo convertViToEn($item['title'], $item['id']); ?>i.html" title="<?php echo $item['title'] ?>"><?php echo $item['title'] ?></a>
 
-        <div class="bottom">Giá: <b><?php echo $item['price']?> / Tháng</b>  - <span><?php echo $item['district_name']?></span></div>
+        <div class="bottom">Giá: <b><?php echo $item['price']?></b>  - <span><?php echo $item['district_name']?></span></div>
         <div class="bottom_line">&nbsp;</div>	
     </div>
     <?php endforeach?>

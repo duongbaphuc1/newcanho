@@ -12,6 +12,7 @@ class Common_model extends Abstract_model {
         $this->load->model('District_model');
         $this->load->model('Area_model');
         $this->load->model('Price_model');
+        $this->load->model('Configs_model');
     }
     
     function getDefault(){
@@ -22,6 +23,7 @@ class Common_model extends Abstract_model {
         $data['districts'] = $this->District_model->getDistrict(1);
         $data['areas'] = $this->Area_model->getArea();
         $data['prices'] = $this->Price_model->getPrice();
+        $data['configs'] = $this->Configs_model->getAll();
 
         return $data;
     }

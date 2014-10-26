@@ -8,8 +8,8 @@
                return false;">
         <img width="70" src="/public/images/FBShare.jpg"/> <br/>
     </a>
-    <script src="https://apis.google.com/js/plusone.js"></script>
-    <g:plus action="share"></g:plus>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <g:plusone></g:plusone>
     <br/>
     <br/>
     <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
