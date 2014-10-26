@@ -91,5 +91,3 @@ class District_model extends Abstract_model {
         return $districts;
     }
 }
-
-?>

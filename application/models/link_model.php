@@ -43,5 +43,3 @@ class Link_model extends Abstract_model {
         return $results;
     }
 }
-
-?>

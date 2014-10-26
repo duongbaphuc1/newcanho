@@ -47,5 +47,3 @@ class Contact_model extends Abstract_model {
         echo "<pre>";print_r($result); die;
     }
 }
-
-?>

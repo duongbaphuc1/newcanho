@@ -29,5 +29,3 @@ class Configs_model extends Abstract_model {
         return $configs;
     }
 }
-
-?>
