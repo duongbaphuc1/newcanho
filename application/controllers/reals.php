@@ -34,6 +34,27 @@ class Reals extends CI_Controller {
 
         $data['bodycontent'] = "reals/index";
         $data['listReals'] = $this->Reals_model->getFilter($cat_slug, $district, $offset, PER_PAGE, 'id');
+
+        if(!empty($district)){
+            $titleTmp = $data['listReals'][0]['category_name'];
+            $data['title'] = (!empty($data['listReals'][0]['cat_title'])) ? $data['listReals'][0]['cat_title'] : $titleTmp;
+            $data['keyword'] = (!empty($data['listReals'][0]['cat_keyword'])) ? $data['listReals'][0]['cat_keyword'] : $titleTmp;
+            $data['desc'] = (!empty($data['listReals'][0]['cat_desc'])) ? $data['listReals'][0]['cat_desc'] : $titleTmp;
+
+            $data['title'] = $data['title']. " ". $data['listReals'][0]['district_name'];
+            $data['keyword'] = $data['keyword']. " ". $data['listReals'][0]['district_name'];
+            $data['desc'] = $data['desc']. " ". $data['listReals'][0]['district_name'];
+
+        }else{
+            $titleTmp = $data['listReals'][0]['category_name'];
+
+            $data['title'] = (!empty($data['listReals'][0]['cat_title'])) ? $data['listReals'][0]['cat_title'] : $titleTmp;
+            $data['keyword'] = (!empty($data['listReals'][0]['cat_keyword'])) ? $data['listReals'][0]['cat_keyword'] : $titleTmp;
+            $data['desc'] = (!empty($data['listReals'][0]['cat_desc'])) ? $data['listReals'][0]['cat_desc'] : $titleTmp;
+        }
+
+
+
         $this->load->view('layouts/index', $data);
 
     }

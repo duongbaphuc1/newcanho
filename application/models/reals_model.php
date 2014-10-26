@@ -37,7 +37,7 @@ class Reals_model extends Abstract_model {
 
     function getFilter($cat_slug, $district = null, $offset = null, $limit = null, $sort = null){
         $select = 'real_estate.*, district.district_name as district_name, district.slug as dis_slug, categories.slug as cat_slug,';
-        $select .= "categories.category_name";
+        $select .= "categories.category_name, categories.seo_title as cat_title, categories.seo_desc as cat_desc, categories.seo_keyword as cat_keyword, ";
         $this->db->select($select);
         $this->db->join('district', 'district.id = real_estate.district_id');
         $this->db->join('categories', 'categories.id = real_estate.category_id');
