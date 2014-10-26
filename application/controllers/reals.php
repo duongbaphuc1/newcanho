@@ -53,8 +53,6 @@ class Reals extends CI_Controller {
             $data['desc'] = (!empty($data['listReals'][0]['cat_desc'])) ? $data['listReals'][0]['cat_desc'] : $titleTmp;
         }
 
-
-
         $this->load->view('layouts/index', $data);
 
     }
@@ -103,6 +101,7 @@ class Reals extends CI_Controller {
         $data['bodycontent'] = "reals/detail";
         $data['other'] = $this->Reals_model->getOtherReals($id, $data['real']['project_id']);
         $data['max'] = $this->Reals_model->getMaxReal();
+
         $data['title'] = (!empty($data['real']['seo_title'])) ? $data['real']['seo_title'] : $data['real']['title'];
         $data['keyword'] = (!empty($data['real']['seo_keyword'])) ? $data['real']['seo_keyword'] : $data['real']['title'];
         $data['desc'] = (!empty($data['real']['seo_desc'])) ? $data['real']['seo_desc'] : $data['real']['title'];
