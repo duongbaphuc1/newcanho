@@ -31,7 +31,7 @@ if($controller == 'reals'){
 
         if(isset($listReals)){
 
-            if($listReals[0]['category_name']){
+            if(!empty($listReals[0]['category_name'])){
 
                 $this->breadcrumb->addCrumb($listReals[0]['category_name'], "/".$listReals[0]['cat_slug']);
                 $quan = $this->uri->segment(2, 0);

@@ -64,6 +64,23 @@ $route['can-ho-dich-vu']           = "reals/filter/can-ho-dich-vu";
 $route['can-ho-dich-vu/([0-9]+)$'] = "reals/filter/can-ho-dich-vu";
 $route['can-ho-dich-vu/(:any)']    = "reals/filter/can-ho-dich-vu/$1";
 
+// list reals
+$route['can-ho-ban']           = "reals/filter/can-ho-ban";
+$route['can-ho-ban/([0-9]+)$'] = "reals/filter/can-ho-ban";
+$route['can-ho-ban/(:any)']    = "reals/filter/can-ho-ban/$1";
+
+$route['nha-ban']           = "reals/filter/nha-ban";
+$route['nha-ban/([0-9]+)$'] = "reals/filter/nha-ban";
+$route['nha-ban/(:any)']    = "reals/filter/nha-ban/$1";
+
+$route['biet-thu-ban']           = "reals/filter/biet-thu-ban";
+$route['biet-thu-ban/([0-9]+)$'] = "reals/filter/biet-thu-ban";
+$route['biet-thu-ban/(:any)']    = "reals/filter/biet-thu-ban/$1";
+
+$route['dat-ban']           = "reals/filter/dat-ban";
+$route['dat-ban/([0-9]+)$'] = "reals/filter/dat-ban";
+$route['dat-ban/(:any)']    = "reals/filter/dat-ban/$1";
+
 $route['cho-thue-can-ho-(:any)']   = "reals/filterPro/$1";
 $route['cho-thue-can-ho-(:any)/([0-9]+)$'] = "reals/filterPro/$";
 

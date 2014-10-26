@@ -13,11 +13,13 @@ class Common_model extends Abstract_model {
         $this->load->model('Area_model');
         $this->load->model('Price_model');
         $this->load->model('Configs_model');
+        $this->load->helper('cookie');
     }
     
     function getDefault(){
+        $type = get_cookie('method');
+        $type = (!empty($type)) ? get_cookie('method') : 100;
 
-        $type = '100';
         $data['cats'] = $this->Categories_model->getAll($type);
         $data['catsSearch'] = $this->Categories_model->getCatSearch($type);
         $data['districts'] = $this->District_model->getDistrict(1);
