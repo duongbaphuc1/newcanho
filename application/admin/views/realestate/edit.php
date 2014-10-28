@@ -142,7 +142,29 @@
                         <div class="controls">
                             <textarea name="description"><?php echo $realestate['description'] ?></textarea>
                         </div>
-                    </div>                    
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Long</label>
+                        <div class="controls">
+                            <?php echo form_input('long', $realestate['long']); ?>
+                        </div>                        
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Lat</label>
+                        <div class="controls">
+                            <?php echo form_input('lat', $realestate['lat']); ?>
+                        </div>                        
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Active</label>
+                        <div class="controls">
+                            <?php if($realestate['is_active']==1):?>
+                            <input id="is_active" type="checkbox" name="is_active" checked="true">
+                            <?php else:?>
+                            <input id="is_active" type="checkbox" name="is_active">
+                            <?php endif ;?>
+                        </div>
+                    </div>
                 </fieldset>                    
                 <div class="form-actions">                             
                     <button class="btn btn-primary" type="submit">Save Changes</button>                    

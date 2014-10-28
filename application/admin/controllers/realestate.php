@@ -45,6 +45,19 @@ class Realestate extends CI_Controller {
         $data['bodycontent'] = 'realestate/index';
         $this->load->view("layouts/index", $data);
     }
+    
+    public function active($id) {
+       if ($this->Realestate_model->active($id)) {
+            redirect($_SERVER['HTTP_REFERER']);
+        } 
+    }
+    
+    public function unactive($id) {
+       if ($this->Realestate_model->unactive($id)) {
+            //redirect(base_url() . "admin/index.php/tags", "location");
+            redirect($_SERVER['HTTP_REFERER']);
+        } 
+    }
 
     public function add() {
         if (ispost()) {

@@ -98,7 +98,6 @@
                             ?>
                         </div>
                     </div>
-
                     <div class="control-group">
                         <label class="control-label" for="textarea">Tiêu đề SEO</label>
                         <div class="controls">
@@ -122,7 +121,26 @@
                         <div class="controls">
                             <textarea name="description"></textarea>
                         </div>
-                    </div>                    
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Long</label>
+                        <div class="controls">
+                            <?php echo form_input('long', ''); ?>
+                        </div>                        
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Lat</label>
+                        <div class="controls">
+                            <?php echo form_input('lat', ''); ?>
+                        </div>                        
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Active</label>
+                        <div class="controls">
+                            
+                            <input id="is_active" type="checkbox" name="is_active" checked="true">
+                        </div>
+                    </div>
                 </fieldset>                    
                 <div class="form-actions">                                 
                     <button class="btn btn-primary" type="submit">Save Changes</button>                    
@@ -191,6 +209,12 @@
                 },
                 seo_title: {
                     required: true
+                },
+                long: {
+                    number: true
+                },
+                lat: {
+                    number: true
                 },
                 seo_desc: {
                     required: true

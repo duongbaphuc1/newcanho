@@ -50,6 +50,17 @@
                                         <i class="icon-edit icon-white"></i>
                                         delete
                                     </a>
+                                    <?php if($reals->is_active==0):?>
+                                    <a class="btn btn-success" href="/admin/index.php/realestate/active/<?php echo $reals->id ?>">
+                                        <i class="icon-edit icon-white"></i>
+                                        Active
+                                    </a>
+                                    <?php else:?>
+                                    <a class="btn btn-success" href="/admin/index.php/realestate/unactive/<?php echo $reals->id ?>">
+                                        <i class="icon-edit icon-white"></i>
+                                        UnActive
+                                    </a>
+                                    <?php endif ;?>
                                 </td>
                             </tr>   
                             <?php

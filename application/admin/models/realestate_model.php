@@ -71,15 +71,21 @@ class Realestate_model extends Abstract_model {
         return $query->result();
     }
     
+    function getAllByLikePro($tbl, $col, $term) {        
+        $this->db->like($col, $term);
+        $query = $this->db->get($tbl);
+        return $query->result(); // o day tra ve object
+    }
+    
     //autocomplete for Project
     function getAllForJson($term) {
         $record = array();
         $return_arr = array();
 
-        $results = $this->getAllByLike('project', 'project_name', $term);
+        $results = $this->getAllByLikePro('project', 'project_name', $term);
         foreach ($results as $result) {
-            $record['id'] = $result['id'];
-            $record['value'] = $result['project_name'];
+            $record['id'] = $result->id;
+            $record['value'] = $result->project_name;
             array_push($return_arr, $record);
         }
         return $return_arr ;
@@ -141,7 +147,12 @@ class Realestate_model extends Abstract_model {
                 $this->db->insert('tags_estate', $record);
             }
         }
-        $data['is_active'] = 1;
+        if(isset($_POST['is_active'])){
+            $data['is_active'] = 1; 
+        }
+        else{
+            $data['is_active'] = 0;
+        }
         return $this->db->update($this->_table, $data, array('id' => $id));
     }
 
@@ -164,7 +175,12 @@ class Realestate_model extends Abstract_model {
         unset($data['tags']);
         $img = "";
 
-        $data['is_active'] = 1;
+        if(isset($_POST['is_active'])){
+            $data['is_active'] = 1; 
+        }
+        else{
+            $data['is_active'] = 0;
+        }
         $data['user_id'] = USER_ID;
         // upload image logo
         for ($i = 0; $i < 10; $i++) {
@@ -186,6 +202,16 @@ class Realestate_model extends Abstract_model {
             }
         }
         return $add_real;
+    }
+    
+    function active($id){
+        $data['is_active'] = 1;
+        return $this->db->update($this->_table, $data, array('id' => $id));
+    }
+    
+    function unactive($id){
+        $data['is_active'] = 0;
+        return $this->db->update($this->_table, $data, array('id' => $id));
     }
 
 }
