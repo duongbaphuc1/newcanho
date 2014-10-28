@@ -46,7 +46,17 @@
                             <img class="img-logo" src="/public/images/upload/<?php echo $adv['image'] ?>" />
                             <input type="hidden" value="<?php echo $adv['image'] ?>" name="old_image"/>
                         </div>
-                    </div> 
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Active</label>
+                        <div class="controls">
+                            <?php if($adv['is_active']==1):?>
+                            <input id="is_active" type="checkbox" name="is_active" checked="true">
+                            <?php else:?>
+                            <input id="is_active" type="checkbox" name="is_active">
+                            <?php endif ;?>
+                        </div>
+                    </div>
                 </fieldset>                    
                 <div class="form-actions">                             
                     <button class="btn btn-primary" type="submit">Save Changes</button>                    

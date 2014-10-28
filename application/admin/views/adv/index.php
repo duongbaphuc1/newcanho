@@ -44,6 +44,17 @@
                                         <i class="icon-edit icon-white"></i>
                                         delete
                                     </a>
+                                    <?php if($cat->is_active==0):?>
+                                    <a class="btn btn-success" href="/admin/index.php/advs/active/<?php echo $cat->id ?>">
+                                        <i class="icon-edit icon-white"></i>
+                                        Active
+                                    </a>
+                                    <?php else:?>
+                                    <a class="btn btn-success" href="/admin/index.php/advs/unactive/<?php echo $cat->id ?>">
+                                        <i class="icon-edit icon-white"></i>
+                                        UnActive
+                                    </a>
+                                    <?php endif ;?>
                                 </td>
                             </tr>   
                             <?php

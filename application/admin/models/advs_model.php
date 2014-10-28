@@ -40,7 +40,13 @@ class Advs_model extends CI_Model {
         return $query->row_array();
     }
 
-    function edit($data, $id) {       
+    function edit($data, $id) { 
+        if(isset($_POST['is_active'])){
+            $data['is_active'] = 1;         
+        }
+        else{
+            $data['is_active'] = 0;
+        }
         unset($data['old_image']);
         // upload image logo
         $name = md5(date('d/m/Y H:i:s'));
@@ -69,7 +75,12 @@ class Advs_model extends CI_Model {
     }
 
     function add($data){
-        $data['is_active'] = 1;
+        if(isset($_POST['is_active'])){
+            $data['is_active'] = 1;         
+        }
+        else{
+            $data['is_active'] = 0;
+        }
         // upload image logo
         $name = md5(date('d/m/Y H:i:s'));
         $image = uploadFile("image", BASEPATH."../public/images/upload/",$name);
@@ -77,6 +88,16 @@ class Advs_model extends CI_Model {
             $data['image'] = $image['file_name'];
         }
         return $this->db->insert($this->_table, $data);
+    }
+    
+    function active($id){
+        $data['is_active'] = 1;
+        return $this->db->update($this->_table, $data, array('id' => $id));
+    }
+    
+    function unactive($id){
+        $data['is_active'] = 0;
+        return $this->db->update($this->_table, $data, array('id' => $id));
     }
 }
 
