@@ -11,6 +11,7 @@
             <li><a class="ajax-link" href="/admin/index.php/advs"><i class="icon-edit"></i><span class="hidden-tablet"> Quảng cáo</span></a></li>
             <li><a class="ajax-link" href="/admin/index.php/quans"><i class="icon-font"></i><span class="hidden-tablet"> Quận</span></a></li>
             <li><a class="ajax-link" href="/admin/index.php/tags"><i class="icon-font"></i><span class="hidden-tablet"> Tags</span></a></li>
+            <li><a class="ajax-link" href="/admin/index.php/configs"><i class="icon-font"></i><span class="hidden-tablet"> Configs</span></a></li>
             <li><a class="ajax-link" href="/admin/index.php/contacts"><i class="icon-envelope"></i><span class="hidden-tablet"> Liên hệ</span></a></li>
             <li><a class="ajax-link" href="/admin/index.php/users"><i class="icon-user"></i><span class="hidden-tablet"> Users</span></a></li>
             <li><a href="/admin/index.php/users/login"><i class="icon-lock"></i><span class="hidden-tablet"> Login Out</span></a></li>
