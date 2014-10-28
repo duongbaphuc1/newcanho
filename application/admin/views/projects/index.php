@@ -9,7 +9,7 @@
     <div class="box span12">
         <div class="box-header well" data-original-title>
             <h2><i class="icon-edit"></i> Dự án</h2>            
-        </div>        
+        </div>
         <div class="box-content">
             <table class="table table-striped table-bordered bootstrap-datatable datatable">
                 <thead>
@@ -35,6 +35,17 @@
                                         <i class="icon-edit icon-white"></i>
                                         delete
                                     </a>
+                                    <?php if($project->is_active==0):?>
+                                    <a class="btn btn-success" href="/admin/index.php/projects/active/<?php echo $project->id ?>">
+                                        <i class="icon-edit icon-white"></i>
+                                        Active
+                                    </a>
+                                    <?php else:?>
+                                    <a class="btn btn-success" href="/admin/index.php/projects/unactive/<?php echo $project->id ?>">
+                                        <i class="icon-edit icon-white"></i>
+                                        UnActive
+                                    </a>
+                                    <?php endif ;?>
                                 </td>
                             </tr>   
                             <?php

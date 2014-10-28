@@ -48,6 +48,19 @@ class Projects extends CI_Controller {
             redirect(base_url() . "admin/index.php/projects", "location");
         }
     }
+    
+    public function active($id) {
+       if ($this->Projects_model->active($id)) {
+            redirect($_SERVER['HTTP_REFERER']);
+        } 
+    }
+    
+    public function unactive($id) {
+       if ($this->Projects_model->unactive($id)) {
+            //redirect(base_url() . "admin/index.php/tags", "location");
+            redirect($_SERVER['HTTP_REFERER']);
+        } 
+    }
 
 }
 

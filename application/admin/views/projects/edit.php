@@ -2,7 +2,7 @@
     <div class="box span12">
         <div class="box-header well" data-original-title>
             <h2><i class="icon-edit"></i> Chỉnh sửa dự án</h2>
-        </div>        
+        </div>
         <div class="box-content">
             <form class="form-horizontal" method="post" enctype="multipart/form-data">
                 <fieldset>
@@ -43,7 +43,16 @@
                             <textarea name="project_keyword"><?php echo $list_project['project_keyword'] ?></textarea>                        
                         </div>
                     </div>
-                                        
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Active</label>
+                        <div class="controls">
+                            <?php if($list_project['is_active']==1):?>
+                            <input id="is_active" type="checkbox" name="is_active" checked="true">
+                            <?php else:?>
+                            <input id="is_active" type="checkbox" name="is_active">
+                            <?php endif ;?>
+                        </div>
+                    </div>                    
                 </fieldset>                    
                 <div class="form-actions">                                
                     <button class="btn btn-primary" type="submit">Save Changes</button>                    

@@ -28,6 +28,12 @@ class Projects_model extends CI_Model {
     }
 
     function edit($data, $id) {
+        if(isset($_POST['is_active'])){
+            $data['is_active'] = 1;         
+        }
+        else{
+            $data['is_active'] = 0;
+        }
         $project_name = $_POST['project_name'];        
         $data['slug'] = str_replace (' ','-',strtolower($this->vn_str_filter($project_name))); 
         return $this->db->update($this->_table, $data, array('id' => $id));
@@ -42,6 +48,12 @@ class Projects_model extends CI_Model {
     }
 
     function add($data){        
+        if(isset($_POST['is_active'])){
+            $data['is_active'] = 1;         
+        }
+        else{
+            $data['is_active'] = 0;
+        }
         $project_name = $_POST['project_name'];        
         $data['slug'] = str_replace (' ','-',strtolower($this->vn_str_filter($project_name)));      
         return $this->db->insert($this->_table, $data);
@@ -70,6 +82,14 @@ class Projects_model extends CI_Model {
        }
 		return $str;
     }
+    
+    function active($id){
+        $data['is_active'] = 1;
+        return $this->db->update($this->_table, $data, array('id' => $id));
+    }
+    
+    function unactive($id){
+        $data['is_active'] = 0;
+        return $this->db->update($this->_table, $data, array('id' => $id));
+    }
 }
-
-?>
