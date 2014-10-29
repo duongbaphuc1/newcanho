@@ -47,8 +47,21 @@ class Categories extends CI_Controller {
             redirect(base_url() . "admin/index.php/categories", "location");
         }
     }
+    
+    public function active($id) {
+       if ($this->Categories_model->active($id)) {
+            redirect($_SERVER['HTTP_REFERER']);
+        } 
+    }
+    
+    public function unactive($id) {
+       if ($this->Categories_model->unactive($id)) {
+            //redirect(base_url() . "admin/index.php/tags", "location");
+            redirect($_SERVER['HTTP_REFERER']);
+        } 
+    }
 
 }
 
 /* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* Location: ./application/controllers/categories.php */

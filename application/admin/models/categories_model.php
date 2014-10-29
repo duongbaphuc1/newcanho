@@ -42,7 +42,12 @@ class Categories_model extends CI_Model {
     }
 
     function edit($data, $id) {       
-        $data['is_active'] = 1;
+        if(isset($_POST['is_active'])){
+            $data['is_active'] = 1;         
+        }
+        else{
+            $data['is_active'] = 0;
+        }
         $category_name = $_POST['category_name'];        
         $data['slug'] = str_replace (' ','-',strtolower($this->vn_str_filter($category_name)));
         return $this->db->update($this->_table, $data, array('id' => $id));
@@ -57,7 +62,12 @@ class Categories_model extends CI_Model {
     }
 
     function add($data){        
-        $data['is_active'] = 1;
+        if(isset($_POST['is_active'])){
+            $data['is_active'] = 1;         
+        }
+        else{
+            $data['is_active'] = 0;
+        }
         $category_name = $_POST['category_name'];        
         $data['slug'] = str_replace (' ','-',strtolower($this->vn_str_filter($category_name)));      
         return $this->db->insert($this->_table, $data);
@@ -68,6 +78,16 @@ class Categories_model extends CI_Model {
             $dataSort['sort'] = $val[0];
             $this->db->update($this->_table, $dataSort, array('id' => $key));
         }
+    }
+    
+    function active($id){
+        $data['is_active'] = 1;
+        return $this->db->update($this->_table, $data, array('id' => $id));
+    }
+    
+    function unactive($id){
+        $data['is_active'] = 0;
+        return $this->db->update($this->_table, $data, array('id' => $id));
     }
     
     function vn_str_filter ($str){

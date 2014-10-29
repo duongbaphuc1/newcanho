@@ -28,7 +28,17 @@
                         <div class="controls">
                             <?php echo form_input('sort',$cat['sort']); ?>    
                         </div>
-                    </div>              
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Active</label>
+                        <div class="controls">
+                            <?php if($cat['is_active']==1):?>
+                            <input id="is_active" type="checkbox" name="is_active" checked="true">
+                            <?php else:?>
+                            <input id="is_active" type="checkbox" name="is_active">
+                            <?php endif ;?>
+                        </div>
+                    </div>
                 </fieldset>                    
                 <div class="form-actions">                                
                     <button class="btn btn-primary" type="submit">Save Changes</button>                    
