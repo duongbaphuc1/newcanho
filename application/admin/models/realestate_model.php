@@ -67,6 +67,7 @@ class Realestate_model extends Abstract_model {
             $this->db->limit($limit, $offset);
         }
         $this->db->like($col, $term);
+        $this->db->or_like('id', $term); 
         $query = $this->db->get($tbl);
         return $query->result();
     }
