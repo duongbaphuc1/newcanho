@@ -46,8 +46,20 @@ class Areas extends CI_Controller {
             redirect(base_url() . "admin/index.php/areas", "location");
         }
     }
+    
+    public function active($id) {
+       if ($this->Areas_model->active($id)) {
+            redirect($_SERVER['HTTP_REFERER']);
+        } 
+    }
+    
+    public function unactive($id) {
+       if ($this->Areas_model->unactive($id)) {            
+            redirect($_SERVER['HTTP_REFERER']);
+        } 
+    }
 
 }
 
 /* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* Location: ./application/controllers/areas.php */

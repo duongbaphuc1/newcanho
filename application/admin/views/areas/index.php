@@ -38,6 +38,17 @@
                                         <i class="icon-edit icon-white"></i>
                                         delete
                                     </a>
+                                    <?php if($area->is_active==0):?>
+                                    <a class="btn btn-success" href="/admin/index.php/areas/active/<?php echo $area->id ?>">
+                                        <i class="icon-edit icon-white"></i>
+                                        Active
+                                    </a>
+                                    <?php else:?>
+                                    <a class="btn btn-success" href="/admin/index.php/areas/unactive/<?php echo $area->id ?>">
+                                        <i class="icon-edit icon-white"></i>
+                                        UnActive
+                                    </a>
+                                    <?php endif ;?>
                                 </td>
                             </tr>   
                             <?php
