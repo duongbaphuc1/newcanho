@@ -16,12 +16,24 @@ class Quans_model extends Abstract_model {
     }
 
     function add($data) {
+        if(isset($_POST['is_active'])){
+            $data['is_active'] = 1;         
+        }
+        else{
+            $data['is_active'] = 0;
+        }
         $quans = $_POST['district_name'];        
         $data['slug'] = str_replace (' ','-',strtolower($this->vn_str_filter($quans)));
         return $this->db->insert($this->_table, $data);
     }
 
     function edit($data, $id) {
+        if(isset($_POST['is_active'])){
+            $data['is_active'] = 1;         
+        }
+        else{
+            $data['is_active'] = 0;
+        }
         $quans = $_POST['district_name'];        
         $data['slug'] = str_replace (' ','-',strtolower($this->vn_str_filter($quans)));
         return $this->db->update($this->_table, $data, array('id' => $id));
@@ -62,6 +74,16 @@ class Quans_model extends Abstract_model {
             $lists[$ls['id']] = $ls[$col];
         }
         return $lists;
+    }
+    
+    function active($id){
+        $data['is_active'] = 1;
+        return $this->db->update($this->_table, $data, array('id' => $id));
+    }
+    
+    function unactive($id){
+        $data['is_active'] = 0;
+        return $this->db->update($this->_table, $data, array('id' => $id));
     }
     
     function vn_str_filter ($str){

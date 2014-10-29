@@ -47,6 +47,18 @@ class Quans extends CI_Controller {
             redirect(base_url() . "admin/index.php/quans", "location");
         }
     }
+    
+    public function active($id) {
+       if ($this->Quans_model->active($id)) {
+            redirect($_SERVER['HTTP_REFERER']);
+        } 
+    }
+    
+    public function unactive($id) {
+       if ($this->Quans_model->unactive($id)) {            
+            redirect($_SERVER['HTTP_REFERER']);
+        } 
+    }
 
 }
 
