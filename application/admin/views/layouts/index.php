@@ -50,6 +50,7 @@
                     <!-- theme selector ends -->
 
                     <!-- user dropdown starts -->
+                    <?php $role = USER_ROLE; if($role=="admin"):?>
                     <div class="btn-group pull-right" >
                         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                             <i class="icon-user"></i><span class="hidden-phone"> <?php echo (!empty($info['full_name']))?$info['full_name']:""; ?></span>
@@ -61,6 +62,7 @@
                             <li><a href="/admin/index.php/users/login">Logout</a></li>
                         </ul>
                     </div>
+                    <?php endif; ?>
                     <!-- user dropdown ends -->
 
                     <div class="top-nav nav-collapse">
