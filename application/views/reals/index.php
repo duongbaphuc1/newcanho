@@ -17,7 +17,7 @@
         ?>
     <div class="item">
         <a href="/<?php echo convertViToEn($item['title'], $item['id']); ?>i.html" title="<?php echo $item['title'] ?>">
-            <img src="/public/images/upload/<?php echo $majorImage?>" alt="<?php echo $item['id'] ?> - <?php echo $item['title'] ?>" /></a>
+            <img class="lazy" data-src="/upload/@files/<?php echo $majorImage?>" alt="<?php echo $item['id'] ?> - <?php echo $item['title'] ?>" /></a>
         <h3><a href="/<?php echo convertViToEn($item['title'], $item['id']); ?>i.html" title="<?php echo $item['title'] ?>">
                 <?php echo $item['title'] ?></a></h3>
         <p>

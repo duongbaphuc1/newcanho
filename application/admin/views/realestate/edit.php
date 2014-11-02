@@ -103,7 +103,7 @@
                                     if($image!=""){
                                         echo "<div style='float:left;width:110px'>";
                                         echo "<div><input id='del_image' name='del_image[]' type='checkbox' value='".$image."'/>Xóa </div>";
-                                        echo "<div><img class='img-logo' src='/public/images/upload/".$image."' /></div>";                                        
+                                        echo "<div><img class='img-logo' src='/public/images/upload/".$image."' /></div>";
                                         echo "</div>";
                                     }
                                 }

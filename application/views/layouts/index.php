@@ -5,15 +5,15 @@
         <script type="text/javascript">
             var root = "<?php echo base_url() ?>";
         </script>
-        <link rel="stylesheet" type="text/css" href="/public/styles/css.css"/>
-        <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>        
-        <!-- slide -->
-        <script type="text/javascript" src="/public/scripts/script.js"></script>
-        <script type="text/javascript" src="/public/scripts/jquery-v1.10.2.min.js"></script>
-        <!-- slide -->
-        <script type="text/javascript" src="/public/scripts/tinydropdown.js"></script>
-        <!-- Lazy load -->
-        <script type="text/javascript" src="/public/scripts/jquery.lazyload.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="/public/styles/style.min.css"/>
+        <script type="text/javascript" src="/public/scripts/script.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("img.lazy").lazy();
+            });
+        </script>
 
     </head>
     <body data-twttr-rendered="true">

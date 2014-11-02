@@ -6,7 +6,7 @@
     <a title="English" style="position: absolute; left: 875px; top: 43px;" href="http://apartmentforlease.com.vn/" target="_blank">
         <img src="/public/images/canho/en.png" alt="Văn phòng cho thuê, Villa cho thuê" width="50">
     </a>
-    <a title="Tiếng Việt" style="position: absolute; left: 820px; top: 43px;" href="index.html">
+    <a title="Tiếng Việt" style="position: absolute; left: 820px; top: 43px;" href="/">
         <img src="/public/images/canho/vi.png" alt="Văn phòng cho thuê, Villa cho thuê" width="50">
     </a>
 </div>

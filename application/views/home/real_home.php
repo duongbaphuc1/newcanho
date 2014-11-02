@@ -6,14 +6,21 @@
                 $majorImage = (!empty($image)) ? $image[0] : "";
                 ?>
             <li><a href="<?php echo convertViToEn($item['title'], $item['id']); ?>i.html" title="<?php echo $item['title']?>">
-                    <img original="/public/images/upload/<?php echo $majorImage?>" alt="<?php echo $item['title']?>" src="/public/images/upload/<?php echo $majorImage?>" class="news_img"></a>
+                    <img original="/upload/@files/<?php echo $majorImage?>" alt="<?php echo $item['title']?>" data-src="/upload/@files/<?php echo $majorImage?>" class="news_img lazy"></a>
                 <div class="news_des">
                     <a href="<?php echo convertViToEn($item['title'], $item['id']); ?>i.html" title="<?php echo $item['title']?>">
-                        <?php echo substr($item['title'], 0, strpos($item['title'], ' ', 40))?>...</a>
-                    <p><?php echo substr(strip_tags($item['description']), 0, strpos($item['description'], ' ', 600))?></p>
+                        <?php echo substr($item['title'], 0, strpos($item['title'], ' ', 35))?>...</a>
+                    <p><?php
+                        $description = trim(preg_replace('/\s+/', ' ', strip_tags($item['description'])));
+                        if(strlen($description) > 600){
+                            echo substr(strip_tags($item['description']), 0, strpos(strip_tags($description), ' ', 600));
+                        }else{
+                            echo $description;
+                        }
+                    ?></p>
                 </div>
             </li>
-            <?php endforeach?>
+            <?php endforeach ;?>
         </ul>
     </div>
     <ul class="pagination" id="pagination">
@@ -46,7 +53,7 @@
         ?>
     <div class="item_home <?php echo ($key%2 == 1) ? "r" : ""?> <?php echo ($key == $totalList-2 || $key == $totalList-1) ? "last" : ""?> ">
         <a href="<?php echo convertViToEn($item['title'], $item['id']); ?>i.html" title="<?php echo $item['title'] ?>">
-            <img original="/public/images/upload/<?php echo $majorImage?>" src="/public/images/upload/<?php echo $majorImage?>" alt="<?php echo $item['id'] ?> - <?php echo $item['district_name'] ?> - <?php echo $item['title'] ?>"></a>
+            <img class="lazy" original="/upload/@files/<?php echo $majorImage?>" src="" data-src="/upload/@files/<?php echo $majorImage?>" alt="<?php echo $item['id'] ?> - <?php echo $item['district_name'] ?> - <?php echo $item['title'] ?>"></a>
         <a href="<?php echo convertViToEn($item['title'], $item['id']); ?>i.html" title="<?php echo $item['title'] ?>"><?php echo $item['title'] ?></a>
 
         <div class="bottom">Giá: <b><?php echo $item['price']?></b>  - <span><?php echo $item['district_name']?></span></div>

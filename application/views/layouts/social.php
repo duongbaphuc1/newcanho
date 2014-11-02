@@ -8,6 +8,7 @@
                return false;">
         <img width="70" src="/public/images/FBShare.jpg"/> <br/>
     </a>
+    <br/>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <g:plusone></g:plusone>
     <br/>

@@ -27,6 +27,7 @@ class Reals_model extends Abstract_model {
             $this->db->order_by($sort, "DESC");
         }
 
+        $this->db->where('real_estate.is_active', 1);
         $result = $this->db->get($this->_table);
 
         if ($result) {
@@ -55,6 +56,7 @@ class Reals_model extends Abstract_model {
         }
 
         $this->db->where('categories.slug', $cat_slug);
+        $this->db->where('real_estate.is_active', 1);
 
         $result = $this->db->get($this->_table);
 
@@ -89,6 +91,7 @@ class Reals_model extends Abstract_model {
     // @author Phuc Duong
     function getOtherReals($id, $projectID) {
 
+        $this->db->where('is_active', 1);
         $this->db->where('id !='. $id);
         $this->db->where('project_id', $projectID);
         $this->db->limit(ITEM_MAX_VIEW_DETAIL);
@@ -150,6 +153,7 @@ class Reals_model extends Abstract_model {
             $this->db->like('area.id', $params['areas']);
         }
 
+        $this->db->where('real_estate.is_active', 1);
         $this->db->limit($limit, $offset);
 
         $result = $this->db->get($this->_table);
@@ -192,6 +196,7 @@ class Reals_model extends Abstract_model {
             $this->db->like('area.id', $params['areas']);
         }
 
+        $this->db->where('real_estate.is_active', 1);
         $result = $this->db->get($this->_table);
 
         if ($result) {

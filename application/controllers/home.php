@@ -10,6 +10,7 @@ class Home extends CI_Controller {
         $this->load->helper("pagination");
         $this->load->model("Reals_model");
         $this->load->model("Common_model");
+        $this->output->cache(5);
     }
 
     public function index() {

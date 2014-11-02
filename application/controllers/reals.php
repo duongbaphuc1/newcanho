@@ -12,6 +12,7 @@ class Reals extends CI_Controller {
         $this->load->model("District_model");
         $this->load->model("Project_model");
         $this->load->model("Common_model");
+        $this->output->cache(5);
     }
 
     function filter($cat_slug, $district = null){

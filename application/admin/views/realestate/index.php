@@ -35,7 +35,7 @@
          <!--<td class="left"><?php //echo $realestates->created_date  ?></td>-->
                                 <td class="center">
                                     <a class="image-in-modal" href="#">
-                                        <img class="img-logo grayscale" src="/public/images/upload/<?php
+                                        <img class="img-logo grayscale" src="/upload/@files/<?php
                                         $temp = explode("&fieldbreak;", $reals->image);
                                         echo $temp[0];
                                         ?>"/>
@@ -46,10 +46,12 @@
                                         <i class="icon-edit icon-white"></i>
                                         edit
                                     </a>
+                                    <?php if(USER_ROLE=="admin"): ?>
                                     <a class="btn btn-danger" href="/admin/index.php/realestate/delete/<?php echo $reals->id ?>">
                                         <i class="icon-edit icon-white"></i>
                                         delete
                                     </a>
+                                    <?php endif?>
                                     <?php if($reals->is_active==0):?>
                                     <a class="btn btn-success" href="/admin/index.php/realestate/active/<?php echo $reals->id ?>">
                                         <i class="icon-edit icon-white"></i>
