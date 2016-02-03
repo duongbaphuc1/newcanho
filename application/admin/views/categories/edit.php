@@ -24,6 +24,24 @@
                         </div>
                     </div>
                     <div class="control-group">
+                        <label class="control-label" for="textarea">Tiêu đề SEO</label>
+                        <div class="controls">
+                            <?php echo form_input('seo_title', $cat['seo_title']); ?>
+                        </div>                        
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">Mô tả SEO</label>
+                        <div class="controls">
+                            <textarea name="seo_desc"><?php echo $cat['seo_desc'] ?></textarea>
+                        </div>                        
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="textarea">SEO Keyword</label>
+                        <div class="controls">
+                            <textarea name="seo_keyword"><?php echo $cat['seo_keyword'] ?></textarea>
+                        </div>                        
+                    </div>
+                    <div class="control-group">
                         <label class="control-label" for="textarea">Sort</label>
                         <div class="controls">
                             <?php echo form_input('sort',$cat['sort']); ?>    

@@ -116,25 +116,27 @@ class Realestate_model extends Abstract_model
 
         // upload new image logo
         for ($i = 0; $i < 10; $i++) {
-            $name = md5(date('d/m/Y H:i:s').microtime());
-            $image = uploadFile("image" . $i, BASEPATH . "../upload/@files/", $name . "_" . $i);
-            if (!empty($image['file_name'])) {
-                $imgNew .= $image['file_name'] . "&fieldbreak;";
+            if(!empty($_FILES["image" . $i]["name"])) {
+            	$name = md5(date('d/m/Y H:i:s').microtime());
+            	$image = uploadFile("image" . $i, BASEPATH . "../upload/@files/", $name . "_" . $i);
+            	if (!empty($image['file_name'])) {
+                	$imgNew .= $image['file_name'] . "&fieldbreak;";
+            	}
             }
         }
 
         $old_image = $this->input->post("old_image");
         $del_image = $this->input->post('del_image');
 
-        if ( !empty($del_image) && count($del_image) > 0 ) {
+        if ( !empty($del_image) ) {
 
             $old_image = explode("&fieldbreak;", $old_image);
+            $old_tmp = $old_image; 
             foreach ($del_image as $key=>$del) {
-                foreach($old_image as $old){
-                    if ($del == $old) {
-                        $old_image = array_values($old_image);
+                foreach($old_tmp as $key_old=>$old){
+                    if ($del == $old) {                        
                         removeFile(BASEPATH . "../upload/@files/" . $del);
-                        unset($old_image[$key]);
+                        unset($old_image[$key_old]);
                     }
                 }
 

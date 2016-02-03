@@ -31,7 +31,7 @@ if (!function_exists('getIdFromStr')) {
 
 if (!function_exists('convertViToEn')) {
 
-    function convertViToEn($str, $id) {
+    function convertViToEn($str, $id) { 
         $str = preg_replace('/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/', 'a', $str);
         $str = preg_replace('/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/', 'e', $str);
         $str = preg_replace('/(ì|í|ị|ỉ|ĩ)/', 'i', $str);
@@ -50,6 +50,12 @@ if (!function_exists('convertViToEn')) {
         $str = preg_replace('/( )/', '-', $str);
         $str = preg_replace('/(!)/', '-', $str);
         $str = str_replace(',', '-', $str);
+        $str = str_replace('/', '-', $str);
+$str = str_replace('(', '-', $str);
+$str = str_replace(')', '-', $str);
+$str = str_replace('"', '-', $str);
+$str = str_replace('$', '-', $str);
+
         $str .= "-".$id;
         return strtolower($str);
     }

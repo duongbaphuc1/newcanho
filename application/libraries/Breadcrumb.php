@@ -49,4 +49,3 @@ class Breadcrumb{
         return $this->bread;
     }
 }
-?> 

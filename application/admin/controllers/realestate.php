@@ -82,6 +82,7 @@ class Realestate extends CI_Controller {
     }
 
     public function edit($id) {
+
         if (ispost()) {
             if ($this->Realestate_model->edit($_POST, $id)) {
                 redirect(base_url() . "admin/index.php/realestate", "location");

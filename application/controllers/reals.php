@@ -12,7 +12,7 @@ class Reals extends CI_Controller {
         $this->load->model("District_model");
         $this->load->model("Project_model");
         $this->load->model("Common_model");
-        $this->output->cache(5);
+        //$this->output->cache(5);
     }
 
     function filter($cat_slug, $district = null){
@@ -47,7 +47,7 @@ class Reals extends CI_Controller {
             $data['desc'] = $data['desc']. " ". $data['listReals'][0]['district_name'];
 
         }else{
-            $titleTmp = $data['listReals'][0]['category_name'];
+            $titleTmp = (!empty($data['listReals'][0]['category_name'])) ? $data['listReals'][0]['category_name'] : "";
 
             $data['title'] = (!empty($data['listReals'][0]['cat_title'])) ? $data['listReals'][0]['cat_title'] : $titleTmp;
             $data['keyword'] = (!empty($data['listReals'][0]['cat_keyword'])) ? $data['listReals'][0]['cat_keyword'] : $titleTmp;
@@ -90,12 +90,24 @@ class Reals extends CI_Controller {
     **/
     public function detail($idStr) {
 
+        $this->load->model('Captcha_model');
+        $data = $this->Common_model->getDefault();
         if(ispost()){
             $this->load->model("Contact_model");
-            $this->Contact_model->sendEmail();
+            $captchaWord = $this->session->userdata('capcha');
+	    if( strcasecmp(strtoupper($captchaWord[0]), strtoupper($_POST['confirmCaptcha']) ) == 0){
+             if($this->Contact_model->sendEmail()){
+                 $data['msg'] = "Cám ơn bạn đã gửi liên hệ";
+             }else{
+                $data['msg'] = "Vui lòng gửi lại";
+             }
+            }else{ $data['msg'] = "Vui lòng nhập đúng Captcha"; $data['lienhe'] = $_POST;}
         }
 
-        $data = $this->Common_model->getDefault();
+        $captcha = $this->Captcha_model->generateCaptcha();
+	$this->session->set_userdata('capcha', array($captcha['word']));
+	       
+        $data['captcha'] = $captcha;
 
         $id = getIdFromStr($idStr);
         $data['real'] = $this->Reals_model->getRealById($id);
@@ -106,7 +118,6 @@ class Reals extends CI_Controller {
         $data['title'] = (!empty($data['real']['seo_title'])) ? $data['real']['seo_title'] : $data['real']['title'];
         $data['keyword'] = (!empty($data['real']['seo_keyword'])) ? $data['real']['seo_keyword'] : $data['real']['title'];
         $data['desc'] = (!empty($data['real']['seo_desc'])) ? $data['real']['seo_desc'] : $data['real']['title'];
-
         $this->load->view('layouts/index', $data);
     }
 }

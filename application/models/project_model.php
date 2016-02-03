@@ -27,13 +27,14 @@ class Project_model extends Abstract_model
     }
 
     function _genequeryPro($type, $offset = 0, $limit = 0){
-        $strFields = 'real_estate.*, district.district_name as district_name, district.slug as dis_slug,';
+        $strFields = 'real_estate.*, district.district_name as district_name, district.slug as dis_slug, catproject_id,';
         $strFields .= 'project.project_name as pro_name, categories.slug as cat_slug, categories.category_name,';
         $strFields .= 'project.project_title as pro_seo_title, project.project_desc as pro_seo_desc, project.project_keyword as pro_seo_keyword';
         $this->db->select($strFields);
         $this->db->join('project', 'project.id = real_estate.project_id');
         $this->db->join('district', 'district.id = real_estate.district_id');
         $this->db->join('categories', 'categories.id = real_estate.category_id');
+$this->db->order_by('real_estate.id', 'DESC');
         $this->db->where("project.slug", $type);
 
         if (!empty($limit)) {

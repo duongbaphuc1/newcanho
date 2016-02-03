@@ -189,25 +189,16 @@
                 category_id: {
                     required: true
                 },
-                project_id: {
-                    required: true
-                },
                 address: {
                     required: true
                 },
                 district_id: {
                     required: true
                 },                
-                price_id: {
-                    required: true
-                },
                 area_id: {
                     required: true
                 },
                 price: {
-                    required: true
-                },
-                seo_title: {
                     required: true
                 },
                 long: {
@@ -215,12 +206,6 @@
                 },
                 lat: {
                     number: true
-                },
-                seo_desc: {
-                    required: true
-                },
-                seo_keyword: {
-                    required: true
                 },
                 description: {
                     required: true
@@ -263,6 +248,7 @@
         $('#project_id').select2({
             width: '220px',
             placeholder: "Search project",
+            allowClear: true,
             minimumInputLength: 2,
             ajax: {
                 url: "/admin/index.php/realestate/getPro",

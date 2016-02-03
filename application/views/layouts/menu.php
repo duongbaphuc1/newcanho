@@ -7,17 +7,36 @@ if(!isset($cats)) {
     $cats = $this->Categories_model->getAll($type);
 }
 ?>
-<div class="menu">
+<nav class="menu">
     <ul id="nav">
         <?php foreach($cats as $item): ?>
-        <li>
-            <a href="/<?php echo $item['slug']?>" title="<?php echo $item['category_name']?>"><?php echo $item['category_name']?><span>&nbsp;</span></a>
-        </li>
+            <li>
+                <?php if($item['slug'] == 'van-phong-cho-thue'): ?>
+                    <a href="/<?php echo $item['slug']?>" title="<?php echo $item['category_name']?>"><?php echo $item['category_name']?><span>&nbsp;</span></a>
+                <?php else:?>
+                    <a href="/<?php echo $item['slug']?>" title="<?php echo $item['category_name']?>"><?php echo $item['category_name']?><span>&nbsp;</span></a>   <?php endif?>
+            </li>
         <?php endforeach?>
         <li class="last"><a rel="nofollow" href="lien-he.html" title="Liên hệ ĐỊA ỐC MỸ HƯNG">LIÊN HỆ<span>&nbsp;</span></a></li>
     </ul>
+    <a href="#" id="pull">Menu</a>
+</nav>
+<script>
+    $(function() {
+        var pull    = $('#pull');
+        menu    = $('nav ul');
+        menuHeight  = menu.height();
 
-    <script type="text/javascript">
-        var dropdown = new TINY.dropdown.init("dropdown", {id: 'nav', active: 'menuhover'});
-    </script>   
-</div>
+        $(pull).on('click', function(e) {
+            e.preventDefault();
+            menu.slideToggle();
+        });
+
+        $(window).resize(function(){
+            var w = $(window).width();
+            if(w > 320 && menu.is(':hidden')) {
+                menu.removeAttr('style');
+            }
+        });
+    });
+</script>

@@ -81,7 +81,8 @@ class Reals_model extends Abstract_model {
         $this->db->join('district', 'district.id = real_estate.district_id');
         $this->db->join('project', 'project.id = real_estate.project_id', 'left');
         $this->db->join('categories', 'categories.id = real_estate.category_id');
-        $this->db->where('real_estate.id', $id);
+$this->db->order_by('real_estate.id', "DESC");
+        $this->db->where('real_estate.id', $id);  
         $result = $this->db->get($this->_table);
 
         return $result->row_array();
@@ -126,12 +127,14 @@ class Reals_model extends Abstract_model {
         $this->db->join('district', 'district.id = real_estate.district_id');
         $this->db->join('project', 'project.id = real_estate.project_id', 'left');
         $this->db->join('categories', 'categories.id = real_estate.category_id');
-        $this->db->join('price', 'price.id = real_estate.price_id');
+        $this->db->join('price', 'price.id = real_estate.price_id', 'left');
         $this->db->join('area', 'area.id = real_estate.area_id');
 
         if($params['code']) {
             $this->db->like('real_estate.id', $params['code']);
         }
+         
+        $this->db->order_by('real_estate.id', 'DESC');
 
         if($params['key']) {
             $this->db->like('title', $params['key']);
@@ -169,7 +172,7 @@ class Reals_model extends Abstract_model {
         $this->db->join('district', 'district.id = real_estate.district_id');
         $this->db->join('project', 'project.id = real_estate.project_id', 'left');
         $this->db->join('categories', 'categories.id = real_estate.category_id');
-        $this->db->join('price', 'price.id = real_estate.price_id');
+        $this->db->join('price', 'price.id = real_estate.price_id', 'left');
         $this->db->join('area', 'area.id = real_estate.area_id');
 
         if($params['code']) {

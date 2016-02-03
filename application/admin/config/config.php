@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://local.newcanho/';
+$config['base_url']	= 'http://canhosaigon.com.vn/';
 
 /*
 |--------------------------------------------------------------------------

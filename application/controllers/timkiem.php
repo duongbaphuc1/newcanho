@@ -17,7 +17,8 @@ class Timkiem extends CI_Controller {
         $data = $this->Common_model->getDefault();
         if(ispost()){
             $url = "/tim-kiem/";
-            $data['results'] = $this->Reals_model->timKiem($_POST, PER_PAGE, 0);
+            $offset = $this->uri->segment(2, 0);
+            $data['results'] = $this->Reals_model->timKiem($_POST, PER_PAGE, $offset);
             $total           = $this->Reals_model->getTotalResult($_POST);
             $data['params']  = $_POST;
             $pagination = pagination($url, $total, PER_PAGE, 2, 4);

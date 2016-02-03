@@ -103,7 +103,7 @@
                                     if($image!=""){
                                         echo "<div style='float:left;width:110px'>";
                                         echo "<div><input id='del_image' name='del_image[]' type='checkbox' value='".$image."'/>Xóa </div>";
-                                        echo "<div><img class='img-logo' src='/public/images/upload/".$image."' /></div>";
+                                        echo "<div><img class='img-logo' src='/upload/@files/".$image."' /></div>";                                        
                                         echo "</div>";
                                     }
                                 }
@@ -213,32 +213,17 @@
                 category_id: {
                     required: true
                 },
-                project_id: {
-                    required: true
-                },
                 address: {
                     required: true
                 },
                 district_id: {
                     required: true
                 },
-                price_id: {
-                    required: true 
-                },
                 area_id: {
                     required: true
                 },
                 price: {
                     required: true                 
-                },                               
-                seo_title: {
-                    required: true
-                },
-                seo_desc: {
-                    required: true
-                },
-                seo_keyword: {
-                    required: true
                 },
                 description: {
                     required: true
@@ -287,7 +272,8 @@
         $('#project_id').select2({
             width: '220px',
             placeholder: "Search project",
-            minimumInputLength: 2,
+            allowClear: true,
+            minimumInputLength: 2,            
             ajax: {
                 url: "/admin/index.php/realestate/getPro",
                 dataType: 'json',                
